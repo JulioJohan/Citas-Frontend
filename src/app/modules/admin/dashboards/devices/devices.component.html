@@ -1,0 +1,108 @@
+<div class="flex flex-col flex-auto w-full">
+
+    <div class="flex flex-wrap w-full max-w-screen-xl mx-auto p-6 md:p-8">
+
+        <!-- Title and action buttons -->
+        <div class="flex items-center justify-between w-full">
+            <div>
+                <h2 class="text-3xl font-semibold tracking-tight leading-8">Monitoreo</h2>
+                <!-- <div class="font-medium tracking-tight text-secondary">Keep track of your financial status</div> -->
+            </div>
+            <div class="flex items-center ml-6">
+                <button
+                    class="hidden sm:inline-flex"
+                    mat-stroked-button>
+                    <mat-icon
+                        class="icon-size-5"
+                        [svgIcon]="'heroicons_solid:document-chart-bar'"></mat-icon>
+                    <span class="ml-2">Reports</span>
+                </button>
+                <button
+                    class="hidden sm:inline-flex ml-3"
+                    mat-stroked-button>
+                    <mat-icon
+                        class="icon-size-5"
+                        [svgIcon]="'heroicons_solid:cog-8-tooth'"></mat-icon>
+                    <span class="ml-2">Settings</span>
+                </button>
+                <button
+                    class="hidden sm:inline-flex ml-3"
+                    mat-flat-button
+                    [color]="'primary'">
+                    <mat-icon
+                        class="icon-size-5"
+                        [svgIcon]="'heroicons_solid:arrow-up-tray'"></mat-icon>
+                    <span class="ml-2">Export</span>
+                </button>
+
+                <!-- Actions menu (visible on xs) -->
+                <div class="sm:hidden">
+                    <button
+                        [matMenuTriggerFor]="actionsMenu"
+                        mat-icon-button>
+                        <mat-icon [svgIcon]="'heroicons_mini:ellipsis-vertical'"></mat-icon>
+                    </button>
+                    <mat-menu #actionsMenu="matMenu">
+                        <button mat-menu-item>Export</button>
+                        <button mat-menu-item>Reports</button>
+                        <button mat-menu-item>Settings</button>
+                    </mat-menu>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 xl:grid-cols-2 gap-8 w-full mt-8" *ngFor="let mensaje of mensajes">
+            <div class="grid gap-8 sm:grid-flow-col xl:grid-flow-row">
+                <!-- Previous statement -->
+                <div class="relative flex flex-col flex-auto p-6 pr-3 pb-3 bg-card rounded-2xl shadow overflow-hidden">
+                    <div class="absolute bottom-0 right-0 w-24 h-24 -m-6">
+                        <mat-icon
+                            class="icon-size-24 opacity-25 text-green-500 dark:text-green-400"
+                            [svgIcon]="'heroicons_outline:check-circle'"></mat-icon>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="flex flex-col">
+                            <div class="text-lg font-medium tracking-tight leading-6 truncate">Dispositivo</div>
+                            <div class="text-green-600 font-medium text-sm">
+                                <!-- Paid on {{data.previousStatement.date}} -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex flex-row flex-wrap mt-4 -mx-6">
+                        <div class="flex flex-col mx-6 my-3">
+                            <div class="text-lg font-medium leading-none text-secondary">{{mensaje?.dispositivoId}}</div>
+                            <!-- <div class="mt-2 font-medium text-3xl leading-none">{{data.previousStatement.limit | currency:'USD'}}</div> -->
+                        </div>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="flex flex-col">
+                            <div class="text-lg font-medium tracking-tight leading-6 truncate">Ultimo registro</div>
+                            <div class="text-green-600 font-medium text-sm">
+                                <!-- Paid on {{data.previousStatement.date}} -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex flex-row flex-wrap mt-4 -mx-6">
+                        <div class="flex flex-col mx-6 my-3">
+                            <div class="text-lg font-medium leading-none text-secondary">{{mensaje?.fechaHora | date:'dd/MM/yyyy'}} {{mensaje?.fechaHora | date:'HH:mm:ss'}}</div>
+                            <!-- <div class="mt-2 font-medium text-3xl leading-none">{{data.previousStatement.limit | currency:'USD'}}</div> -->
+                        </div>
+                    </div>
+                </div>
+                <!-- Current statement -->
+
+            </div>
+            <!-- Account balance -->
+
+
+            <div class="flex flex-col flex-auto p-6 bg-card shadow rounded-2xl overflow-hidden">
+                <div class="flex flex-col items-center mt-2">
+                    <div class="text-7xl sm:text-8xl font-bold tracking-tight leading-none text-blue-500">{{mensaje?.contadorActual}}</div>
+                    <div class="text-lg font-medium text-blue-600 dark:text-blue-500">Registros</div>
+                </div>
+        </div>
+
+
+    </div>
+
+</div>
