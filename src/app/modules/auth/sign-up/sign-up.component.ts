@@ -11,6 +11,11 @@ import { Router, RouterLink } from '@angular/router';
 import { fuseAnimations } from '@fuse/animations';
 import { FuseAlertComponent, FuseAlertType } from '@fuse/components/alert';
 import { AuthService } from 'app/core/auth/auth.service';
+import { AutenticacionService } from '../../../services/autenticacion/autenticacion.service';
+import { Respuesta } from 'app/models/Respuesta';
+import { Usuario } from 'app/models/Usuario';
+import { EspecialidadService } from 'app/services/especialidad/especialidad.service';
+import { Especialidad } from '../../../models/Especialidad';
 
 @Component({
     selector     : 'auth-sign-up',
@@ -20,6 +25,20 @@ import { AuthService } from 'app/core/auth/auth.service';
 })
 export class AuthSignUpComponent implements OnInit
 {
+
+    /**
+     * Constructor
+     */
+    constructor(
+        private _authService: AuthService,
+        private _autenticacionService:AutenticacionService,
+        private _formBuilder: UntypedFormBuilder,
+        private _router: Router,
+        private _especialidadService:EspecialidadService
+    )
+    {
+    }
+    
     @ViewChild('signUpNgForm') signUpNgForm: NgForm;
 
     alert: { type: FuseAlertType; message: string } = {
@@ -28,17 +47,15 @@ export class AuthSignUpComponent implements OnInit
     };
     signUpForm: UntypedFormGroup;
     showAlert: boolean = false;
+    public especialidades:Especialidad[] = [];
 
-    /**
-     * Constructor
-     */
-    constructor(
-        private _authService: AuthService,
-        private _formBuilder: UntypedFormBuilder,
-        private _router: Router,
-    )
-    {
-    }
+    public formularioRegistro = this._formBuilder.group({
+        name:        ['',[Validators.required]],
+        email:       ['',[Validators.required, Validators.email]],
+        password:    ['',[Validators.required]],
+        role:        ['',[Validators.required]],
+        especialidad:['',[Validators.required]],
+    })
 
     // -----------------------------------------------------------------------------------------------------
     // @ Lifecycle hooks
@@ -49,6 +66,7 @@ export class AuthSignUpComponent implements OnInit
      */
     ngOnInit(): void
     {
+        this.obtenerDispositivos();
         // Create the form
         this.signUpForm = this._formBuilder.group({
                 name      : ['', Validators.required],
@@ -58,6 +76,58 @@ export class AuthSignUpComponent implements OnInit
                 agreements: ['', Validators.requiredTrue],
             },
         );
+    }
+    private obtenerDispositivos(){
+        this._especialidadService.obtenerEspecialidades().subscribe({
+            next(respuesta:Respuesta){
+                this.especialidades = respuesta.data   
+                console.log(this.especialidades)              
+            },
+            error(error) {
+                
+            },
+        })
+    }
+
+    private errorRespuesta(){
+         // Re-enable the form
+         this.formularioRegistro.enable();
+
+         // Reset the form
+         this.formularioRegistro.reset();
+
+         // Set the alert
+         this.alert = {
+             type   : 'error',
+             message: 'Upps Ubo un error ma',
+         };
+
+         // Show the alert
+         this.showAlert = true;
+    }
+
+    public registrarUsuario(){
+        this.formularioRegistro.disable();
+        this.showAlert = false;
+        const usuario = new Usuario();
+        usuario.name = this.formularioRegistro.get('name').value;        
+        usuario.especialidad = this.formularioRegistro.get('especialidad').value !== '' ? this.formularioRegistro.get('especialidad').value :null ;
+        usuario.email = this.formularioRegistro.get('email').value;
+        usuario.password = this.formularioRegistro.get('password').value;
+        usuario.role = this.formularioRegistro.get('role').value;
+        this._autenticacionService.registrarUsuario(usuario).subscribe({       
+        next:(respuesta:Respuesta) =>{
+            this.formularioRegistro.reset();
+            this.showAlert = true;
+             // Set the alert
+             this.alert = {
+                type   : 'success',
+                message: respuesta.msg,
+            };
+            localStorage.setItem('token',respuesta.data);
+        }           
+        })
+    
     }
 
     // -----------------------------------------------------------------------------------------------------

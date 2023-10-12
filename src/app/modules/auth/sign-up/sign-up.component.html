@@ -7,12 +7,12 @@
             </div>
 
             <!-- Title -->
-            <div class="mt-8 text-4xl font-extrabold tracking-tight leading-tight">Sign up</div>
+            <div class="mt-8 text-4xl font-extrabold tracking-tight leading-tight">Crear Cuenta</div>
             <div class="flex items-baseline mt-0.5 font-medium">
-                <div>Already have an account?</div>
+                <div>Ya tienes una cuenta?</div>
                 <a
                     class="ml-1 text-primary-500 hover:underline"
-                    [routerLink]="['/users/sign-in']">Sign in
+                    [routerLink]="['/users/sign-in']"> Iniciar Sesión
                 </a>
             </div>
 
@@ -30,39 +30,39 @@
             <!-- Sign Up form -->
             <form
                 class="mt-8"
-                [formGroup]="signUpForm"
+                [formGroup]="formularioRegistro"
                 #signUpNgForm="ngForm">
 
                 <!-- Name field -->
                 <mat-form-field class="w-full">
-                    <mat-label>Full name</mat-label>
+                    <mat-label>Nombre Completo</mat-label>
                     <input
                         id="name"
                         matInput
                         [formControlName]="'name'">
-                    <mat-error *ngIf="signUpForm.get('name').hasError('required')">
-                        Full name is required
+                    <mat-error *ngIf="formularioRegistro.get('name').hasError('required')">
+                       El nombre completo es requerido
                     </mat-error>
                 </mat-form-field>
 
                 <!-- Email field -->
                 <mat-form-field class="w-full">
-                    <mat-label>Email address</mat-label>
+                    <mat-label>Correo Electronico</mat-label>
                     <input
                         id="email"
                         matInput
                         [formControlName]="'email'">
-                    <mat-error *ngIf="signUpForm.get('email').hasError('required')">
-                        Email address is required
+                    <mat-error *ngIf="formularioRegistro.get('email').hasError('required')">
+                        El nombre del correo electronico es requerido
                     </mat-error>
-                    <mat-error *ngIf="signUpForm.get('email').hasError('email')">
-                        Please enter a valid email address
+                    <mat-error *ngIf="formularioRegistro.get('email').hasError('email')">
+                       Porfavor ingresa un correo electronico valido
                     </mat-error>
                 </mat-form-field>
 
                 <!-- Password field -->
                 <mat-form-field class="w-full">
-                    <mat-label>Password</mat-label>
+                    <mat-label>Contraseña</mat-label>
                     <input
                         id="password"
                         matInput
@@ -84,21 +84,37 @@
                             [svgIcon]="'heroicons_solid:eye-slash'"></mat-icon>
                     </button>
                     <mat-error>
-                        Password is required
+                        La contraseña es requerida
                     </mat-error>
                 </mat-form-field>
 
                 <!-- Company field -->
+
                 <mat-form-field class="w-full">
-                    <mat-label>Company</mat-label>
-                    <input
-                        id="company-confirm"
-                        matInput
-                        [formControlName]="'company'">
-                </mat-form-field>
+                    <mat-label>Rol</mat-label>
+                    <mat-select [formControlName]="'role'" >
+                      <mat-option value="DOCTOR">DOCTOR (A)</mat-option>
+                      <mat-option value="ENFERMERA">ENFERMERO (A)</mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="formularioRegistro.get('role').hasError('required')">
+                        El Rol es requerido
+                    </mat-error>
+                  </mat-form-field>
+                  
+                  <mat-form-field class="w-full" *ngIf="formularioRegistro.get('role').value === 'DOCTOR'"> 
+                    <mat-label>Especialidad</mat-label>
+                    <mat-select [formControlName] = "'especialidad'"  >
+                      <mat-option *ngFor="let especialidad of especialidades" 
+                      [value] = "especialidad._id">{{especialidad.name}}</mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="formularioRegistro.get('especialidad').hasError('required')">
+                        La especialidad es requerida
+                    </mat-error>
+                  </mat-form-field>    
+                
 
                 <!-- ToS and PP -->
-                <div class="inline-flex items-end w-full mt-1.5">
+                <!-- <div class="inline-flex items-end w-full mt-1.5">
                     <mat-checkbox
                         class="-ml-2"
                         [color]="'primary'"
@@ -114,17 +130,17 @@
                             [routerLink]="['./']">Privacy Policy
                         </a>
                     </mat-checkbox>
-                </div>
+                </div> -->
 
                 <!-- Submit button -->
                 <button
                     class="fuse-mat-button-large w-full mt-6"
                     mat-flat-button
                     [color]="'primary'"
-                    [disabled]="signUpForm.disabled"
-                    (click)="signUp()">
-                    <span *ngIf="!signUpForm.disabled">
-                        Create your free account
+                    [disabled]="formularioRegistro.invalid"
+                    (click)="registrarUsuario()">
+                    <span >
+                        Crear Cuenta
                     </span>
                     <mat-progress-spinner
                         *ngIf="signUpForm.disabled"

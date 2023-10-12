@@ -21,6 +21,7 @@ import { AuthSignOutComponent } from './sign-out/sign-out.component';
 import { AuthSignUpComponent } from './sign-up/sign-up.component';
 import { AuthUnlockSessionComponent } from './unlock-session/unlock-session.component';
 import { LayoutModule } from 'app/layout/layout.module';
+import { MatSelectModule } from '@angular/material/select';
 
 
 @NgModule({
@@ -53,6 +54,7 @@ import { LayoutModule } from 'app/layout/layout.module';
         MatFormFieldModule, 
         MatInputModule, 
         MatIconModule,
+        MatSelectModule,
         MatProgressSpinnerModule, 
         
     ],
