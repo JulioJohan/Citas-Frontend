@@ -1,6 +1,6 @@
 import { NgIf } from '@angular/common';
 import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
-import { FormsModule, NgForm, ReactiveFormsModule, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import { FormGroup, FormsModule, NgForm, ReactiveFormsModule, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -16,6 +16,8 @@ import { Respuesta } from 'app/models/Respuesta';
 import { Usuario } from 'app/models/Usuario';
 import { EspecialidadService } from 'app/services/especialidad/especialidad.service';
 import { Especialidad } from '../../../models/Especialidad';
+import { Rol } from 'app/enums/Rol';
+
 
 @Component({
     selector     : 'auth-sign-up',
@@ -48,48 +50,50 @@ export class AuthSignUpComponent implements OnInit
     signUpForm: UntypedFormGroup;
     showAlert: boolean = false;
     public especialidades:Especialidad[] = [];
+    public formularioRegistro:FormGroup;
 
-    public formularioRegistro = this._formBuilder.group({
-        name:        ['',[Validators.required]],
-        email:       ['',[Validators.required, Validators.email]],
-        password:    ['',[Validators.required]],
-        role:        ['',[Validators.required]],
-        especialidad:['',[Validators.required]],
-    })
-
+   
     // -----------------------------------------------------------------------------------------------------
     // @ Lifecycle hooks
     // -----------------------------------------------------------------------------------------------------
-
+  
     /**
      * On init
      */
     ngOnInit(): void
     {
-        this.obtenerDispositivos();
-        // Create the form
-        this.signUpForm = this._formBuilder.group({
-                name      : ['', Validators.required],
-                email     : ['', [Validators.required, Validators.email]],
-                password  : ['', Validators.required],
-                company   : [''],
-                agreements: ['', Validators.requiredTrue],
-            },
-        );
-    }
-    private obtenerDispositivos(){
-        this._especialidadService.obtenerEspecialidades().subscribe({
-            next(respuesta:Respuesta){
-                this.especialidades = respuesta.data   
-                console.log(this.especialidades)              
-            },
-            error(error) {
-                
-            },
+        this.formularioRegistro = this._formBuilder.group({
+            name:        ['',[Validators.required]],
+            email:       ['',[Validators.required, Validators.email]],
+            password:    ['',[Validators.required]],
+            role:        ['',[Validators.required]],
+            especialidad:[''],
         })
+    
+        this.obtenerDispositivos();      
+        this.validarRolFormulario();
     }
 
-    private errorRespuesta(){
+    private validarRolFormulario(){
+        this.formularioRegistro.get('role').valueChanges.subscribe((role)=>{
+            if(role === Rol.ENFERMERA){
+                this.formularioRegistro.get('especialidad').clearValidators();;
+            }
+            if(role === Rol.DOCTOR){
+                this.formularioRegistro.get('especialidad').setValidators([Validators.required]);
+            }
+            this.formularioRegistro.get('especialidad').updateValueAndValidity();
+
+        })
+    }
+    private obtenerDispositivos(){
+        this._especialidadService.obtenerEspecialidades().subscribe((respuesta)=>{           
+            this.especialidades = respuesta.data;              
+
+        })  
+    }
+
+    private errorRespuesta(error:string){
          // Re-enable the form
          this.formularioRegistro.enable();
 
@@ -99,12 +103,16 @@ export class AuthSignUpComponent implements OnInit
          // Set the alert
          this.alert = {
              type   : 'error',
-             message: 'Upps Ubo un error ma',
+             message: error,
          };
 
          // Show the alert
          this.showAlert = true;
     }
+
+    // public navegar(){
+    //     this._router.navigateByUrl('dashboards/devices')
+    // }
 
     public registrarUsuario(){
         this.formularioRegistro.disable();
@@ -124,8 +132,14 @@ export class AuthSignUpComponent implements OnInit
                 type   : 'success',
                 message: respuesta.msg,
             };
-            localStorage.setItem('token',respuesta.data);
-        }           
+            this._autenticacionService.accessToken = respuesta.data;
+            this._autenticacionService.autenticado = true;
+            this._router.navigateByUrl('dashboards/devices')
+
+        },
+        error:(error)=>{
+            this.errorRespuesta(error.error.msg)
+        }          
         })
     
     }

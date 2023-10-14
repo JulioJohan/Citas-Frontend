@@ -1,0 +1,8 @@
+{
+    "name":"Cardiología Intervencionista",
+    "question1":"¿Ha experimentado algún tipo de dolor en el pecho o dificultad para respirar recientemente?",
+    "question2":"¿Tiene antecedentes familiares de enfermedades cardíacas?",
+    "question3":"¿Ha tenido alguna cirugía cardíaca en el pasado?",
+    "question4":"¿Está actualmente tomando algún medicamento para el corazón?",
+    "question5":"¿Ha notado algún cambio en su nivel de energía o capacidad para realizar actividades físicas?"
+}
