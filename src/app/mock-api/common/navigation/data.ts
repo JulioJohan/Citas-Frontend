@@ -43,6 +43,13 @@ export const defaultNavigation: FuseNavigationItem[] = [
                 type : 'basic',
                 icon : 'heroicons_outline:device-phone-mobile',
                 link : '/dashboards/devices'
+            },
+            {
+                id   : 'cita',
+                title: 'Cita',
+                type : 'basic',
+                icon:'heroicons_outline:clipboard-document-list',
+                link : '/dashboards/cita'
             }        
         ],
     },    

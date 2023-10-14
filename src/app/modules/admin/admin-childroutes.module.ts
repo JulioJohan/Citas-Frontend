@@ -7,6 +7,7 @@ import { FinanceComponent } from './dashboards/finance/finance.component';
 import { CryptoComponent } from './dashboards/crypto/crypto.component';
 import { DevicesComponent } from './dashboards/devices/devices.component';
 import { ExampleComponent } from './example/example.component';
+import { CitaComponent } from './dashboards/cita/cita.component';
 
 const childRoutes:Routes = [
     {path: 'project', component:ProjectComponent},
@@ -14,7 +15,8 @@ const childRoutes:Routes = [
     {path: 'finance', component:FinanceComponent},
     {path: 'crypto', component:CryptoComponent},
     {path:'example',component: ExampleComponent},
-    {path: 'devices', component:DevicesComponent}
+    {path: 'devices', component:DevicesComponent},
+    {path: 'cita', component:CitaComponent}
 ]
 
 @NgModule({
