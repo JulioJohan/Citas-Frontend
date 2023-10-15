@@ -3,6 +3,7 @@ import { inject } from '@angular/core';
 import { AuthService } from 'app/core/auth/auth.service';
 import { AuthUtils } from 'app/core/auth/auth.utils';
 import { catchError, Observable, throwError } from 'rxjs';
+import { AutenticacionService } from '../../services/autenticacion/autenticacion.service';
 
 /**
  * Intercept
@@ -12,10 +13,11 @@ import { catchError, Observable, throwError } from 'rxjs';
  */
 export const authInterceptor = (req: HttpRequest<unknown>, next: HttpHandlerFn): Observable<HttpEvent<unknown>> =>
 {
-    const authService = inject(AuthService);
+    const authService = inject(AutenticacionService);
 
     // Clone the request object
     let newReq = req.clone();
+    console.log(authService.accessToken)
 
     // Request
     //

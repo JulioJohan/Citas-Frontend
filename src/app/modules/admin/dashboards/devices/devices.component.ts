@@ -18,7 +18,7 @@ export class DevicesComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.devicesServices.connectIfNeeded();
+    // this.devicesServices.connectIfNeeded();
 
     // this.devicesServices.connect();
     // this.getMensaje();
@@ -42,7 +42,7 @@ export class DevicesComponent implements OnInit {
   ngOnDestroy(): void {
     //Called once, before the instance is destroyed.
     //Add 'implements OnDestroy' to the class.
-    this.devicesServices.disconnect();
+    // this.devicesServices.disconnect();
     this.mensajeSubscription.unsubscribe();
 
   }

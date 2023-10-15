@@ -63,12 +63,12 @@ export class DevicesServices{
       return this.dataSubject.asObservable();
     }
 
-    disconnect() {
-        if (this.stompClient !== null) {
-            console.log("Desconectado")
-            this.stompClient.disconnect();
-            this.stompClient = null;
-        }
-    }
+    // disconnect() {
+    //     if (this.stompClient !== null) {
+    //         console.log("Desconectado")
+    //         this.stompClient.disconnect();
+    //         this.stompClient = null;
+    //     }
+    // }
 
 }

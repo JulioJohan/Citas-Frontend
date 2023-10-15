@@ -19,6 +19,8 @@ import { SearchComponent } from 'app/layout/common/search/search.component';
 import { ShortcutsComponent } from 'app/layout/common/shortcuts/shortcuts.component';
 import { UserComponent } from 'app/layout/common/user/user.component';
 import { Subject, takeUntil } from 'rxjs';
+import { AutenticacionService } from '../../../../services/autenticacion/autenticacion.service';
+import { Usuario } from 'app/models/Usuario';
 
 @Component({
     selector     : 'classy-layout',
@@ -32,6 +34,7 @@ export class ClassyLayoutComponent implements OnInit, OnDestroy
     isScreenSmall: boolean;
     navigation: Navigation;
     user: User;
+    usuario:Usuario = new Usuario();
     private _unsubscribeAll: Subject<any> = new Subject<any>();
 
     /**
@@ -40,6 +43,7 @@ export class ClassyLayoutComponent implements OnInit, OnDestroy
     constructor(
         private _activatedRoute: ActivatedRoute,
         private _router: Router,
+        private _autenticacionService:AutenticacionService,
         private _navigationService: NavigationService,
         private _userService: UserService,
         private _fuseMediaWatcherService: FuseMediaWatcherService,
@@ -70,17 +74,8 @@ export class ClassyLayoutComponent implements OnInit, OnDestroy
      */
     ngOnInit(): void
     {
-        this.loadPages()
-        
-
-        // Subscribe to the user service
-        this._userService.user$
-            .pipe((takeUntil(this._unsubscribeAll)))
-            .subscribe((user: User) =>
-            {
-                this.user = user;
-            });
-
+        this.cargarPaginas()
+        this.obtenerUsuario();                
         // Subscribe to media changes
         this._fuseMediaWatcherService.onMediaChange$
             .pipe(takeUntil(this._unsubscribeAll))
@@ -91,7 +86,15 @@ export class ClassyLayoutComponent implements OnInit, OnDestroy
             });
     }
 
-    loadPages(){
+    obtenerUsuario(){
+        this._autenticacionService.usuario$
+        .pipe((takeUntil(this._unsubscribeAll)))
+        .subscribe((usuario:Usuario)=>{
+            this.usuario = usuario;
+        });    
+    }
+
+    cargarPaginas(){
         // Subscribe to navigation data
         this._navigationService.navigation$
         .pipe(takeUntil(this._unsubscribeAll))

@@ -7,16 +7,16 @@
             </div>
 
             <!-- Title -->
-            <div class="mt-8 text-4xl font-extrabold tracking-tight leading-tight text-center">You have signed out!</div>
+            <div class="mt-8 text-4xl font-extrabold tracking-tight leading-tight text-center">Estas cerrando sesion!</div>
             <div class="flex justify-center mt-0.5 font-medium">
                 <!-- Redirect countdown -->
                 <ng-container *ngIf="countdown > 0">
-                    Redirecting in {{countdown | i18nPlural: countdownMapping }}
+                    Redirigiendo en {{countdown | i18nPlural: countdownMapping }}
                 </ng-container>
 
                 <!-- Redirect message -->
                 <ng-container *ngIf="countdown === 0">
-                    You are now being redirected!
+                    Tu ya estas rederigiendo
                 </ng-container>
             </div>
 
