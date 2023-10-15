@@ -4,9 +4,21 @@
 </div>
 
 <mat-vertical-stepper [linear]="false" #stepper [animationDuration]="duration.value">
+
+  <form class="example-form">
+    <mat-form-field class="example-full-width">
+      <mat-label>Assignee</mat-label>
+      <input type="text" matInput [formControl]="myControl" [matAutocomplete]="auto">
+      <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+        <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+          {{option.name}}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+  </form>
+  
   <mat-step [stepControl]="firstFormGroup">
-    <!-- [formGroup]="firstFormGroup" -->
-    <form >
+    <form [formGroup]="firstFormGroup">
       <ng-template matStepLabel>Fill out your name</ng-template>
       <mat-form-field>
         <input matInput placeholder="Nombre completo" formControlName="firstCtrl" required>
@@ -29,8 +41,8 @@
     </form>
   </mat-step>
   <mat-step [stepControl]="secondFormGroup">
-    <!-- [formGroup]="secondFormGroup" -->
-    <form > 
+    
+    <form [formGroup]="secondFormGroup"> 
       <ng-template matStepLabel>Fill out your address</ng-template>
       <mat-form-field>
         <input matInput placeholder="Address" formControlName="secondCtrl" required>

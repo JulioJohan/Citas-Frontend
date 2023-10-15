@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Paciente } from 'app/models/Paciente';
 import { PacienteService } from 'app/services/paciente/paciente.service';
-import {FormBuilder, FormGroup} from '@angular/forms';
+import {FormBuilder, FormGroup, FormControl, FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { Observable } from 'rxjs';
+
 
 @Component({
   selector: 'app-cita',
@@ -30,7 +32,10 @@ export class CitaComponent implements OnInit{
       console.log("BUSQUEDA", this.listaPacientes);
     })
   }
-
+ 
+    myControl = new FormControl<busquedaCurp>(PacienteService);
+    options: listaPacientes = [];
+    filteredOptions: Observable<busquedaCurp[]>;
 
   firstFormGroup: FormGroup = this._formBuilder.group({firstCtrl: ['']});
   secondFormGroup: FormGroup = this._formBuilder.group({secondCtrl: ['']});
