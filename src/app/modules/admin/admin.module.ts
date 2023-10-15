@@ -19,18 +19,13 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatTableModule } from '@angular/material/table';
 import { MatSelectModule } from '@angular/material/select';
-
-import {Component, OnInit} from '@angular/core';
-import {FormControl, FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {Observable} from 'rxjs';
-import {map, startWith} from 'rxjs/operators';
-import {AsyncPipe} from '@angular/common';
+import {MatStepperModule} from '@angular/material/stepper';
+import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 
 import { CitaComponent } from './dashboards/cita/cita.component';
-
 
 
 
@@ -46,7 +41,8 @@ import { CitaComponent } from './dashboards/cita/cita.component';
   imports: [
     CommonModule,
     CurrencyPipe,
-    DecimalPipe,
+    DecimalPipe,    
+    FormsModule,
     NgFor,  
     NgClass,  
     NgApexchartsModule,
@@ -60,16 +56,15 @@ import { CitaComponent } from './dashboards/cita/cita.component';
     MatTabsModule,
     MatTableModule,
     MatSelectModule,
+    MatStepperModule,
     MatButtonToggleModule,
     MatTooltipModule,
+    ReactiveFormsModule,
     TranslocoModule,
     UpperCasePipe,
-    FormsModule,
     MatFormFieldModule,
     MatInputModule,
     MatAutocompleteModule,
-    ReactiveFormsModule,
-    AsyncPipe
     
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]

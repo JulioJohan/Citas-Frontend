@@ -133,7 +133,7 @@ export class AuthSignUpComponent implements OnInit
                 message: respuesta.msg,
             };
 
-            this._autenticacionService.decodificarPorId(respuesta.data);          
+            this._autenticacionService.decodificarPorId(respuesta);          
 
         },
         error:(error)=>{

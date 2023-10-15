@@ -87,11 +87,12 @@ export class ClassyLayoutComponent implements OnInit, OnDestroy
     }
 
     obtenerUsuario(){
-        this._autenticacionService.usuario$
-        .pipe((takeUntil(this._unsubscribeAll)))
-        .subscribe((usuario:Usuario)=>{
-            this.usuario = usuario;
-        });    
+        this.usuario = JSON.parse(localStorage.getItem('usuario'));
+        // this._autenticacionService.usuario$
+        // .pipe((takeUntil(this._unsubscribeAll)))
+        // .subscribe((usuario:Usuario)=>{
+        //     this.usuario = usuario;
+        // });    
     }
 
     cargarPaginas(){

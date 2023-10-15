@@ -10,7 +10,8 @@ import { appRoutes } from './app.routes';
 
 
 const routes: Routes = [    
-    {path: '', pathMatch : 'full', redirectTo: '/dashboards'},
+    {path: '', pathMatch : 'full', redirectTo: '/users/sign-in'},
+    {path: '**', pathMatch : 'full', redirectTo: '/users/sign-in'},
     {path: 'signed-in-redirect', pathMatch : 'full', redirectTo: '/dashboards'},   
     // {path: 'example', component:ExampleComponent},
 

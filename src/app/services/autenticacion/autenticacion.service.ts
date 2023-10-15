@@ -9,6 +9,7 @@ import { tap } from 'lodash';
 
 import * as jwt_decode from 'jwt-decode';
 import { Router } from '@angular/router';
+import { FuseNavigationItem } from '@fuse/components/navigation';
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +21,7 @@ export class AutenticacionService {
   // Creando la varible url para hacer las peticiones al backend
   private url:string = `${environment.apiUrl}/api/auth`;
   private _usuario: ReplaySubject<Usuario> = new ReplaySubject<Usuario>(1);
+  private _menuArreglo:FuseNavigationItem[] = [];
   public autenticado: boolean = false;
   private httpOptions ={
     headers: new HttpHeaders({'Content-Type':'application/json'})
@@ -40,6 +42,18 @@ export class AutenticacionService {
     get accessToken(): string
     {
         return localStorage.getItem('accessToken') ?? '';
+    }
+
+
+    set menu(menu:any)
+    {
+      localStorage.setItem('menu',JSON.stringify(menu));
+    }
+
+    get menu()
+    {
+      this._menuArreglo =  JSON.parse(localStorage.getItem('menu'))
+      return this._menuArreglo;
     }
       /**
      * Setter & getter for user
@@ -64,17 +78,12 @@ export class AutenticacionService {
      checarAutenticacion(): Observable<boolean>
      {
          // Check if the user is logged in
-         if ( this.autenticado )
+         if ( this.autenticado && this.accessToken && this.menu )
          {
           console.log('autenticado')
 
              return of(true);
-         }
-
-         if(this.accessToken){
-          console.log('accessToken')
-            return of(true);
-         }
+         }         
  
          // Check the access token availability
          if ( !this.accessToken )
@@ -92,6 +101,7 @@ export class AutenticacionService {
     {
         // Remove the access token from the local storage
         localStorage.removeItem('accessToken');
+        sessionStorage.removeItem('usuario');
  
         // Set the authenticated flag to false
         this.autenticado = false;
@@ -105,14 +115,21 @@ export class AutenticacionService {
       const decodedToken: any = jwt_decode.default(token);
       return decodedToken.uid;
   } 
-  public decodificarPorId(data:any){
-    this.accessToken = data;
+
+  public decodificarPorId(respuesta:Respuesta){
+    this.accessToken = respuesta.data;
+    this.menu = respuesta.menu;    
     this.autenticado = true;
-    this._router.navigateByUrl('dashboards/devices');
     const numero:string = this.decodeToken();
     this.buscarPorId(numero).subscribe(data=>{
       console.log(data)
       this.usuario = data.data;
+      setTimeout(()=>{
+        this._router.navigateByUrl(respuesta.menu[0].link);
+
+      },100)
+      localStorage.setItem('usuario', JSON.stringify(data.data))
+
       console.log(this.usuario);
   })
   }  

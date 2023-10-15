@@ -1,57 +1,61 @@
 /* eslint-disable */
 import { FuseNavigationItem } from '@fuse/components/navigation';
 
+
+const menu:FuseNavigationItem[] = JSON.parse( localStorage.getItem('menu'));
+console.log(menu)
+
 export const defaultNavigation: FuseNavigationItem[] = [
     {
         id      : 'dashboards',
-        title   : 'Dashboards',
-        // subtitle: 'Dashboard designado',
+        title   : 'Inicio',
+        subtitle: 'Hospital',
         type    : 'group',
         icon    : 'heroicons_outline:home',
-        children: [
-            {
-                id   : 'dashboards.project',
-                title: 'Project',
-                type : 'basic',
-                icon : 'heroicons_outline:clipboard-document-check',
-                link : '/dashboards/project',
-            },
-            {
-                id   : 'dashboards.analytics',
-                title: 'Analytics',
-                type : 'basic',
-                icon : 'heroicons_outline:chart-pie',
-                link : '/dashboards/analytics',
-            },
-            {
-                id   : 'dashboards.finance',
-                title: 'Finance',
-                type : 'basic',
-                icon : 'heroicons_outline:banknotes',
-                link : '/dashboards/finance',
-            },       
-            {
-                id   : 'example',
-                title: 'Example',
-                type : 'basic',
-                icon : 'heroicons_outline:chart-pie',
-                link : '/dashboards/example'
-            },
-            {
-                id   : 'devices',
-                title: 'Devices',
-                type : 'basic',
-                icon : 'heroicons_outline:device-phone-mobile',
-                link : '/dashboards/devices'
-            },
-            {
-                id   : 'cita',
-                title: 'Cita',
-                type : 'basic',
-                icon:'heroicons_outline:clipboard-document-list',
-                link : '/dashboards/cita'
-            }        
-        ],
+        children: menu
+            // {
+            //     id   : 'dashboards.project',
+            //     title: 'Project',
+            //     type : 'basic',
+            //     icon : 'heroicons_outline:clipboard-document-check',
+            //     link : '/dashboards/project',
+            // },
+            // {
+            //     id   : 'dashboards.analytics',
+            //     title: 'Analytics',
+            //     type : 'basic',
+            //     icon : 'heroicons_outline:chart-pie',
+            //     link : '/dashboards/analytics',
+            // },
+            // {
+            //     id   : 'dashboards.finance',
+            //     title: 'Finance',
+            //     type : 'basic',
+            //     icon : 'heroicons_outline:banknotes',
+            //     link : '/dashboards/finance',
+            // },       
+            // // {
+            // //     id   : 'example',
+            // //     title: 'Example',
+            // //     type : 'basic',
+            // //     icon : 'heroicons_outline:chart-pie',
+            // //     link : '/dashboards/example'
+            // // },
+            // {
+            //     id   : 'devices',
+            //     title: 'Devices',
+            //     type : 'basic',
+            //     icon : 'heroicons_outline:device-phone-mobile',
+            //     link : '/dashboards/devices'
+            // },
+            // {
+            //     id   : 'cita',
+            //     title: 'Cita',
+            //     type : 'basic',
+            //     icon:'heroicons_outline:clipboard-document-list',
+            //     link : '/dashboards/cita'
+            // }        
+        
     },    
     // {
     //     id   : 'example',

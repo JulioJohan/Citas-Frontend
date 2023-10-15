@@ -33,9 +33,9 @@ export class CitaComponent implements OnInit{
     })
   }
  
-    myControl = new FormControl<busquedaCurp>(PacienteService);
-    options: listaPacientes = [];
-    filteredOptions: Observable<busquedaCurp[]>;
+    // myControl = new FormControl<busquedaCurp>(PacienteService);
+    // options: listaPacientes = [];
+    // filteredOptions: Observable<busquedaCurp[]>;
 
   firstFormGroup: FormGroup = this._formBuilder.group({firstCtrl: ['']});
   secondFormGroup: FormGroup = this._formBuilder.group({secondCtrl: ['']});

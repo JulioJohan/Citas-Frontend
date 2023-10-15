@@ -100,7 +100,7 @@ export class AuthSignInComponent implements OnInit
                type   : 'success',
                message: respuesta.msg,
             };
-            this._autenticacionService.decodificarPorId(respuesta.data);
+            this._autenticacionService.decodificarPorId(respuesta);
         },
         (error:any) =>{
             this.errorRespuesta(error.error.msg)
