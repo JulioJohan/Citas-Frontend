@@ -102,9 +102,8 @@ export class AutenticacionService {
     {
         // Remove the access token from the local storage
         localStorage.removeItem('accessToken');
-        sessionStorage.removeItem('usuario');
- 
-        // Set the authenticated flag to false
+        localStorage.removeItem('usuario');
+        localStorage.removeItem('menu');        // Set the authenticated flag to false
         this.autenticado = false;
  
         // this._router.navigate(['users/sign-in']);
