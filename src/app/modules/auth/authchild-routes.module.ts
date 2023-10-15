@@ -16,17 +16,7 @@ const childRoutes:Routes = [
     {path: 'sign-in', component:AuthSignInComponent },
 
     {path: 'sign-up', component:AuthSignUpComponent},
-    // Auth routes for authenticated users
-    {
-        path: '',
-        canActivate: [AuthGuard],
-        canActivateChild: [AuthGuard],   
-            // autenticacion con guardia 
-        children: [
-            {path: 'sign-out', component:AuthSignOutComponent},
-            {path: 'unlock-session', component:AuthUnlockSessionComponent}
-        ]
-    },
+    // Auth routes for authenticated users   
     
 ]
 

@@ -39,7 +39,7 @@
             <!-- Sign in form -->
             <form
                 class="mt-8"
-                [formGroup]="signInForm"
+                [formGroup]="inicioFormulario"
                 #signInNgForm="ngForm">
 
                 <!-- Email field -->
@@ -49,10 +49,10 @@
                         id="email"
                         matInput
                         [formControlName]="'email'">
-                    <mat-error *ngIf="signInForm.get('email').hasError('required')">
+                    <mat-error *ngIf="inicioFormulario.get('email').hasError('required')">
                         El correo electronico es requerido
                     </mat-error>
-                    <mat-error *ngIf="signInForm.get('email').hasError('email')">
+                    <mat-error *ngIf="inicioFormulario.get('email').hasError('email')">
                        Porfavor ingresa un correo electronico valido
                     </mat-error>
                 </mat-form-field>
@@ -105,13 +105,13 @@
                     class="fuse-mat-button-large w-full mt-6"
                     mat-flat-button
                     [color]="'primary'"
-                    [disabled]="signInForm.disabled"
-                    (click)="signIn()">
-                    <span *ngIf="!signInForm.disabled">
+                    [disabled]="inicioFormulario.invalid"
+                    (click)="inicioSesion()">
+                    <span *ngIf="!inicioFormulario.disabled">
                         Iniciar Sesión
                     </span>
                     <mat-progress-spinner
-                        *ngIf="signInForm.disabled"
+                        *ngIf="inicioFormulario.disabled"
                         [diameter]="24"
                         [mode]="'indeterminate'"></mat-progress-spinner>
                 </button>

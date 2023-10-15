@@ -9,6 +9,8 @@ import { Router } from '@angular/router';
 import { UserService } from 'app/core/user/user.service';
 import { User } from 'app/core/user/user.types';
 import { Subject, takeUntil } from 'rxjs';
+import { AutenticacionService } from '../../../services/autenticacion/autenticacion.service';
+import { Usuario } from 'app/models/Usuario';
 
 @Component({
     selector       : 'user',
@@ -26,6 +28,7 @@ export class UserComponent implements OnInit, OnDestroy
 
     @Input() showAvatar: boolean = true;
     user: User;
+    usuario:Usuario = new Usuario();
 
     private _unsubscribeAll: Subject<any> = new Subject<any>();
 
@@ -36,6 +39,7 @@ export class UserComponent implements OnInit, OnDestroy
         private _changeDetectorRef: ChangeDetectorRef,
         private _router: Router,
         private _userService: UserService,
+        private _autenticacionService:AutenticacionService
     )
     {
     }
@@ -49,16 +53,25 @@ export class UserComponent implements OnInit, OnDestroy
      */
     ngOnInit(): void
     {
-        // Subscribe to user changes
-        this._userService.user$
-            .pipe(takeUntil(this._unsubscribeAll))
-            .subscribe((user: User) =>
-            {
-                this.user = user;
+        this.obtenerUsuario();
+        // // Subscribe to user changes
+        // this._userService.user$
+        //     .pipe(takeUntil(this._unsubscribeAll))
+        //     .subscribe((user: User) =>
+        //     {
+        //         this.user = user;
 
-                // Mark for check
-                this._changeDetectorRef.markForCheck();
-            });
+        //         // Mark for check
+        //         this._changeDetectorRef.markForCheck();
+        //     });
+    }
+
+    obtenerUsuario(){
+        this._autenticacionService.usuario$
+        .pipe(takeUntil(this._unsubscribeAll))
+        .subscribe((usuario:Usuario)=>{
+            this.usuario = usuario;
+        })
     }
 
     /**
@@ -101,5 +114,6 @@ export class UserComponent implements OnInit, OnDestroy
     signOut(): void
     {
         this._router.navigateByUrl('/sign-out');
+        console.log('entre')
     }
 }

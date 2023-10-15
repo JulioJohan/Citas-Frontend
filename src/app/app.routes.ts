@@ -16,7 +16,6 @@ import { AnalyticsComponent } from './modules/admin/dashboards/analytics/analyti
 import { CryptoComponent } from './modules/admin/dashboards/crypto/crypto.component';
 import { DevicesComponent } from './modules/admin/dashboards/devices/devices.component';
 import { FinanceComponent } from './modules/admin/dashboards/finance/finance.component';
-import { CitaComponent } from './modules/admin/dashboards/cita/cita.component';
 
 
 // @formatter:off

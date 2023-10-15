@@ -132,9 +132,8 @@ export class AuthSignUpComponent implements OnInit
                 type   : 'success',
                 message: respuesta.msg,
             };
-            this._autenticacionService.accessToken = respuesta.data;
-            this._autenticacionService.autenticado = true;
-            this._router.navigateByUrl('dashboards/devices')
+
+            this._autenticacionService.decodificarPorId(respuesta.data);          
 
         },
         error:(error)=>{
