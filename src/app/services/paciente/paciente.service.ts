@@ -22,5 +22,10 @@ export class PacienteService {
         return this.httpClient.get<Respuesta>(`${this.url}/obtenerTodosPacientes`)
     }
 
+    public busquedaCurp( busquedaPorCurp:string ):Observable<Respuesta>{
+        console.log(this.url)
+        return this.httpClient.get<Respuesta>(`${this.url}/buscaPorCurp/${busquedaPorCurp}`)
+    }
+
 }
 

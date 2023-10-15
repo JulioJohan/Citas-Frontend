@@ -20,6 +20,8 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatHint } from '@angular/material/form-field';
 import { MatTableModule } from '@angular/material/table';
 import { MatSelectModule } from '@angular/material/select';
+import { CitaComponent } from './dashboards/cita/cita.component';
+
 
 
 
@@ -29,7 +31,8 @@ import { MatSelectModule } from '@angular/material/select';
     CryptoComponent,
     DevicesComponent,
     FinanceComponent,
-    ProjectComponent
+    ProjectComponent,
+    CitaComponent
   ],
   imports: [
     CommonModule,
