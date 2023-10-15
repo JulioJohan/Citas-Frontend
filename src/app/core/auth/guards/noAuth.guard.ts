@@ -8,7 +8,6 @@ import { of, switchMap } from 'rxjs';
 export const NoAuthGuard: CanActivateFn | CanActivateChildFn = (route, state) =>
 {
     const router: Router = inject(Router);
-    JSON.parse(localStorage.getItem('menu'))
 
     // Check the authentication status
     return inject(AutenticacionService).checarAutenticacion().pipe(
@@ -17,8 +16,7 @@ export const NoAuthGuard: CanActivateFn | CanActivateChildFn = (route, state) =>
             // If the user is authenticated...
             if ( authenticated )
             {
-                console.log(authenticated)
-                return of(router.parseUrl(JSON.parse(localStorage.getItem('menu')) ?? 'users/sign-in'));
+                return of(router.parseUrl(JSON.parse(localStorage.getItem('menu'))[0].link ?? 'users/sign-in'));
             }
 
             // Allow the access

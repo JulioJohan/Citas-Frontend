@@ -78,18 +78,19 @@ export class AutenticacionService {
      checarAutenticacion(): Observable<boolean>
      {
          // Check if the user is logged in
-         if ( this.autenticado && this.accessToken && this.menu )
+         if ( this.accessToken && this.menu  )
          {
-          console.log('autenticado')
-
              return of(true);
          }         
  
          // Check the access token availability
          if ( !this.accessToken )
          {
+          console.log('no false 2')
+
              return of(false);
          }
+         console.log('false 2')
          
          return of(false);                  
  
