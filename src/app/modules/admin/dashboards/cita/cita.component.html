@@ -1,17 +1,27 @@
-<p>Hola</p>
-
-
-<!-- <div class="example-input-wrapper">
-  <label for="duration">Animation duration:</label>
+<div class="example-input-wrapper">
+  <label for="duration"></label>
   <input id="duration" value="2000" type="number" min="0" step="100" #duration>
 </div>
 
 <mat-vertical-stepper [linear]="false" #stepper [animationDuration]="duration.value">
   <mat-step [stepControl]="firstFormGroup">
-    <form [formGroup]="firstFormGroup">
+    <!-- [formGroup]="firstFormGroup" -->
+    <form >
       <ng-template matStepLabel>Fill out your name</ng-template>
       <mat-form-field>
-        <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
+        <input matInput placeholder="Nombre completo" formControlName="firstCtrl" required>
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+      <mat-form-field>
+        <input matInput placeholder="Apellido paterno" formControlName="firstCtrl" required>
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+      <mat-form-field>
+        <input matInput placeholder="Apellido materno" formControlName="firstCtrl" required>
       </mat-form-field>
       <div>
         <button mat-button matStepperNext>Next</button>
@@ -19,7 +29,8 @@
     </form>
   </mat-step>
   <mat-step [stepControl]="secondFormGroup">
-    <form [formGroup]="secondFormGroup">
+    <!-- [formGroup]="secondFormGroup" -->
+    <form > 
       <ng-template matStepLabel>Fill out your address</ng-template>
       <mat-form-field>
         <input matInput placeholder="Address" formControlName="secondCtrl" required>
@@ -38,7 +49,7 @@
       <button mat-button (click)="stepper.reset()">Reset</button>
     </div>
   </mat-step>
-</mat-vertical-stepper> -->
+</mat-vertical-stepper>
 
 
 
