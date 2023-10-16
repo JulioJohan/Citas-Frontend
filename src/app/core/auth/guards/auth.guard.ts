@@ -25,6 +25,7 @@ export const AuthGuard: CanActivateFn | CanActivateChildFn = (route, state) =>
                 console.log(urlTree1)
                 return of(urlTree1);
             }
+
             // console.log(JSON.parse(localStorage.getItem('menu'))                 
 
             // Allow the access

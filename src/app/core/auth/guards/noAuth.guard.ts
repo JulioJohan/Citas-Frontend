@@ -15,7 +15,7 @@ export const NoAuthGuard: CanActivateFn | CanActivateChildFn = (route, state) =>
         {               
             // If the user is authenticated...
             if ( authenticated )
-            {
+            {   
                 return of(router.parseUrl(JSON.parse(localStorage.getItem('menu'))[0].link ?? 'users/sign-in'));
             }
 

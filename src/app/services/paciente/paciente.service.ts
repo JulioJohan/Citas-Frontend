@@ -27,5 +27,13 @@ export class PacienteService {
         return this.httpClient.get<Respuesta>(`${this.url}/buscaPorCurp/${busquedaPorCurp}`)
     }
 
+    public crearPaciente(paciente:Paciente):Observable<Respuesta>{
+        return this.httpClient.post<Respuesta>(`${this.url}/crearPaciente`,paciente);
+    }
+
+    public buscarPorId(idPaciente:string):Observable<Respuesta>{
+        return this.httpClient.get<Respuesta>(`${this.url}/buscarPorId/${idPaciente}`)
+    }
+
 }
 

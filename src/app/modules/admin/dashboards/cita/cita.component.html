@@ -2,40 +2,182 @@
   <label for="duration">Animation duration:</label>
   <input id="duration" value="2000" type="number" min="0" step="100" #duration>
 </div> -->
-<fuse-card
-    class="flex flex-row px-8 py-6 pb-4 "
-    #fuseCard>
-      <mat-vertical-stepper [linear]="false" #stepper animationDuration="1000" >
-        <mat-step [stepControl]="firstFormGroup">
-          <form [formGroup]="firstFormGroup">
-            <ng-template matStepLabel>Fill out your name</ng-template>
-            <mat-form-field>
-              <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
+<div class="flex flex-col flex-auto ">
+  <div class="md:p-8">
+    <div class="w-full">
+      <mat-vertical-stepper linear  #stepper animationDuration="1000">
+        <mat-step   [stepControl]="primerFormularioCita">
+          <fuse-alert
+          class="mt-8"
+          *ngIf="showAlert"
+          [appearance]="'outline'"
+          [showIcon]="true"
+          [type]="alert.type"
+          [@shake]="alert.type === 'error'"
+          >
+          {{alert.message}}
+         
+          <button class="text-end text-sky-500" (click)="openNuevoPaciente()">
+            Crear             
+          </button>
+      </fuse-alert>
+          <form [formGroup]="primerFormularioCita">
+            <ng-template matStepLabel>Buscar el Paciente por CURP</ng-template>
+            <mat-form-field class="w-full">
+              <input class="justify-end" 
+              [formControl] = "busqueda"  
+              matInput placeholder="Busqueda" #txtTermino (keyup)="buscar(txtTermino.value)"
+              >                
             </mat-form-field>
+                                   
+            <mat-form-field class="w-full">
+              <mat-label>Pacientes</mat-label>
+              <mat-select formControlName = "paciente">
+              <mat-option *ngFor="let pacientes of listaPacientes" [value] = "pacientes._id">
+                {{pacientes.name}} {{pacientes.curp}}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="primerFormularioCita.get('paciente').hasError('required')">
+              Selecciona el paciente
+            </mat-error>
+            </mat-form-field>
+
             <div>
-              <button mat-button matStepperNext>Next</button>
+              <button mat-button matStepperNext  [disabled]="primerFormularioCita.get('paciente').value === null">Siguiente</button>
             </div>
           </form>
         </mat-step>
-        <mat-step [stepControl]="firstFormGroup">
-          <form [formGroup]="firstFormGroup">
-            <ng-template matStepLabel>Fill out your address</ng-template>
-            <mat-form-field>
-              <input matInput placeholder="Address" formControlName="firstCtrl" required>
+        <mat-step [stepControl]="segundoFormularioCita">
+          <form [formGroup]="segundoFormularioCita">
+            
+            <ng-template matStepLabel>Datos del Paciente </ng-template>
+            <mat-form-field  class="w-full mt-3" *ngIf="pacienteSeleccionado"> 
+              <input matInput placeholder="CURP" readonly [value]="pacienteSeleccionado.curp">
+            </mat-form-field>  
+            <mat-form-field class="w-2/5 mt-8"  *ngIf="pacienteSeleccionado"> 
+              <input matInput placeholder="Nombre" readonly  [value]="pacienteSeleccionado.name" >
             </mat-form-field>
+            <mat-form-field class="w-2/5 mt-8 ml-14"  *ngIf="pacienteSeleccionado"> 
+              <input matInput placeholder="Apellido Paterno" readonly [value]="pacienteSeleccionado.fatherLastname" >
+            </mat-form-field>
+              <mat-form-field class="w-2/5 mt-8"  *ngIf="pacienteSeleccionado"> 
+              <input matInput placeholder="Apellido Materno" readonly [value]="pacienteSeleccionado.motherLastname">
+            </mat-form-field>
+            <mat-form-field class="w-2/5 mt-8 ml-14"  *ngIf="pacienteSeleccionado"> 
+              <input matInput placeholder="Número de telefono" readonly [value]="pacienteSeleccionado.telephone">
+            </mat-form-field>                                  
+            <mat-form-field class="w-2/5 mt-8"  *ngIf="pacienteSeleccionado"> 
+              <input matInput placeholder="Edad" formControlName="edad" numbersOnly maxlength="3">
+              <mat-error *ngIf="segundoFormularioCita.get('edad').hasError('required')" >
+                La edad del paciente es requerido
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field class="w-2/5 mt-8 ml-14"> 
+              <input matInput placeholder="Peso" formControlName="peso" required maxlength="3" decimal>
+              <mat-error *ngIf="segundoFormularioCita.get('peso').hasError('required')">
+                El peso del paciente es requerida
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field class="w-2/5 mt-8"> 
+              <input matInput placeholder="Altura" formControlName="altura" required maxlength="5" decimal>
+              <mat-error *ngIf="segundoFormularioCita.get('altura').hasError('required')">
+                La altura del paciente es requerida
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field class="w-2/5 mt-8 ml-14"> 
+              <input matInput placeholder="Temperatura" formControlName="temperatura" required maxlength="5" decimal>
+              <mat-error *ngIf="segundoFormularioCita.get('temperatura').hasError('required')">
+                La Temperatura del paciente es requerida
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field class="w-2/5 mt-8 "> 
+              <input matInput placeholder="Presion Arterial" formControlName="presionArterial" required maxlength="5" decimal>
+              <mat-error *ngIf="segundoFormularioCita.get('presionArterial').hasError('required')">
+                La Presión arterial del paciente es requerida
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field class="w-2/5 mt-8 ml-14"> 
+              <input matInput placeholder="Frecuencia Cardiaca" formControlName="frecuenciaCardiaca" required maxlength="5" decimal>
+              <mat-error *ngIf="segundoFormularioCita.get('frecuenciaCardiaca').hasError('required')">
+                La Frecuencia Cardiaca del paciente es requerida
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field class="w-full mt-8">
+              <input matInput
+                     name="selected_time_A"
+                     color="warn"
+                     [format]="24"
+                     [ngxMatTimepicker]="pickerA"
+                     [placeholder]="horaMinutos"
+                     formControlName = "hora"
+                     readonly />
+              <mat-icon matSuffix
+                        (click)="pickerA.open()">
+                  watch_later
+              </mat-icon>
+              <mat-error *ngIf="segundoFormularioCita.get('hora').hasError('required')">
+                La Hora de la cita es requerida
+              </mat-error>
+          </mat-form-field>
+          <ngx-mat-timepicker #pickerA></ngx-mat-timepicker>
+            <mat-form-field class="w-full mt-8 "> 
+              <input matInput placeholder="Nota" formControlName="nota" required maxlength="500" >
+              <mat-error *ngIf="segundoFormularioCita.get('nota').hasError('required')">
+                La nota es requerida pero sin no hay observacion
+                ingrese No hay observaciones
+              </mat-error>
+            </mat-form-field>
+            
+            
+            <!-- <mat-form-field class="w-full">
+              <mat-label>Pacientes</mat-label>
+              <mat-select formControlName = "paciente">
+              <mat-option *ngFor="let doctores of listaDoctores" [value] = "pacientes._id">
+                {{pacientes.name}} {{pacientes.curp}}
+              </mat-option>
+            </mat-select>
+            </mat-form-field>             -->
+           
             <div>
-              <button mat-button matStepperPrevious>Back</button>
-              <button mat-button matStepperNext>Next</button>
+              <button mat-button matStepperPrevious (click)="guardar()">Regresar</button>
+              <button mat-button matStepperNext [color]="'primary'" 
+              [disabled]="segundoFormularioCita.invalid"  >Siguiente</button>
             </div>
           </form>
         </mat-step>
-        <mat-step>
-          <ng-template matStepLabel>Done</ng-template>
-          You are now done.
+        <mat-step [stepControl]="tercerFormularioCita">
+          <ng-template matStepLabel>Médico</ng-template>
+          <form [formGroup]="tercerFormularioCita">
+            <mat-form-field class="w-full">
+              <mat-label>Doctores</mat-label>
+              <mat-select formControlName = "doctor">
+              <mat-option *ngFor="let doctor of listaDoctores" [value] = "doctor._id">
+               <span class="font-bold">Nombre: </span>
+               {{doctor.name}}
+               <span class="font-bold">Especialidad: </span>
+               {{doctor.especialidad.name}}
+              </mat-option>
+            </mat-select>
+            </mat-form-field>
+          </form>    
           <div>
-            <button mat-button matStepperPrevious>Back</button>
-            <button mat-button (click)="stepper.reset()">Reset</button>
+            <button mat-button matStepperPrevious>Regresa</button>
+            <button mat-button (click)="stepper.reset()" (click)="reiniciarFormulario()">Reiniciar</button>
+            <button mat-button (click)="guardar()" mat-flat-button [color]="'primary'" >Guardar</button>
           </div>
         </mat-step>
-      </mat-vertical-stepper>  
-    </fuse-card>    
+      </mat-vertical-stepper>
+      <fuse-alert
+      class="mt-8"
+      *ngIf="mostrarAlerta"
+      [appearance]="'outline'"
+      [showIcon]="true"
+      [type]="alert2.type"
+      [@shake]="alert2.type === 'error'"
+      >
+      {{alert2.message}}
+    </fuse-alert>
+    </div>
+
+  </div>
+</div>
