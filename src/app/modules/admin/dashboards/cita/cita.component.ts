@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Paciente } from 'app/models/Paciente';
 import { PacienteService } from 'app/services/paciente/paciente.service';
+import { UsuarioService } from 'app/services/usuario/usuario.service';
 import {FormBuilder, FormGroup, FormControl, FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { Observable } from 'rxjs';
+import { Respuesta } from 'app/models/Respuesta';
+import { Usuario } from 'app/models/Usuario';
 
 
 @Component({
@@ -12,12 +15,15 @@ import { Observable } from 'rxjs';
 })
 export class CitaComponent implements OnInit{
 
-  constructor(private pacienteService:PacienteService, private _formBuilder: FormBuilder){}
+  constructor(private pacienteService:PacienteService, private usuarioService:UsuarioService, private _formBuilder: FormBuilder){}
+
+  public listaPacientes:Paciente[];
+  public listaDoctores:Usuario[];
 
   ngOnInit(): void {
     this.obtenerPacientes();
+    this.busquedaDoctor('DOCTOR'); 
   }
-  public listaPacientes:Paciente[];
 
   private obtenerPacientes(){
     this.pacienteService.obtenerPacientes().subscribe((respuesta)=>{
@@ -29,7 +35,14 @@ export class CitaComponent implements OnInit{
   private busquedaCurp( busquedaPorCurp:string ){
     this.pacienteService.busquedaCurp( busquedaPorCurp ).subscribe((respuesta) => {
       this.listaPacientes = respuesta.data;
-      console.log("BUSQUEDA", this.listaPacientes);
+      console.log("busqueda", this.listaPacientes);
+    })
+  }
+
+  private busquedaDoctor( listaDoctores:string ){
+    this.usuarioService.busquedaDoctor( listaDoctores ).subscribe((respuesta) => {
+      this.listaDoctores = respuesta.data;
+      console.log("busqueda", this.listaDoctores);
     })
   }
  
