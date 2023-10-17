@@ -2,16 +2,16 @@ import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { AsyncPipe, CommonModule, CurrencyPipe, DecimalPipe, I18nPluralPipe, NgClass, NgFor, UpperCasePipe } from '@angular/common';
 import { AnalyticsComponent } from './dashboards/analytics/analytics.component';
 import { MatButtonModule } from '@angular/material/button';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import {MatCardModule} from '@angular/material/card';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
-import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import { CryptoComponent } from './dashboards/crypto/crypto.component';
-import { DevicesComponent } from './dashboards/devices/devices.component';
-import { FinanceComponent } from './dashboards/finance/finance.component';
-import { ProjectComponent } from './dashboards/project/project.component';
 import { TranslocoModule } from '@ngneat/transloco';
 import {NgxMatTimepickerModule} from 'ngx-mat-timepicker';  
 import { MatRippleModule } from '@angular/material/core';
@@ -26,24 +26,32 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 
-import { CitaComponent } from './dashboards/cita/cita.component';
 import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { FuseAlertComponent } from '@fuse/components/alert';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { NuevoPacienteComponent } from './dashboards/cita/nuevo-paciente/nuevo-paciente.component';
-import { MatDialogModule } from '@angular/material/dialog';
 import { NumberDirective } from 'app/directives/number-only.directive';
 import { LetterDirective } from 'app/directives/letter.directive';
 import { DecimalDirective } from 'app/directives/decimal.directive';
+
+import { CitaComponent } from './dashboards/cita/cita.component';
+import { CitaAgendadaComponent } from './dashboards/cita-agendada/cita-agendada.component';
+import { CryptoComponent } from './dashboards/crypto/crypto.component';
+import { DevicesComponent } from './dashboards/devices/devices.component';
+import { FinanceComponent } from './dashboards/finance/finance.component';
+import { ProjectComponent } from './dashboards/project/project.component';
+import { DetalleCitaComponent } from './dashboards/cita-agendada/detalle-cita/detalle-cita.component';
 
 @NgModule({
   declarations: [
     
     AnalyticsComponent,
     CitaComponent,
+    CitaAgendadaComponent,
     CryptoComponent,
     DecimalDirective,
+    DetalleCitaComponent,
     DevicesComponent,
     FinanceComponent,
     ProjectComponent,    
@@ -66,6 +74,8 @@ import { DecimalDirective } from 'app/directives/decimal.directive';
     NgApexchartsModule,
     NgxMatTimepickerModule,
     MatButtonModule,
+    MatCardModule,
+    MatDatepickerModule,
     MatDividerModule,
     MatDialogModule,    
     MatIconModule,

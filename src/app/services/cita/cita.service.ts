@@ -17,4 +17,8 @@ export class CitaService {
   public agendarCita(cita:Cita):Observable<Respuesta>{
     return this.httpClient.post<Respuesta>(`${this.url}/agendarCita`,cita);
   }
+
+  public obtenerCitasPorDoctor(idDoctor:string):Observable<Respuesta>{
+    return this.httpClient.get<Respuesta>(`${this.url}/obtenerCitasDoctor/${idDoctor}`);   
+  }
 }

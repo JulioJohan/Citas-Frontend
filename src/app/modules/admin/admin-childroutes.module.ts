@@ -11,6 +11,7 @@ import { CitaComponent } from './dashboards/cita/cita.component';
 import { ResgistroMedicoComponent } from './dashboards/resgistro-medico/resgistro-medico.component';
 import { CitaAgendadaComponent } from './dashboards/cita-agendada/cita-agendada.component';
 import { DoctorGuard } from 'app/core/auth/guards/doctor.guard';
+import { EnfermeraGuard } from 'app/core/auth/guards/enfermera.guard';
 
 const childRoutes:Routes = [
     {path: 'project', component:ProjectComponent},
@@ -19,7 +20,7 @@ const childRoutes:Routes = [
     {path: 'crypto', component:CryptoComponent},
     {path:'example',component: ExampleComponent},
     {path: 'devices', component:DevicesComponent},
-    {path: 'cita', component:CitaComponent},    
+    {path: 'cita', canActivate: [EnfermeraGuard], component:CitaComponent},    
     {path:'registro_medico',canActivate:[DoctorGuard] ,component:ResgistroMedicoComponent},
     {path:'cita_agendada',canActivate:[DoctorGuard],component:CitaAgendadaComponent}
 ]

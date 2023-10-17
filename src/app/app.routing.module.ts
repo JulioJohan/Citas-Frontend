@@ -6,6 +6,7 @@ import { AdminRoutingModule } from './modules/admin/admin.routes';
 import { LandingHomeComponent } from './modules/landing/home/home.component';
 import { LayoutComponent } from './layout/layout.component';
 import { appRoutes } from './app.routes';
+import { AuthGuard } from './core/auth/guards/auth.guard';
 
 
 

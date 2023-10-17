@@ -126,11 +126,9 @@ export class AutenticacionService {
       this.usuario = data.data;
       setTimeout(()=>{
         this._router.navigateByUrl(respuesta.menu[0].link);
-
-      },100)
+      },1000)
       localStorage.setItem('usuario', JSON.stringify(data.data))
 
-      console.log(this.usuario);
   })
   }  
  

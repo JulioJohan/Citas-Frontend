@@ -66,7 +66,9 @@ export class CitaComponent implements OnInit{
       temperatura:[null,[Validators.required]],
       presionArterial:[null,[Validators.required]],
       frecuenciaCardiaca:[null,[Validators.required]],
-      hora:[null,[Validators.required]],
+      fecha:[null,[Validators.required]],
+      horaIncio:[null,[Validators.required]],
+      horaFin:[null,[Validators.required]],
       nota:['',[Validators.required]]           
     })
     
@@ -149,10 +151,18 @@ export class CitaComponent implements OnInit{
     cita.temperature =  parseFloat(this.segundoFormularioCita.get('temperatura').value);    
     cita.pressureArterial = parseFloat(this.segundoFormularioCita.get('presionArterial').value);
     cita.heartrate = parseFloat(this.segundoFormularioCita.get('frecuenciaCardiaca').value);
-    const hora:string = this.segundoFormularioCita.get('hora').value;
-    cita.hour =  parseInt(hora.split(':')[0]);
+    
+    const horaInicio:string = this.segundoFormularioCita.get('horaIncio').value;
+    cita.startHour =  parseInt(horaInicio.split(':')[0]);
+    const horaFin:string = this.segundoFormularioCita.get('horaIncio').value;
+    cita.endHour=  parseInt(horaFin.split(':')[0]);
+    
+    const fecha:Date = new Date(this.segundoFormularioCita.get('fecha').value);
+    console.log(fecha);
+    cita.year = fecha.getFullYear(); 
+    cita.month = fecha.getMonth();
+    cita.day = fecha.getDate();
     cita.note =  this.segundoFormularioCita.get('nota').value;  
-    cita.date = new Date().toISOString();
     console.log(cita)
     this.citaService.agendarCita(cita).subscribe((respuesta)=>{
       this.alert2 = {

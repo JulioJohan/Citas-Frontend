@@ -93,6 +93,7 @@ export class AuthSignInComponent implements OnInit
         usuario.password = this.inicioFormulario.get('password').value;
         this._autenticacionService.iniciarSesion(usuario).subscribe((respuesta)=>{
             console.log(respuesta)
+            this._autenticacionService.decodificarPorId(respuesta);
             this.inicioFormulario.reset();
             this.showAlert = true;
             // Set the alert
@@ -100,7 +101,6 @@ export class AuthSignInComponent implements OnInit
                type   : 'success',
                message: respuesta.msg,
             };
-            this._autenticacionService.decodificarPorId(respuesta);
         },
         (error:any) =>{
             this.errorRespuesta(error.error.msg)

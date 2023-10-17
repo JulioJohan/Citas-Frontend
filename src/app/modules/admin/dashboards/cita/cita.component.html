@@ -102,24 +102,62 @@
                 La Frecuencia Cardiaca del paciente es requerida
               </mat-error>
             </mat-form-field>
-            <mat-form-field class="w-full mt-8">
+            
+            <!-- <mat-form-field class="w-full mt-8"> 
+              <input matInput placeholder="Frecuencia Cardiaca" formControlName="frecuenciaCardiaca" required maxlength="5" decimal>
+              <mat-error *ngIf="segundoFormularioCita.get('frecuenciaCardiaca').hasError('required')">
+                La Frecuencia Cardiaca del paciente es requerida
+              </mat-error>
+            </mat-form-field> -->
+            <mat-form-field class="w-2/5 mt-8">
               <input matInput
                      name="selected_time_A"
                      color="warn"
                      [format]="24"
                      [ngxMatTimepicker]="pickerA"
-                     [placeholder]="horaMinutos"
-                     formControlName = "hora"
+                     placeholder="Hora fin de la cita"
+                     formControlName = "horaIncio"
                      readonly />
               <mat-icon matSuffix
                         (click)="pickerA.open()">
                   watch_later
               </mat-icon>
-              <mat-error *ngIf="segundoFormularioCita.get('hora').hasError('required')">
-                La Hora de la cita es requerida
+              <mat-error *ngIf="segundoFormularioCita.get('horaIncio').hasError('required')">
+                La Hora incio de la cita de inicio
               </mat-error>
           </mat-form-field>
           <ngx-mat-timepicker #pickerA></ngx-mat-timepicker>
+
+          <mat-form-field class="w-2/5 mt-8 ml-14">
+            <input matInput
+                   name="selected_time_B"
+                   color="warn"
+                   [format]="24"
+                   [ngxMatTimepicker]="pickerB"
+                   placeholder="Hora fin de la cita"
+                   formControlName = "horaFin"
+                   readonly />
+            <mat-icon matSuffix
+                      (click)="pickerB.open()">
+                watch_later
+            </mat-icon>
+            <mat-error *ngIf="segundoFormularioCita.get('horaFin').hasError('required')">
+              La Hora fin de la cita 
+            </mat-error>
+        </mat-form-field>          
+          <ngx-mat-timepicker #pickerB></ngx-mat-timepicker>
+
+          <mat-form-field class="w-full mt-8">
+            <!-- <mat-label>Escoge un dia de la cita</mat-label> -->
+            <input placeholder="Escoge un dia de la cita" matInput formControlName = "fecha" [matDatepicker]="picker" [min] = "hoy">
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <mat-error *ngIf="segundoFormularioCita.get('fecha').hasError('required')">
+              El dia de la cita es requerida
+            </mat-error>
+          </mat-form-field>
+          
             <mat-form-field class="w-full mt-8 "> 
               <input matInput placeholder="Nota" formControlName="nota" required maxlength="500" >
               <mat-error *ngIf="segundoFormularioCita.get('nota').hasError('required')">

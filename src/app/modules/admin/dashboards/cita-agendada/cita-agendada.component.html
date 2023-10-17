@@ -1,1 +1,25 @@
-<p>cita-agendada works!</p>
+<!-- Cards with media area -->
+<div class="flex flex-col flex-auto ">
+    <div class="md:p-8">
+      <div class="w-full">
+        <mat-card class="w-full m-8" *ngFor="let citas of listaCitas">
+            <mat-card-header>
+              <mat-card-title-group>
+                <mat-card-title >{{citas.paciente.name}} {{citas.paciente.fatherLastname}} {{citas.paciente.motherLastname}}</mat-card-title>
+                <mat-card-subtitle>{{citas.date | date:'short'}} </mat-card-subtitle>
+                <button 
+                mat-flat-button
+                class="fuse-mat-button-large mt-6 bg-green-500"
+                (click)="verDetallesCita(citas)"
+                >
+                  Atender Cita
+                </button>
+              </mat-card-title-group>
+            </mat-card-header>
+            <mat-card-content>
+                {{citas.note}}
+            </mat-card-content>
+        </mat-card>    
+        </div>
+    </div>
+</div>
