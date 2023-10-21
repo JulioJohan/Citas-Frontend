@@ -93,6 +93,7 @@ export class AuthSignInComponent implements OnInit
         usuario.password = this.inicioFormulario.get('password').value;
         this._autenticacionService.iniciarSesion(usuario).subscribe((respuesta)=>{
             console.log(respuesta)
+            this._autenticacionService.checharLocalStorage();
             this._autenticacionService.decodificarPorId(respuesta);
             this.inicioFormulario.reset();
             this.showAlert = true;

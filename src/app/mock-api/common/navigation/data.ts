@@ -3,7 +3,7 @@ import { FuseNavigationItem } from '@fuse/components/navigation';
 
 
 const menu:FuseNavigationItem[] = JSON.parse( localStorage.getItem('menu'));
-console.log(menu)
+console.log(localStorage.getItem('menu'))
 
 export const defaultNavigation: FuseNavigationItem[] = [
     {

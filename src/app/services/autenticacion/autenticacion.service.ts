@@ -125,12 +125,28 @@ export class AutenticacionService {
       console.log(data)
       this.usuario = data.data;
       setTimeout(()=>{
+        localStorage.setItem('usuario', JSON.stringify(data.data))
         this._router.navigateByUrl(respuesta.menu[0].link);
-      },1000)
-      localStorage.setItem('usuario', JSON.stringify(data.data))
+
+      },2000 )
+      console.log(localStorage.getItem('menu'))
+
+
+      // location.reload();
 
   })
   }  
+
+  checharLocalStorage(){
+    const usuario = localStorage.getItem('usuario');
+    const menu = localStorage.getItem('menu');
+    if(usuario !== '' || usuario !== null){
+      localStorage.removeItem('usuario');
+    }
+    if(menu !== '' || menu !== null){
+      localStorage.removeItem('menu');
+    }
+  }
  
 
   // Metodo donde hara la peticion HTTP para el endpoind de node
