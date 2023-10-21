@@ -19,9 +19,7 @@ export const DoctorGuard: CanActivateFn = (route, state) => {
   
   if(Object.keys(usuarioChecar).length === 0){
     usuarioChecar = JSON.parse(localStorage.getItem('usuario'))
-    console.log(usuarioChecar)
    }
-   console.log(usuarioChecar)
   if(usuarioChecar.role === 'DOCTOR'){    
     return of(true);
   }else{

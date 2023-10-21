@@ -12,6 +12,7 @@ import { ResgistroMedicoComponent } from './dashboards/resgistro-medico/resgistr
 import { CitaAgendadaComponent } from './dashboards/cita-agendada/cita-agendada.component';
 import { DoctorGuard } from 'app/core/auth/guards/doctor.guard';
 import { EnfermeraGuard } from 'app/core/auth/guards/enfermera.guard';
+import { HistorialMedicoComponent } from './dashboards/cita/historial-medico/historial-medico.component';
 
 const childRoutes:Routes = [
     {path: 'project', component:ProjectComponent},
@@ -21,6 +22,7 @@ const childRoutes:Routes = [
     {path:'example',component: ExampleComponent},
     {path: 'devices', component:DevicesComponent},
     {path: 'cita', canActivate: [EnfermeraGuard], component:CitaComponent},    
+    {path: 'historial_medico', canActivate: [EnfermeraGuard], component:HistorialMedicoComponent},    
     {path:'registro_medico',canActivate:[DoctorGuard] ,component:ResgistroMedicoComponent},
     {path:'cita_agendada',canActivate:[DoctorGuard],component:CitaAgendadaComponent}
 ]

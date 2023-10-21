@@ -1,0 +1,59 @@
+<!-- <div class="example-input-wrapper">
+  <label for="duration">Animation duration:</label>
+  <input id="duration" value="2000" type="number" min="0" step="100" #duration>
+</div> -->
+<div class="flex flex-col flex-auto ">
+    <div class="md:p-8">
+        <div class="w-full">
+          <fuse-alert
+          class="mt-8"
+          *ngIf="mostrarAlerta"
+          [appearance]="'outline'"
+          [showIcon]="true"
+          [type]="alert.type"
+          [@shake]="alert.type === 'error'"
+          >
+          {{alert.message}}
+        </fuse-alert>
+
+        <fuse-alert
+          class="mt-8"
+          *ngIf="mostrarAlerta2"
+          [appearance]="'outline'"
+          [showIcon]="true"
+          [type]="alert2.type"
+          [@shake]="alert2.type === 'error'"
+          >
+          {{alert2.message}}
+        </fuse-alert>
+
+            <ng-template matStepLabel>Buscar el Paciente por CURP</ng-template>
+            <mat-form-field class="w-full">
+                <input class="justify-end" [formControl]="busqueda" matInput placeholder="Busqueda" #txtTermino
+                    (keyup)="buscar(txtTermino.value)">
+            </mat-form-field>
+
+                                   
+            <form [formGroup]="formularioBusqueda">
+            <mat-form-field class="w-full">
+                <mat-label>Pacientes</mat-label>
+                <mat-select formControlName = "id">
+                <mat-option *ngFor="let pacientes of listaPacientes" [value] = "pacientes._id">
+                  {{pacientes.name}} {{pacientes.curp}}
+                </mat-option>
+              </mat-select>
+              <mat-error *ngIf="formularioBusqueda.get('id').hasError('required')">
+                Selecciona el paciente
+              </mat-error>
+              </mat-form-field>
+            </form>
+
+            <button 
+            [ngClass]="{'fuse-mat-button-large mt-6 bg-slate-500': !mostrarBoton, 
+            'fuse-mat-button-large mt-6 bg-green-500': mostrarBoton}" 
+            mat-button (click)="descargarPDF()">
+              Descargar Historial en PDF
+            </button>
+        </div>
+    </div>
+</div>

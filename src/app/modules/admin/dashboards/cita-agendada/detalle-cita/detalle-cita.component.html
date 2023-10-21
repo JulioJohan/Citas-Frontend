@@ -1,1 +1,171 @@
-<p>detalle-cita works!</p>
+<div class="flex flex-col flex-auto ">
+    <div class="md:p-8">
+      <div class="w-full">
+        <fuse-alert
+      class="mt-8"
+      *ngIf="mostrarAlerta"
+      [appearance]="'outline'"
+      [showIcon]="true"
+      [type]="alert.type"
+      [@shake]="alert.type === 'error'"
+      >
+      {{alert.message}}
+    </fuse-alert>
+        <form
+        class="mt-8"
+        [formGroup]="formularioRegistro"
+        #signUpNgForm="ngForm">
+
+        <!-- Name field -->
+        <mat-form-field class="w-full">
+            <mat-label>{{data.doctor.especialidad.question1}}</mat-label>
+            <input
+                lettersOnly
+                maxlength="1000"
+                id="respuesta1"
+                matInput
+                [formControlName]="'respuesta1'">
+            <mat-error *ngIf="formularioRegistro.get('respuesta1').hasError('required')">
+                La respuesta es requerida
+            </mat-error>
+            <mat-error *ngIf="formularioRegistro.get('respuesta1').hasError('minlength')">
+                El respuesta debe ser valido
+             </mat-error>
+        </mat-form-field>
+
+        <!-- FatherLastname field -->
+        <mat-form-field class="w-full">
+            <mat-label>{{data.doctor.especialidad.question2}}</mat-label>
+            <input
+                lettersOnly
+                maxlength="1000"
+                id="respuesta2"
+                matInput
+                [formControlName]="'respuesta2'">
+            <mat-error *ngIf="formularioRegistro.get('respuesta2').hasError('required')">
+                La respuesta es requerida
+            </mat-error>       
+            <mat-error *ngIf="formularioRegistro.get('respuesta2').hasError('minlength')">
+                El respuesta debe ser valido
+            </mat-error>           
+        </mat-form-field>
+
+        <mat-form-field class="w-full">
+            <mat-label>{{data.doctor.especialidad.question3}}</mat-label>
+            <input
+                lettersOnly
+                maxlength="1000"
+                id="respuesta3"
+                matInput
+                [formControlName]="'respuesta3'">
+                <mat-error *ngIf="formularioRegistro.get('respuesta3').hasError('required')">
+                    La respuesta es requerida
+                </mat-error>       
+                <mat-error *ngIf="formularioRegistro.get('respuesta3').hasError('minlength')">
+                    El respuesta debe ser valido
+                </mat-error>         
+        </mat-form-field>           
+
+        <<mat-form-field class="w-full">
+            <mat-label>{{data.doctor.especialidad.question4}}</mat-label>
+            <input
+                lettersOnly
+                maxlength="1000"
+                id="respuesta4"
+                matInput
+                [formControlName]="'respuesta4'">
+                <mat-error *ngIf="formularioRegistro.get('respuesta4').hasError('required')">
+                    La respuesta es requerida
+                </mat-error>       
+                <mat-error *ngIf="formularioRegistro.get('respuesta4').hasError('minlength')">
+                    El respuesta debe ser valido
+                </mat-error>         
+        </mat-form-field>  
+        
+        <mat-form-field class="w-full">
+            <mat-label>{{data.doctor.especialidad.question5}}</mat-label>
+            <input
+                id="respuesta5"
+                maxlength="1000"
+                matInput
+                [formControlName]="'respuesta5'">
+            <mat-error *ngIf="formularioRegistro.get('respuesta5').hasError('required')">
+                La respuesta es requerida
+            </mat-error>
+            <mat-error *ngIf="formularioRegistro.get('respuesta5').hasError('minlength')">
+                El respuesta debe ser valido
+            </mat-error>               
+        </mat-form-field>
+
+        <mat-form-field class="w-full">
+            <mat-label>Resultado Diagnóstico</mat-label>
+            <input
+                id="resultadoDiagnostico"
+                maxlength="1000"
+                matInput
+                [formControlName]="'resultadoDiagnostico'">
+            <mat-error *ngIf="formularioRegistro.get('resultadoDiagnostico').hasError('required')">
+                El resultado diagnóstico
+            </mat-error>
+            <mat-error *ngIf="formularioRegistro.get('respuesta5').hasError('minlength')">
+                El resultado diagnóstico debe ser valido
+            </mat-error>               
+        </mat-form-field>
+
+      
+        
+
+        <!-- ToS and PP -->
+        <!-- <div class="inline-flex items-end w-full mt-1.5">
+            <mat-checkbox
+                class="-ml-2"
+                [color]="'primary'"
+                [formControlName]="'agreements'">
+                <span>I agree with</span>
+                <a
+                    class="ml-1 text-primary-500 hover:underline"
+                    [routerLink]="['./']">Terms
+                </a>
+                <span>and</span>
+                <a
+                    class="ml-1 text-primary-500 hover:underline"
+                    [routerLink]="['./']">Privacy Policy
+                </a>
+            </mat-checkbox>
+        </div> -->
+
+        <!-- Submit button -->
+        <button
+            class="fuse-mat-button-large w-full mt-6"
+            mat-flat-button
+            [color]="'primary'"
+            [disabled]="formularioRegistro.invalid"
+            (click)="guardarDiagnostico()">
+            <span >
+                Guardar Diagnóstico
+            </span>
+            <mat-progress-spinner
+                *ngIf="formularioRegistro.disabled"
+                [diameter]="24"
+                [mode]="'indeterminate'"></mat-progress-spinner>
+        </button>
+
+
+        <button
+            class="fuse-mat-button-large w-full mt-6 bg-red-600"
+            mat-flat-button            
+            (click)="cerrar()"
+            >
+            <span class="text-white">
+                Cerrar
+            </span>
+            <mat-progress-spinner
+                *ngIf="formularioRegistro.disabled"
+                [diameter]="24"
+                [mode]="'indeterminate'"></mat-progress-spinner>
+        </button>
+
+    </form>
+    </div>
+    </div>
+</div>

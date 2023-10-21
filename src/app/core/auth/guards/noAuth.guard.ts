@@ -2,7 +2,7 @@ import { inject } from '@angular/core';
 import { CanActivateChildFn, CanActivateFn, Router } from '@angular/router';
 import { AuthService } from 'app/core/auth/auth.service';
 import { AutenticacionService } from 'app/services/autenticacion/autenticacion.service';
-import { of, switchMap } from 'rxjs';
+import { of, switchMap, tap } from 'rxjs';
 
 
 export const NoAuthGuard: CanActivateFn | CanActivateChildFn = (route, state) =>
@@ -16,8 +16,9 @@ export const NoAuthGuard: CanActivateFn | CanActivateChildFn = (route, state) =>
             // If the user is authenticated...
             if ( authenticated )
             {   
-                return of(router.parseUrl(JSON.parse(localStorage.getItem('menu'))[0].link ?? 'users/sign-in'));
-            }
+                console.log('entre2')
+                return of(router.parseUrl('/users/sign-in'));
+            }  
 
             // Allow the access
             return of(true);

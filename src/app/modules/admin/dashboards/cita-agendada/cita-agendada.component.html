@@ -7,9 +7,9 @@
               <mat-card-title-group>
                 <mat-card-title >{{citas.paciente.name}} {{citas.paciente.fatherLastname}} {{citas.paciente.motherLastname}}</mat-card-title>
                 <mat-card-subtitle>{{citas.date | date:'short'}} </mat-card-subtitle>
-                <button 
+                <button  [disabled]="citas.attended"
                 mat-flat-button
-                class="fuse-mat-button-large mt-6 bg-green-500"
+                [ngClass]="{'fuse-mat-button-large mt-6 bg-slate-500': citas.attended, 'fuse-mat-button-large mt-6 bg-green-500': !citas.attended}"
                 (click)="verDetallesCita(citas)"
                 >
                   Atender Cita

@@ -42,6 +42,7 @@ import { DevicesComponent } from './dashboards/devices/devices.component';
 import { FinanceComponent } from './dashboards/finance/finance.component';
 import { ProjectComponent } from './dashboards/project/project.component';
 import { DetalleCitaComponent } from './dashboards/cita-agendada/detalle-cita/detalle-cita.component';
+import { HistorialMedicoComponent } from './dashboards/cita/historial-medico/historial-medico.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { DetalleCitaComponent } from './dashboards/cita-agendada/detalle-cita/de
     CryptoComponent,
     DecimalDirective,
     DetalleCitaComponent,
+    HistorialMedicoComponent,
     DevicesComponent,
     FinanceComponent,
     ProjectComponent,    

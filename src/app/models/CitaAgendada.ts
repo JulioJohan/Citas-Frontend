@@ -1,9 +1,9 @@
-import { Doctor } from "./Doctor";
 import { Paciente } from "./Paciente";
+import { UsuarioDTO } from "./UsuarioDTO";
 
 export class CitaAgendada {
     _id:string;
-    doctor:Doctor;
+    doctor:UsuarioDTO;
     paciente:Paciente;
     age:number;
     weight:number;
