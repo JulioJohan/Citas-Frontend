@@ -41,8 +41,7 @@ export class DetalleCitaComponent implements OnInit{
       respuesta3           :['',[Validators.required,Validators.minLength(18)]],
       respuesta4           :['',[Validators.required,Validators.minLength(18)]],
       respuesta5           :['',[Validators.required,Validators.minLength(18)]],
-      resultadoDiagnostico :['',[Validators.required,Validators.minLength(18)]]
-      
+      resultadoDiagnostico :['',[Validators.required,Validators.minLength(18)]],
     });
   }
 

@@ -6,5 +6,6 @@ export class Diagnostico {
     public respuesta3:string;
     public respuesta4:string;
     public respuesta5:string;
-    public resultadoDiagnostico:string    
+    public resultadoDiagnostico:string 
+      
 }
