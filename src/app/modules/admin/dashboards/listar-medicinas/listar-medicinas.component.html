@@ -1,8 +1,7 @@
-<div class="d-flex justify-content-start mt-3">
-  <h5 style="margin-right: 10px; font-size: 18px;">Filtro por Categoría:</h5>
-  <br>
-  <div class="form-group d-flex">
-    <select class="form-control col-md-4" [(ngModel)]="selectedCategoria" name="categoria" (change)="filtrarMedicinas2()">
+<div class="d-flex align-items-center mt-3">
+  <h5 style="margin-right: 10px; font-size: 15px;">Filtro por Categoría:</h5>
+  <div class="form-group">
+    <select class="form-control" [(ngModel)]="selectedCategoria" name="categoria" (change)="filtrarMedicinas2()" style="width: 150px;">
       <option value="">Todos</option>
       <option value="Analgesicos">Analgesicos</option>
       <option value="Antibioticos">Antibióticos</option>
@@ -12,6 +11,7 @@
     </select>
   </div>
 </div>
+
 
   
   <div class="container mt-5">
