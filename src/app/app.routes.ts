@@ -1,4 +1,6 @@
 import { Route } from '@angular/router';
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
 import { initialDataResolver } from 'app/app.resolvers';
 import { AuthGuard } from 'app/core/auth/guards/auth.guard';
 import { NoAuthGuard } from 'app/core/auth/guards/noAuth.guard';
@@ -16,13 +18,22 @@ import { AnalyticsComponent } from './modules/admin/dashboards/analytics/analyti
 import { CryptoComponent } from './modules/admin/dashboards/crypto/crypto.component';
 import { DevicesComponent } from './modules/admin/dashboards/devices/devices.component';
 import { FinanceComponent } from './modules/admin/dashboards/finance/finance.component';
-
+import { RegActMedicinaComponent } from './modules/admin/dashboards/reg-act-medicina/reg-act-medicina.component';
+import { ListarMedicinasComponent } from './modules/admin/dashboards/listar-medicinas/listar-medicinas.component';
+import { AlmacenComponent } from './modules/admin/dashboards/almacen/almacen.component';
 
 // @formatter:off
 /* eslint-disable max-len */
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 // TODO: Rutas de la version anterior 
 export const appRoutes: Route[] = [
+    
+    //Rutas Gestión Medicamentos
+    { path:'almacen', component: AlmacenComponent },
+    { path:'reg-medicina', component: RegActMedicinaComponent },
+    { path:'act-medicina/:id', component: RegActMedicinaComponent },
+    { path:'listar-medicina', component: ListarMedicinasComponent },
+
 
     // Redirect empty path to '/example'
     {path: '', pathMatch : 'full', redirectTo: 'example'},
@@ -64,7 +75,11 @@ export const appRoutes: Route[] = [
             {path: 'forgot-password', component:AuthForgotPasswordComponent},
             {path: 'reset-password', component: AuthResetPasswordComponent},
             {path: 'sign-in', component:AuthSignInComponent },
-            {path: 'sign-up', component:AuthSignUpComponent}
+            {path: 'sign-up', component:AuthSignUpComponent},
+            { path:'almacen', component: AlmacenComponent },
+            { path:'reg-medicina', component: RegActMedicinaComponent },
+            { path:'act-medicina/:id', component: RegActMedicinaComponent },
+            { path:'listar-medicina', component: ListarMedicinasComponent }
         ]
     },
 
