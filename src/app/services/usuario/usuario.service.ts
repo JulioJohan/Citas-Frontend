@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Usuario } from 'app/models/Usuario';
 import { environment } from 'environments/environment.prod';
 import { Respuesta } from 'app/models/Respuesta';
+import { enviromentAuth } from 'environments/enviroment.auth';
 
 @Injectable({
     providedIn: 'root'
@@ -11,7 +12,7 @@ import { Respuesta } from 'app/models/Respuesta';
 
 export class UsuarioService {
 
-    private url:string = `${environment.apiUrl}/api/auth`
+    private url:string = `${enviromentAuth.urlAuth}/api/auth`
 
     constructor(private httpClient:HttpClient) {}
 

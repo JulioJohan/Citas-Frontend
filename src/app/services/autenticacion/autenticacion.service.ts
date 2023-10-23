@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, ReplaySubject, map, of } from 'rxjs';
 import { environment } from 'environments/environment.prod';
-
+import { enviromentAuth } from 'environments/enviroment.auth';
 import {Respuesta} from '../../models/Respuesta';
 import { Usuario } from 'app/models/Usuario';
 import { tap } from 'lodash';
@@ -19,7 +19,7 @@ export class AutenticacionService {
   constructor(private httpClient:HttpClient,private _router:Router) { }
 
   // Creando la varible url para hacer las peticiones al backend
-  private url:string = `${environment.apiUrl}/api/auth`;
+  private url:string = `${enviromentAuth.urlAuth}/api/auth`;
   private _usuario: ReplaySubject<Usuario> = new ReplaySubject<Usuario>(1);
   private _menuArreglo:FuseNavigationItem[] = [];
   public autenticado: boolean = false;
