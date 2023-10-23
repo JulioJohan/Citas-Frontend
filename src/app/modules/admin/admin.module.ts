@@ -45,10 +45,13 @@ import { DetalleCitaComponent } from './dashboards/cita-agendada/detalle-cita/de
 import { HistorialMedicoComponent } from './dashboards/cita/historial-medico/historial-medico.component';
 import { ListarMedicinasComponent } from './dashboards/listar-medicinas/listar-medicinas.component';
 import { RegActMedicinaComponent } from './dashboards/reg-act-medicina/reg-act-medicina.component';
+import { RouterLink } from '@angular/router';
+import { AlmacenComponent } from './dashboards/almacen/almacen.component';
 
 @NgModule({
   declarations: [
     AnalyticsComponent,
+    AlmacenComponent,
     CitaComponent,
     CitaAgendadaComponent,
     CryptoComponent,
@@ -76,6 +79,7 @@ import { RegActMedicinaComponent } from './dashboards/reg-act-medicina/reg-act-m
     NgFor,  
     NgClass,  
     I18nPluralPipe,
+    RouterLink,    
     NgApexchartsModule,
     NgxMatTimepickerModule,
     MatButtonModule,

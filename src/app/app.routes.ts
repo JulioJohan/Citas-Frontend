@@ -29,10 +29,9 @@ import { AlmacenComponent } from './modules/admin/dashboards/almacen/almacen.com
 export const appRoutes: Route[] = [
     
     //Rutas Gestión Medicamentos
-    { path:'almacen', component: AlmacenComponent },
-    { path:'reg-medicina', component: RegActMedicinaComponent },
-    { path:'act-medicina/:id', component: RegActMedicinaComponent },
-    { path:'listar-medicina', component: ListarMedicinasComponent },
+    // { path:'reg-medicina', component: RegActMedicinaComponent },
+    // { path:'act-medicina/:id', component: RegActMedicinaComponent },
+    // { path:'listar-medicina', component: ListarMedicinasComponent },
 
 
     // Redirect empty path to '/example'
