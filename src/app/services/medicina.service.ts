@@ -7,7 +7,7 @@ import { Medicina } from 'app/models/Medicina';
   providedIn: 'root'
 })
 export class MedicinaService {
-  url = 'http://localhost:4000/api/medicina';
+  url = 'http://localhost:4001/api/medicina';
 
   constructor(private http: HttpClient ) { }
 

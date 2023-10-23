@@ -82,7 +82,7 @@ export class RegActMedicinaComponent implements OnInit {
             this.rMCorrect();
           },
           (error) => {
-            console.error('Error al obtener medicinas: ', error);
+            console.error('Error al registrar medicinas: ', error);
           }
         );
       }

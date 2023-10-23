@@ -1,16 +1,18 @@
-<div class="d-flex justify-content-center mt-3">
-    <h5 style="margin-right: 10px; font-size: 18px;">Filtro por Categoría:</h5>
-    <div class="form-group d-flex">
-      <select class="form-control col-md-4" [(ngModel)]="selectedCategoria" name="categoria" (change)="filtrarMedicinas2()">
-        <option value="">Todos</option>
-        <option value="Analgesicos">Analgesicos</option>
-        <option value="Antibioticos">Antibióticos</option>
-        <option value="Antiinflamatorios">Antiinflamatorios</option>
-        <option value="Antipireticos">Antipiréticos</option>
-        <option value="Antidepresivos">Antidepresivos</option>
-      </select>
-    </div>
+<div class="d-flex justify-content-start mt-3">
+  <h5 style="margin-right: 10px; font-size: 18px;">Filtro por Categoría:</h5>
+  <br>
+  <div class="form-group d-flex">
+    <select class="form-control col-md-4" [(ngModel)]="selectedCategoria" name="categoria" (change)="filtrarMedicinas2()">
+      <option value="">Todos</option>
+      <option value="Analgesicos">Analgesicos</option>
+      <option value="Antibioticos">Antibióticos</option>
+      <option value="Antiinflamatorios">Antiinflamatorios</option>
+      <option value="Antipireticos">Antipiréticos</option>
+      <option value="Antidepresivos">Antidepresivos</option>
+    </select>
   </div>
+</div>
+
   
   <div class="container mt-5">
       <div class="row">
@@ -50,39 +52,46 @@
       </div>
   </div>
   
-  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title text-center" id="staticBakdropLabel">
-            Actualizar Existencias:
-          </h5>
-        </div>
-  
-        <div class="modal-body">
-          <div *ngIf="medicinaSeleccionada">
-            <p>Nombre: {{ medicinaSeleccionada.nombreMedicina }}</p>
-            <p>Categoría: {{ medicinaSeleccionada.categoria }}</p>
-            <p>Existencias: {{ medicinaSeleccionada.cantidad }}</p>
-            
-            <!-- Formulario para editar existencias -->
-            <form (ngSubmit)="guardarCambios()">
-              <div class="form-group">
-                <label for="nuevasExistencias">Nuevas Existencias:</label>
-                <br>
-                <input type="number" class="form-control" id="nuevasExistencias" [(ngModel)]="nuevasExistencias" name="nuevasExistencias">
-              </div>
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+  aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-center" id="staticBakdropLabel">
+          Actualizar Existencias:
+        </h5>
+      </div>
+
+      <div class="modal-body">
+        <div *ngIf="medicinaSeleccionada">
+          <p>Nombre: {{ medicinaSeleccionada.nombreMedicina }}</p>
+          <br>
+          <p>Categoría: {{ medicinaSeleccionada.categoria }}</p>
+          <br>
+          <p>Existencias: {{ medicinaSeleccionada.cantidad }}</p>
+          <br>
+          <!-- Formulario para editar existencias -->
+          <form (ngSubmit)="guardarCambios()">
+            <div class="form-group">
+              <label for="nuevasExistencias">Nuevas Existencias:</label>
               <br>
-              <button type="submit" class="btn btn-primary">Guardar</button>
-            </form>
-          </div>
-        </div>
-  
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary mr-3" data-bs-dismiss="modal">
-            <li class="fas fa-times-circle">&nbsp;Cerrar</li>
-          </button>
+              <input type="number" class="form-control" id="nuevasExistencias" [(ngModel)]="nuevasExistencias"
+                name="nuevasExistencias">
+            </div>
+            <br>
+            <button type="submit" class="btn btn-primary">Guardar</button>
+          </form>
         </div>
       </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-dark mr-3" data-bs-dismiss="modal">
+          Cerrar
+        </button>
+      </div>
+      
     </div>
   </div>
+</div>
+
+<button routerLink="/almacen" class="btn btn-dark">Regresar</button>
