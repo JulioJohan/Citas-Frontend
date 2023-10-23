@@ -1,40 +1,35 @@
-<div class="flex flex-wrap bg-gray-800 p-6">
-    <div class="container mx-auto">
-        <a href="/user/sign-in" class="text-white text-lg font-semibold">Hospital</a>
-        <button class="lg:hidden ml-auto flex items-center px-3 py-2 border rounded text-white border-white">
-            <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                <title>Menu</title>
-                <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v15z" />
-            </svg>
-        </button>
-        <div class="hidden lg:block w-full lg:w-auto lg:ml-auto lg:pr-6">
-            <div class="text-sm lg:flex-grow">
-                <a routerLink="/almacen"
-                    class="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-white mr-4">Almacen</a>
-                <a routerLink="/reg-medicina"
-                    class="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-white mr-4">Registrar Medicina</a>
-                <a routerLink="/listar-medicina"
-                    class="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-white">Almacen Medicamentos</a>
 
-                <!-- Nuevas rutas agregadas -->
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" [routerLink]="['/reg-medicina']">Registrar
-                        Medicina</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" [routerLink]="['/listar-medicina']">Almacen
-                        Medicamentos</a>
-                </li>
-            </div>
-        </div>
+<nav class="bg-white border-gray-200 dark:bg-gray-900 w-full">
+    <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+      <a class="flex items-center">
+          <img src="assets/images/logo/Logo.png" class="h-8 mr-3" alt="Hospital App Logo" />
+          <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Hospital App</span>
+      </a>
+      <div class="hidden w-full md:block md:w-auto ite" id="navbar-default">
+        <ul class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">         
+          <li>
+            <a routerLink="/users/sign-in" class="block py-2 pl-3 pr-4 text-gray-900 rounded 
+            hover:bg-gray-100 md:hover:bg-transparent md:border-0 
+            md:hover:text-blue-700 md:p-0 dark:text-white 
+            md:dark:hover:text-blue-500 
+            dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Inicio</a>
+          </li>
+          <li>
+            <a routerLink="/reg-medicina" class="block py-2 pl-3 pr-4 text-gray-900 rounded 
+            hover:bg-gray-100 md:hover:bg-transparent md:border-0 
+            md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 
+            dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Registrar Medicina</a>
+          </li>          
+          <li>
+            <a routerLink="/listar-medicina" class="block py-2 pl-3 pr-4 text-gray-900 rounded 
+            hover:bg-gray-100 md:hover:bg-transparent md:border-0 
+            md:hover:text-blue-700 md:p-0 dark:text-white 
+            md:dark:hover:text-blue-500 dark:hover:bg-gray-700 
+            dark:hover:text-white md:dark:hover:bg-transparent">Medicinas</a>
+          </li>
+          
+        </ul>
+      </div>
     </div>
-</div>
-
-<!-- En tu plantilla HTML fuera del código anterior -->
-<button routerLink="/reg-medicina" class="btn btn-primary">Ir a Registrar Medicina</button>
-
-<!-- En tu plantilla HTML fuera del código anterior -->
-<button routerLink="/listar-medicina" class="btn btn-success">Almacen de Medicinas</button>
-
-<!-- En tu plantilla HTML fuera del código anterior -->
-<button routerLink="/" class="btn btn-dark">Salir</button>
+  </nav>
+  
