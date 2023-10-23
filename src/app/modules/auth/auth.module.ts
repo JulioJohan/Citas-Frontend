@@ -33,8 +33,7 @@ import { MatSelectModule } from '@angular/material/select';
         AuthSignInComponent,
         AuthSignOutComponent,
         AuthSignUpComponent,
-        AuthUnlockSessionComponent,        
-
+        AuthUnlockSessionComponent
      ],
     imports: [ 
         BrowserModule,
