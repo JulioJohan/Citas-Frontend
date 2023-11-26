@@ -5,6 +5,9 @@ import { Medicina } from 'app/models/Medicina';
 import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
 
+import { GenerarCodigoBarrasDecorator } from 'app/models/GenerarCodigoBarrasDecorator';
+import { MedicinaComponent } from 'app/models/MedicinaComponent';
+
 @Component({
   selector: 'app-reg-act-medicina',
   templateUrl: './reg-act-medicina.component.html',
@@ -52,19 +55,32 @@ export class RegActMedicinaComponent implements OnInit {
 
   registrarMedicina() {
     if (this.medicinaForm.valid) {
-      const cantidad = this.cantidad.value; // Obtén el valor de cantidad
+      const cantidad = this.cantidad.value;
   
       if (cantidad === 0) {
-        // La cantidad es igual a 0, muestra un mensaje de error
         Swal.fire({
           icon: 'error',
           title: 'Error',
           text: 'La cantidad no puede ser 0',
         });
       } else {
-        // La cantidad es válida, procede con el registro
         const fechaActual = new Date();
-  
+
+        // Crear una instancia de Medicina
+        const medicina: MedicinaComponent = new GenerarCodigoBarrasDecorator(new Medicina(
+          this.nombreMedicina.value,
+          this.categoria.value,
+          this.viaAdministracion.value,
+          this.cantidad.value
+        ));
+
+        // Aplicar el decorador GenerarCodigoBarrasDecorator
+        const medicinaDecorada: MedicinaComponent = new GenerarCodigoBarrasDecorator(medicina);
+
+        // Obtener el código de barras de la instancia decorada
+        const codigoBarrasGenerado = medicinaDecorada.generarCodigoBarras();
+
+        // Agregar el código de barras a los datos del medicamento
         const datosMedicina: Medicina = {
           nombreMedicina: this.nombreMedicina.value,
           categoria: this.categoria.value,
@@ -72,14 +88,22 @@ export class RegActMedicinaComponent implements OnInit {
           viaAdministracion: this.viaAdministracion.value,
           fechaEntrega: fechaActual,
           medicamentoDisponible: true,
+          codigoBarras: codigoBarrasGenerado,
         };
 
-        //if(this.id !== null){}
-  
+        Swal.fire({
+          icon: 'success',
+          title: 'El Medicamento Se ha Registrado Correctamente',
+          text: `El Código de Barras Generado Es: ${datosMedicina.codigoBarras}`,
+          timer: 5000
+        });
+
+        console.log(datosMedicina);
+
         this.medicinaService.guardarMedicina(datosMedicina).subscribe(
           (data) => {
             this.limpiarFormulario();
-            this.rMCorrect();
+            //this.rMCorrect();
           },
           (error) => {
             console.error('Error al registrar medicinas: ', error);
@@ -90,37 +114,5 @@ export class RegActMedicinaComponent implements OnInit {
       this.rMIncorrect();
     }
   }
-  /*
-  guardarNuevasExistencias() {
-    if (this.medicinaSeleccionada && this.nuevasExistencias > 0) {
-      // Suma las nuevas existencias a las existencias actuales
-      const nuevasExistenciasTotal = this.medicinaSeleccionada.cantidad + this.nuevasExistencias;
-      
-      // Actualiza la propiedad de la medicina seleccionada
-      this.medicinaSeleccionada.cantidad = nuevasExistenciasTotal;
-  
-      // Llama al servicio para guardar la medicina actualizada
-      this.medicinaService.editarMedicina(this.medicinaSeleccionada._id.toString(), this.medicinaSeleccionada).subscribe(
-        (data) => {
-  
-          // Restablece el valor de nuevasExistencias
-          this.nuevasExistencias = 0;
-  
-          // Muestra un mensaje de éxito
-          this.rMCorrect();
-        },
-        (error) => {
-          console.error('Error al guardar medicina: ', error);
-        }
-      );
-    } else {
-      // Muestra un mensaje de error si las nuevas existencias son menores o iguales a 0
-      Swal.fire({
-        icon: 'error',
-        title: 'Error',
-        text: 'Las nuevas existencias deben ser mayores que 0',
-      });
-    }
-  }*/
 
 }

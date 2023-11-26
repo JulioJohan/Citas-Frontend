@@ -43,6 +43,7 @@ export class ListarMedicinasComponent implements OnInit {
       (data: Medicina[]) => {
         this.medicinas = data;
         this.medicinasFiltradas = [...this.medicinas]; // Copia las medicinas a medicinasFiltradas
+        console.log(this.medicinas);
       },
       (error) => {
         console.error('Error al obtener medicinas: ', error);

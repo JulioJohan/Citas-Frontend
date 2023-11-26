@@ -1,4 +1,5 @@
-export class Medicina {
+import { MedicinaComponent } from './MedicinaComponent';
+export class Medicina implements MedicinaComponent {
     _id?: string;
     nombreMedicina: string;
     categoria: string;
@@ -6,6 +7,7 @@ export class Medicina {
     cantidad: number;
     fechaEntrega: Date;
     medicamentoDisponible: boolean;
+    codigoBarras: string;
 
     constructor(nombreMedicina:string, categoria: string, viaAdministracion: string, cantidad: number){
         this.nombreMedicina = nombreMedicina;
@@ -13,6 +15,10 @@ export class Medicina {
         this.viaAdministracion = viaAdministracion;
         this.cantidad = cantidad;
         this.fechaEntrega = new Date();
-        this.medicamentoDisponible = true;
+        this.medicamentoDisponible = true; 
+    }
+
+    generarCodigoBarras?(): string {
+        return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
     }
 }
