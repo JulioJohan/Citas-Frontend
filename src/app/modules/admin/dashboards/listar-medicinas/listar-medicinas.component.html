@@ -12,43 +12,48 @@
   </div>
 </div>
 
-  <div class="container mt-5">
-      <div class="row">
-          <div class="col-lg-10 offset-lg-1">
-              <div class="card">
-                  <div class="card-body text-center">
-                      <span> <h4>Almacen de Medicamentos</h4> </span>
-                      <br>
+<div class="container mt-5">
+  <div class="row">
+      <div class="col-12">
+          <div class="card">
+              <div class="card-body text-center">
+                  <span><h4>Almacen de Medicamentos</h4></span>
+                  <br>
+                  <div class="table-responsive">
                       <table *ngIf="medicinas.length > 0" class="table table-striped">
                           <thead>
-                            <tr>
-                              <th scope="col">Medicina</th>
-                              <th scope="col">Categoria</th>
-                              <th scope="col">Administración</th>
-                              <th scope="col">Existencias</th>
-                              <th scope="col">Disponibilidad</th>
-                              <th scope="col">Actualizar Existencias</th>
-                              <th scope="col">Eliminar</th>
-                            </tr>
+                              <tr>
+                                  <th scope="col">Medicina</th>
+                                  <th scope="col">Categoria</th>
+                                  <th scope="col">Administración</th>
+                                  <th scope="col">Existencias</th>
+                                  <th scope="col">Disponibilidad</th>
+                                  <th scope="col">Código</th>
+                                  <th scope="col">Actualizar Existencias</th>
+                                  <th scope="col">Eliminar</th>
+                              </tr>
                           </thead>
                           <tbody>
-                            <tr *ngFor="let medicina of medicinasFiltradas">
-                              <td> {{ medicina.nombreMedicina }} </td>
-                              <td> {{ medicina.categoria }} </td>
-                              <td> {{ medicina.viaAdministracion }} </td>
-                              <td> {{ medicina.cantidad }} </td>
-                              <td> {{ medicina.medicamentoDisponible }} </td>
-                              <td> <button  (click)="obtenerMedicinaPorId(medicina._id)" data-bs-toggle="modal" data-bs-target="#staticBackdrop" class="btn btn-primary"><i class="fas fa-sync-alt"></i></button> </td>
-                              <td> <button (click)="eliminarMedicina(medicina._id)" class="btn btn-danger"><i class="fa fa-trash"></i></button> </td>
-                            </tr>
+                              <tr *ngFor="let medicina of medicinasFiltradas">
+                                  <td>{{ medicina.nombreMedicina }}</td>
+                                  <td>{{ medicina.categoria }}</td>
+                                  <td>{{ medicina.viaAdministracion }}</td>
+                                  <td>{{ medicina.cantidad }}</td>
+                                  <td>{{ medicina.medicamentoDisponible }}</td>
+                                  <td>{{ medicina.codigoBarras }}</td>
+                                  <td><button (click)="obtenerMedicinaPorId(medicina._id)" data-bs-toggle="modal" data-bs-target="#staticBackdrop" class="btn btn-primary"><i class="fas fa-sync-alt"></i></button></td>
+                                  <td><button (click)="eliminarMedicina(medicina._id)" class="btn btn-danger"><i class="fa fa-trash"></i></button></td>
+                              </tr>
                           </tbody>
-                        </table>
-                        <h4 style="text-align: center; margin-top: 10px;" *ngIf="medicinas.length == 0" >No Hay Productos Para Mostrar</h4>
+                      </table>
+                      <h4 style="text-align: center; margin-top: 10px;" *ngIf="medicinas.length == 0">No Hay Productos Para Mostrar</h4>
                   </div>
               </div>
           </div>
       </div>
   </div>
+</div>
+
   
 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
   aria-labelledby="staticBackdropLabel" aria-hidden="true">
