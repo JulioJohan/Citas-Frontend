@@ -10,15 +10,16 @@ import { AuthGuard } from './core/auth/guards/auth.guard';
 import { AlmacenComponent } from './modules/admin/dashboards/almacen/almacen.component';
 import { RegActMedicinaComponent } from './modules/admin/dashboards/reg-act-medicina/reg-act-medicina.component';
 import { ListarMedicinasComponent } from './modules/admin/dashboards/listar-medicinas/listar-medicinas.component';
+import { HomeRoutingModule } from './modules/home/home.routing.module';
 
 
 
-const routes: Routes = [    
-    {path: '', pathMatch : 'full', redirectTo: 'users/sign-in'},
-    {path: '**', pathMatch : 'full', redirectTo: 'users/sign-in'},
-    {path: 'signed-in-redirect', pathMatch : 'full', redirectTo: '/dashboards'},
-   
-    // {path: 'example', component:ExampleComponent},   
+const routes: Routes = [
+    {path: '', pathMatch : 'full', redirectTo: 'home-nuevo'},
+    {path: '**', pathMatch : 'full', redirectTo: 'home-nuevo'},
+    // {path: 'signed-in-redirect', pathMatch : 'full', redirectTo: '/dashboards'},
+
+    // {path: 'example', component:ExampleComponent},
 
 
     //{ path: 'path/:routeParam', component: MyComponent },
@@ -31,7 +32,8 @@ const routes: Routes = [
 @NgModule({
     imports: [RouterModule.forRoot(routes),
         AuthRoutingModule,
-        AdminRoutingModule
+        AdminRoutingModule,
+        HomeRoutingModule
     ],
     exports: [RouterModule]
 })

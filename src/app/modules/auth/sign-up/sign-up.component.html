@@ -3,7 +3,7 @@
         <div class="w-full max-w-80 sm:w-80 mx-auto sm:mx-0">
             <!-- Logo -->
             <div class="w-12">
-                <img src="assets/images/logo/Logo.png">
+                <img src="assets/images/logo/Logo_solo.png">
             </div>
 
             <!-- Title -->
@@ -100,18 +100,18 @@
                         El Rol es requerido
                     </mat-error>
                   </mat-form-field>
-                  
-                  <mat-form-field class="w-full" *ngIf="formularioRegistro.get('role').value === 'DOCTOR'"> 
+
+                  <mat-form-field class="w-full" *ngIf="formularioRegistro.get('role').value === 'DOCTOR'">
                     <mat-label>Especialidad</mat-label>
                     <mat-select [formControlName] = "'especialidad'"  >
-                      <mat-option *ngFor="let especialidad of especialidades" 
+                      <mat-option *ngFor="let especialidad of especialidades"
                       [value] = "especialidad._id">{{especialidad.name}}</mat-option>
                     </mat-select>
                     <mat-error *ngIf="formularioRegistro.get('especialidad').hasError('required')">
                         La especialidad es requerida
                     </mat-error>
-                  </mat-form-field>    
-                
+                  </mat-form-field>
+
 
                 <!-- ToS and PP -->
                 <!-- <div class="inline-flex items-end w-full mt-1.5">
@@ -176,7 +176,7 @@
         <div class="z-10 relative w-full max-w-2xl">
             <div class="text-7xl font-bold leading-none text-gray-100 text-center">
                 <div>Bienvenido a </div>
-                <div>Hospital AP</div>
+                <div>CitaVita</div>
             </div>
             <div class="flex flex-col flex-auto items-center sm:justify-center min-w-0">
                 <img
@@ -203,6 +203,6 @@
                 </div>
                 <div class="ml-4 font-medium tracking-tight text-gray-400">More than 17k people joined us, it's your turn</div>
             </div>
-        </div> --> 
+        </div> -->
     </div>
 </div>

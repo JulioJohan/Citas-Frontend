@@ -25,7 +25,7 @@ import { MatSelectModule } from '@angular/material/select';
 
 
 @NgModule({
-    declarations: [ 
+    declarations: [
         // Todo: Componentes
         AuthConfirmationRequiredComponent,
         AuthForgotPasswordComponent,
@@ -33,9 +33,10 @@ import { MatSelectModule } from '@angular/material/select';
         AuthSignInComponent,
         AuthSignOutComponent,
         AuthSignUpComponent,
-        AuthUnlockSessionComponent
+        AuthUnlockSessionComponent,
+
      ],
-    imports: [ 
+    imports: [
         BrowserModule,
         CommonModule,
         // LayoutModule,
@@ -43,19 +44,19 @@ import { MatSelectModule } from '@angular/material/select';
         FormsModule,
         FuseAlertComponent,
         RouterLink,
-        RouterModule,        
+        RouterModule,
         ReactiveFormsModule,
         HttpClientModule,
         I18nPluralPipe,
-        NgIf,    
-        MatButtonModule,     
+        NgIf,
+        MatButtonModule,
         MatCheckboxModule,
-        MatFormFieldModule, 
-        MatInputModule, 
+        MatFormFieldModule,
+        MatInputModule,
         MatIconModule,
         MatSelectModule,
-        MatProgressSpinnerModule, 
-        
+        MatProgressSpinnerModule,
+
     ],
 })
 export class AuthModule {}

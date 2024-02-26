@@ -19,6 +19,8 @@ import { LayoutModule } from './layout/layout.module';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { HomeModule } from './modules/home/home.module';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
     declarations: [
@@ -29,13 +31,17 @@ import { HttpClientModule } from '@angular/common/http';
         RouterModule,
         BrowserModule,
         AdminModule,
+        HomeModule,
         AuthModule,
         LayoutModule,
         AppRoutingModule,
         AppRoutingModule,
         ReactiveFormsModule,
         HttpClientModule,
-        FormsModule
+        FormsModule,
+        NgbModule,
+
+
     ],
     providers: [
         provideAnimations(),
@@ -62,7 +68,7 @@ import { HttpClientModule } from '@angular/common/http';
         // Transloco Config
         provideTransloco(),
 
-       
+
         // Fuse
         provideAuth(),
         provideIcons(),

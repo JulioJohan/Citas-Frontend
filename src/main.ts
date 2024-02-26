@@ -1,3 +1,5 @@
+/// <reference types="@angular/localize" />
+
 import { ApplicationConfig, InjectionToken } from '@angular/core';
 import { bootstrapApplication } from '@angular/platform-browser';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';

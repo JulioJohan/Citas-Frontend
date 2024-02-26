@@ -25,9 +25,9 @@ import { AlmacenComponent } from './modules/admin/dashboards/almacen/almacen.com
 // @formatter:off
 /* eslint-disable max-len */
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
-// TODO: Rutas de la version anterior 
+// TODO: Rutas de la version anterior
 export const appRoutes: Route[] = [
-    
+
     //Rutas Gestión Medicamentos
     // { path:'reg-medicina', component: RegActMedicinaComponent },
     // { path:'act-medicina/:id', component: RegActMedicinaComponent },
@@ -75,6 +75,7 @@ export const appRoutes: Route[] = [
             {path: 'reset-password', component: AuthResetPasswordComponent},
             {path: 'sign-in', component:AuthSignInComponent },
             {path: 'sign-up', component:AuthSignUpComponent},
+          
             { path:'almacen', component: AlmacenComponent },
             { path:'reg-medicina', component: RegActMedicinaComponent },
             { path:'act-medicina/:id', component: RegActMedicinaComponent },
@@ -154,7 +155,7 @@ export const appRoutes: Route[] = [
     //             {path: 'crypto', loadChildren: () => import('app/modules/admin/dashboards/crypto/crypto.routes')},
     //             {path: 'dispositivos', loadChildren: () => import('app/modules/admin/dashboards/devices/devices.routes')}
     //         ]},
-            
+
     //     ]
     // }
 
@@ -178,7 +179,7 @@ export const appRoutes: Route[] = [
                 {path: 'dispositivos', component:DevicesComponent},
                 // {path: 'cita', component:CitaComponent}
             ]},
-            
+
         ]
     }
 ];

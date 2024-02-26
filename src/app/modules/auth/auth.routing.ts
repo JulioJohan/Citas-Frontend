@@ -12,26 +12,26 @@ import { ListarMedicinasComponent } from '../admin/dashboards/listar-medicinas/l
 
 
 const routes:Routes = [
-    
-    {    
+
+    {
         path: 'users',
-        canActivate: [NoAuthGuard],
-        canActivateChild: [NoAuthGuard],
-        component: LayoutComponent,     
-        data: {
-            layout: 'empty'
-        },  
-        loadChildren:() => import('./authchild-routes.module').then(m=> m.AuthChildRoutesModule)       
+            canActivate: [NoAuthGuard],
+            canActivateChild: [NoAuthGuard],
+            component: LayoutComponent,
+            data: {
+                layout: 'empty'
+            },
+            loadChildren:() => import('./authchild-routes.module').then(m=> m.AuthChildRoutesModule)   
     },
     {
         path: '',
         canActivate: [AuthGuard],
         canActivateChild: [AuthGuard],
-        component: LayoutComponent,     
+        component: LayoutComponent,
         data: {
             layout: 'empty'
-        },  
-            // autenticacion con guardia 
+        },
+            // autenticacion con guardia
         children: [
             // { path:'almacen', component: AlmacenComponent },
             // { path:'reg-medicina', component: RegActMedicinaComponent },
@@ -44,11 +44,11 @@ const routes:Routes = [
 
     {
         path: '',
-        component: LayoutComponent,     
+        component: LayoutComponent,
         data: {
             layout: 'empty'
-        },  
-            // autenticacion con guardia 
+        },
+            // autenticacion con guardia
         children: [
             { path:'almacen', component: AlmacenComponent },
             { path:'reg-medicina', component: RegActMedicinaComponent },
@@ -58,7 +58,7 @@ const routes:Routes = [
             // {path: 'unlock-session', component:AuthUnlockSessionComponent}
         ]
     },
-   
+
     // {path: 'sign-in', component:AuthSignInComponent },
 
 ]

@@ -24,10 +24,10 @@ const childRoutes:Routes = [
     {path: 'crypto', component:CryptoComponent},
     {path:'example',component: ExampleComponent},
     {path: 'devices', component:DevicesComponent},
-    {path: 'cita', canActivate: [EnfermeraGuard], component:CitaComponent},    
-    {path: 'historial_medico', canActivate: [EnfermeraGuard], component:HistorialMedicoComponent},    
+    {path: 'cita', canActivate: [EnfermeraGuard], component:CitaComponent},
+    {path: 'historial_medico', canActivate: [EnfermeraGuard], component:HistorialMedicoComponent},
     {path:'registro_medico',canActivate:[DoctorGuard] ,component:ResgistroMedicoComponent},
-    {path:'cita_agendada',canActivate:[DoctorGuard],component:CitaAgendadaComponent},   
+    {path:'cita_agendada',canActivate:[DoctorGuard],component:CitaAgendadaComponent},
 ]
 
 @NgModule({
