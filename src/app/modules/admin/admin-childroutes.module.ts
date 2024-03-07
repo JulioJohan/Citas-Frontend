@@ -16,6 +16,8 @@ import { HistorialMedicoComponent } from './dashboards/cita/historial-medico/his
 import { AlmacenComponent } from './dashboards/almacen/almacen.component';
 import { RegActMedicinaComponent } from './dashboards/reg-act-medicina/reg-act-medicina.component';
 import { ListarMedicinasComponent } from './dashboards/listar-medicinas/listar-medicinas.component';
+import { PacienteDashboardComponent } from './dashboards/paciente-dashboard/paciente-dashboard.component';
+import { MapaSitioComponent } from '../home/mapa-sitio/mapa-sitio.component';
 
 const childRoutes:Routes = [
     {path: 'project', component:ProjectComponent},
@@ -28,6 +30,9 @@ const childRoutes:Routes = [
     {path: 'historial_medico', canActivate: [EnfermeraGuard], component:HistorialMedicoComponent},
     {path:'registro_medico',canActivate:[DoctorGuard] ,component:ResgistroMedicoComponent},
     {path:'cita_agendada',canActivate:[DoctorGuard],component:CitaAgendadaComponent},
+    {path: 'paciente-dashboard', component:PacienteDashboardComponent},
+    {path: 'mapa-sitio', canActivate:[EnfermeraGuard, DoctorGuard], component:MapaSitioComponent}
+
 ]
 
 @NgModule({

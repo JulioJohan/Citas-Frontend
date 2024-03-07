@@ -16,7 +16,7 @@ import { HomeRoutingModule } from './modules/home/home.routing.module';
 
 const routes: Routes = [
     {path: '', pathMatch : 'full', redirectTo: 'home-nuevo'},
-    {path: '**', pathMatch : 'full', redirectTo: 'home-nuevo'},
+    {path: '**', pathMatch : 'full', redirectTo: 'pagina-no-encontrada'},
     // {path: 'signed-in-redirect', pathMatch : 'full', redirectTo: '/dashboards'},
 
     // {path: 'example', component:ExampleComponent},

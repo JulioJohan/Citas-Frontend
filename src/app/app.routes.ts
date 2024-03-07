@@ -35,7 +35,7 @@ export const appRoutes: Route[] = [
 
 
     // Redirect empty path to '/example'
-    {path: '', pathMatch : 'full', redirectTo: 'example'},
+    {path: '', pathMatch : 'full', redirectTo: 'example'}, 
 
     // Redirect signed-in user to the '/example'
     //
@@ -75,7 +75,7 @@ export const appRoutes: Route[] = [
             {path: 'reset-password', component: AuthResetPasswordComponent},
             {path: 'sign-in', component:AuthSignInComponent },
             {path: 'sign-up', component:AuthSignUpComponent},
-          
+
             { path:'almacen', component: AlmacenComponent },
             { path:'reg-medicina', component: RegActMedicinaComponent },
             { path:'act-medicina/:id', component: RegActMedicinaComponent },
