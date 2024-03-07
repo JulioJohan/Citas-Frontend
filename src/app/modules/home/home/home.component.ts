@@ -1,6 +1,7 @@
 import { Component, ViewChild, HostListener } from '@angular/core';
 import { NgbCarousel, NgbCarouselModule, NgbSlideEvent, NgbSlideEventSource } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
+import { MapaSitioComponent } from '../mapa-sitio/mapa-sitio.component';
 
 @Component({
   selector: 'app-home',
@@ -13,6 +14,24 @@ export class HomeComponent{
     // Rutas de los breadcrumbs
     currentRouteHome = '/home-nuevo'
     currentRouteConoce = '/conoce-mas'
+
+
+	navbarOpen = false;
+    movile = window.innerWidth < 1024;
+
+    toggleNavbar() {
+        this.navbarOpen = !this.navbarOpen;
+    }
+
+    ngOnInit() {
+        // Escuchar cambios de tamaño de pantalla para ajustar la visibilidad del navbar
+        window.addEventListener('resize', () => {
+          this.movile = window.innerWidth < 1024;
+          if (!this.movile) {
+            this.navbarOpen = false;
+          }
+        });
+    }
 
     // Implementacion de carrousel
     imagesURL = [

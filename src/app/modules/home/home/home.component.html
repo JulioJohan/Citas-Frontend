@@ -1,21 +1,30 @@
-<div class=" ">
-
-
-        <div class="bg-white border-gray-200 w-full shadow-lg">
-            <header class="fixed inset-x-0 top-0 z-50 bg-white">
+<div class="">
+        <div class="bg-white border-gray-200 w-full shadow-lg fixed inset-x-0 top-0 z-50">
               <nav class="flex items-center justify-between p-6 lg:px-8">
                 <a href="#" class="shrink-0">
                   <img class="h-auto w-auto max-w-xs" style="max-height: 10vh;" src="assets/images/logo/LogoCitavita_horizon-.png" alt="Logo Citavita">
                 </a>
-                <div class="flex-grow text-right space-x-4 ">
+
+                <button (click)="toggleNavbar()" class="lg:hidden absolute top-8 right-0 pr-10">
+                    <!-- Icono de hamburguesa -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+
+                <div *ngIf="navbarOpen || !movile" class="lg:flex lg:items-center lg:w-auto w-full" id="menu">
+                <div class="flex flex-col lg:flex-row lg:ml-auto absolute lg:relative top-16 right-0 lg:top-0 lg:right-0">
                   <a href="#" class="text-lg font-semibold hover:text-blue-600 text-gray-600 pr-5 no-underline" routerLink="/conoce-mas">Citavita conoce +</a>
-                  <a a href="#" class="text-lg font-semibold hover:text-blue-600 text-gray-600 pr-5 no-underline" routerLink="/conoce-mas">Paciente</a>
-                  <a class="text-lg font-semibold hover:text-blue-600 text-gray-600 pr-20 no-underline"
+                  <a a href="#" class="text-lg font-semibold hover:text-blue-600 text-gray-600 pr-5 no-underline" routerLink="/paciente-dashboard">Paciente</a>
+                  <a class="text-lg font-semibold hover:text-blue-600 text-gray-600 pr-5 no-underline"
                   routerLink="/users/sign-in"
                   >Iniciar sesión</a>
+                  <a class="text-lg font-semibold hover:text-blue-600 text-gray-600 pr-20 no-underline"
+                  routerLink="/users/sign-up"
+                  >Registrarse</a>
+                </div>
                 </div>
               </nav>
-            </header>
 
         </div>
 
@@ -95,7 +104,7 @@
                 <div class="flex-1">
                     <h1 class="text-blue-800 text-8xl mb-4 text-center">Citavita</h1>
                       <p class="mb-6 text-black text-justify">No solo la mejor forma de administrar, sino que también eleva la calidad de la atención médica, transformando la forma en que la salud se entrega y se experimenta.</p>
-                    <button class="bg-blue-500 text-white font-semibold py-2 px-4 border border-blue-500 hover:bg-blue-500 hover:text-white rounded ml-50">
+                    <button class="bg-blue-500 text-white font-semibold py-2 px-4 border border-blue-500 hover:bg-blue-500 hover:text-white rounded ml-50" routerLink="/users/sign-up">
                         Empieza ahora
                     </button>
                 </div>
@@ -152,9 +161,12 @@
                     <!-- Logo y enlaces de navegación -->
                     <div class="w-full md:w-auto flex justify-between md:justify-start items-center">
                       <a  class="flex items-center" routerLink="/home-nuevo">
-                        <img src="assets/images/logo/Logo_solo.png" alt="Logo" class="mr-4 h-8 sm:h-10" >
+                        <img src="assets/images/logo/Logo_solo_citavita.png" alt="Logo" class="mr-4 h-8 sm:h-10" >
                       </a>
-                      <nav class="flex flex-wrap md:ml-60  ">
+                      <button class="flex items-center rounded border-2 border-blue-300 p-2 " routerLink="/mapa-sitio">
+                        Mapa del sitio
+                      </button>
+                      <nav class="flex flex-wrap md:ml-40  ">
                         <a href="#" class="text-gray-600 hover:text-blue-500 mx-2.5 my-0.5 text-center no-underline">Términos y condiciones</a>
                         <a href="#" class="text-gray-600 hover:text-blue-500 mx-2.5 my-0.5 text-center no-underline">Políticas de privacidad</a>
                         <a href="#" class="text-gray-600 hover:text-blue-500 mx-2.5 my-0.5 text-center no-underline">Contáctanos</a>
@@ -171,7 +183,7 @@
                       <!-- <a href="https://www.instagram.com/citavita_salud?igsh=M2cyaGZhenE5ZWNv" target="_blank" class="text-gray-800 hover:text-green-500 text-3xl">
                         <i class="fab fa-whatsapp"></i>
                       </a> -->
-                      <a href="#" target="_blank" class="text-gray-800 hover:text-blue-500 text-3xl">
+                      <a href="https://twitter.com/citavita_salud" target="_blank" class="text-gray-800 hover:text-blue-500 text-3xl">
                         <i class="fa-brands fa-x-twitter"></i>
                       </a>
                     </div>

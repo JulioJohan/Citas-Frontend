@@ -8,6 +8,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { HomeComponent } from "./home/home.component";
 import { ConoceMasComponent } from "./conoce-mas/conoce-mas.component";
+import { PaginaNoEncontradaComponent } from "./pagina-no-encontrada/pagina-no-encontrada.component";
+import { MapaSitioComponent } from "./mapa-sitio/mapa-sitio.component";
 
 
 
@@ -15,7 +17,9 @@ import { ConoceMasComponent } from "./conoce-mas/conoce-mas.component";
 declarations:[
 
     HomeComponent,
-    ConoceMasComponent
+    ConoceMasComponent,
+    PaginaNoEncontradaComponent,
+    MapaSitioComponent
 
 ],
 imports: [
