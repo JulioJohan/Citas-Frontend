@@ -47,6 +47,7 @@ import { ListarMedicinasComponent } from './dashboards/listar-medicinas/listar-m
 import { RegActMedicinaComponent } from './dashboards/reg-act-medicina/reg-act-medicina.component';
 import { RouterLink } from '@angular/router';
 import { AlmacenComponent } from './dashboards/almacen/almacen.component';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -105,7 +106,7 @@ import { AlmacenComponent } from './dashboards/almacen/almacen.component';
     MatFormFieldModule,
     MatInputModule,
     MatAutocompleteModule,
-    
+    SharedModule
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 

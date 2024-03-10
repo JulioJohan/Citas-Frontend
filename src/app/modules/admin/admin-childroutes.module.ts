@@ -26,12 +26,12 @@ const childRoutes:Routes = [
     {path: 'crypto', component:CryptoComponent},
     {path:'example',component: ExampleComponent},
     {path: 'devices', component:DevicesComponent},
-    {path: 'cita', canActivate: [EnfermeraGuard], component:CitaComponent},
-    {path: 'historial_medico', canActivate: [EnfermeraGuard], component:HistorialMedicoComponent},
-    {path:'registro_medico',canActivate:[DoctorGuard] ,component:ResgistroMedicoComponent},
-    {path:'cita_agendada',canActivate:[DoctorGuard],component:CitaAgendadaComponent},
-    {path: 'paciente-dashboard', component:PacienteDashboardComponent},
-    {path: 'mapa-sitio', canActivate:[EnfermeraGuard, DoctorGuard], component:MapaSitioComponent}
+    {path: 'cita', canActivate: [EnfermeraGuard], component:CitaComponent, data:{titulo:'cita'}},
+    {path: 'historial_medico', canActivate: [EnfermeraGuard], component:HistorialMedicoComponent,data:{titulo:'historial_medico'}},
+    {path:'registro_medico',canActivate:[DoctorGuard] ,component:ResgistroMedicoComponent, data:{titulo:'registro_medico'}},
+    {path:'cita_agendada',canActivate:[DoctorGuard],component:CitaAgendadaComponent, data:{titulo:'cita_agendada'}},
+    {path: 'paciente-dashboard', component:PacienteDashboardComponent, data:{titulo:'paciente-dashboard'} }, 
+    {path: 'mapa-sitio', component:MapaSitioComponent, data:{titulo:'mapa-sitio'}}
 
 ]
 

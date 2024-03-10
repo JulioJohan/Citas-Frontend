@@ -65,12 +65,12 @@ export class AutenticacionService {
           // Store the value
           this._usuario.next(value);
       }
-  
+
       get usuario$(): Observable<Usuario>
       {
           return this._usuario.asObservable();
       }
-  
+
 
      /**
      * Check the authentication status
@@ -81,8 +81,8 @@ export class AutenticacionService {
          if ( this.accessToken && this.menu  )
          {
              return of(true);
-         }         
- 
+         }
+
          // Check the access token availability
          if ( !this.accessToken )
          {
@@ -91,9 +91,9 @@ export class AutenticacionService {
              return of(false);
          }
          console.log('false 2')
-         
-         return of(false);                  
- 
+
+         return of(false);
+
      }
     /**
      * Sign out
@@ -105,20 +105,20 @@ export class AutenticacionService {
         localStorage.removeItem('usuario');
         localStorage.removeItem('menu');        // Set the authenticated flag to false
         this.autenticado = false;
- 
+
         // this._router.navigate(['users/sign-in']);
         // Return the observable
         return of(true);
-    }   
+    }
   public decodeToken():string{
       const token = localStorage.getItem('accessToken');
       const decodedToken: any = jwt_decode.default(token);
       return decodedToken.uid;
-  } 
+  }
 
   public decodificarPorId(respuesta:Respuesta){
     this.accessToken = respuesta.data;
-    this.menu = respuesta.menu;    
+    this.menu = respuesta.menu;
     this.autenticado = true;
     const numero:string = this.decodeToken();
     this.buscarPorId(numero).subscribe(data=>{
@@ -135,7 +135,7 @@ export class AutenticacionService {
       // location.reload();
 
   })
-  }  
+  }
 
   checharLocalStorage(){
     const usuario = localStorage.getItem('usuario');
@@ -147,16 +147,16 @@ export class AutenticacionService {
       localStorage.removeItem('menu');
     }
   }
- 
+
 
   // Metodo donde hara la peticion HTTP para el endpoind de node
   // Observble nos ayudara a suscribirnos en otro componente y regresara
-  // un arreglo especialidad 
-  // @return 
+  // un arreglo especialidad
+  // @return
   // publico porque quiero acceder a ello
   public registrarUsuario(usuario:Usuario):Observable<Respuesta>{
-    return this.httpClient.post<Respuesta>(`${this.url}/new`,usuario,this.httpOptions)   
-  }  
+    return this.httpClient.post<Respuesta>(`${this.url}/new`,usuario,this.httpOptions)
+  }
 
   public buscarPorId(id:string):Observable<Respuesta>{
     return this.httpClient.get<Respuesta>(`${this.url}/buscar_id/${id}`);
@@ -166,7 +166,7 @@ export class AutenticacionService {
     return this.httpClient.post<Respuesta>(`${this.url}/`,usuario);
   }
 
-  
 
-  
+
+
 }
