@@ -24,7 +24,8 @@ export class HomeComponent{
     }
 
     ngOnInit() {
-        console.log("HomeComponent")
+        const string:string =  "Hola!";
+        console.log(string)
         // Escuchar cambios de tamaño de pantalla para ajustar la visibilidad del navbar
         window.addEventListener('resize', () => {
           this.movile = window.innerWidth < 1024;
