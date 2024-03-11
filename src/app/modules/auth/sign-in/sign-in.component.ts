@@ -64,7 +64,7 @@ export class AuthSignInComponent implements OnInit
             email   :['',[Validators.required,Validators.email]],
             password:['',[Validators.required]]
         })
-
+        console.log('AuthSignInComponent')
     }
     public almacen(){
         this._router.navigateByUrl('/almacen')
