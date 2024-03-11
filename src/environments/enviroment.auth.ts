@@ -1,4 +1,4 @@
 export const enviromentAuth = {
     production: true,
-    urlAuth: 'http://localhost:4000'
+    urlAuth: 'https://aphospital.onrender.com'
 }

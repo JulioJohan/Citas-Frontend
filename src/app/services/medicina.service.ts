@@ -7,7 +7,7 @@ import { Medicina } from 'app/models/Medicina';
   providedIn: 'root'
 })
 export class MedicinaService {
-  url = 'http://localhost:4000/api/medicina';
+  url = 'https://aphospital.onrender.com/api/medicina';
 
   constructor(private http: HttpClient ) { }
 
