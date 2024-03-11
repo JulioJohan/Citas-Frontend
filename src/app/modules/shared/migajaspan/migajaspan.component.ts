@@ -28,7 +28,7 @@ export class MigajaspanComponent implements OnDestroy {
           //this.seccion =seccion;
           //this.subseccion = subseccion;
           document.title = `AdminPro - ${this.titulo}`;
-    
+            console.log(this.inicio)
         })
       }
 
