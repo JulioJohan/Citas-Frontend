@@ -23,7 +23,7 @@ import { Rol } from 'app/enums/Rol';
     selector     : 'auth-sign-up',
     templateUrl  : './sign-up.component.html',
     encapsulation: ViewEncapsulation.None,
-    animations   : fuseAnimations,    
+    animations   : fuseAnimations,
 })
 export class AuthSignUpComponent implements OnInit
 {
@@ -40,7 +40,7 @@ export class AuthSignUpComponent implements OnInit
     )
     {
     }
-    
+
     @ViewChild('signUpNgForm') signUpNgForm: NgForm;
 
     alert: { type: FuseAlertType; message: string } = {
@@ -52,11 +52,11 @@ export class AuthSignUpComponent implements OnInit
     public especialidades:Especialidad[] = [];
     public formularioRegistro:FormGroup;
 
-   
+
     // -----------------------------------------------------------------------------------------------------
     // @ Lifecycle hooks
     // -----------------------------------------------------------------------------------------------------
-  
+
     /**
      * On init
      */
@@ -69,28 +69,31 @@ export class AuthSignUpComponent implements OnInit
             role:        ['',[Validators.required]],
             especialidad:[''],
         })
-    
-        this.obtenerDispositivos();      
+
+        this.obtenerDispositivos();
         this.validarRolFormulario();
     }
 
     private validarRolFormulario(){
         this.formularioRegistro.get('role').valueChanges.subscribe((role)=>{
             if(role === Rol.ENFERMERA){
-                this.formularioRegistro.get('especialidad').clearValidators();;
+                this.formularioRegistro.get('especialidad').clearValidators();
             }
             if(role === Rol.DOCTOR){
                 this.formularioRegistro.get('especialidad').setValidators([Validators.required]);
+            }
+            if(role === Rol.PACIENTE){
+                this.formularioRegistro.get('especialida').clearValidators();
             }
             this.formularioRegistro.get('especialidad').updateValueAndValidity();
 
         })
     }
     private obtenerDispositivos(){
-        this._especialidadService.obtenerEspecialidades().subscribe((respuesta)=>{           
-            this.especialidades = respuesta.data;              
+        this._especialidadService.obtenerEspecialidades().subscribe((respuesta)=>{
+            this.especialidades = respuesta.data;
 
-        })  
+        })
     }
 
     private errorRespuesta(error:string){
@@ -118,12 +121,12 @@ export class AuthSignUpComponent implements OnInit
         this.formularioRegistro.disable();
         this.showAlert = false;
         const usuario = new Usuario();
-        usuario.name = this.formularioRegistro.get('name').value;        
+        usuario.name = this.formularioRegistro.get('name').value;
         usuario.especialidad = this.formularioRegistro.get('especialidad').value !== '' ? this.formularioRegistro.get('especialidad').value :null ;
         usuario.email = this.formularioRegistro.get('email').value;
         usuario.password = this.formularioRegistro.get('password').value;
         usuario.role = this.formularioRegistro.get('role').value;
-        this._autenticacionService.registrarUsuario(usuario).subscribe({       
+        this._autenticacionService.registrarUsuario(usuario).subscribe({
         next:(respuesta:Respuesta) =>{
             this.formularioRegistro.reset();
             this.showAlert = true;
@@ -133,14 +136,14 @@ export class AuthSignUpComponent implements OnInit
                 message: respuesta.msg,
             };
 
-            this._autenticacionService.decodificarPorId(respuesta);          
+            this._autenticacionService.decodificarPorId(respuesta);
 
         },
         error:(error)=>{
             this.errorRespuesta(error.error.msg)
-        }          
+        }
         })
-    
+
     }
 
     // -----------------------------------------------------------------------------------------------------

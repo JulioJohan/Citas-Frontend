@@ -95,6 +95,7 @@
                     <mat-select [formControlName]="'role'" >
                       <mat-option value="DOCTOR">DOCTOR (A)</mat-option>
                       <mat-option value="ENFERMERA">ENFERMERO (A)</mat-option>
+                      <mat-option value="PACIENTE">PACIENTE (A)</mat-option>
                     </mat-select>
                     <mat-error *ngIf="formularioRegistro.get('role').hasError('required')">
                         El Rol es requerido

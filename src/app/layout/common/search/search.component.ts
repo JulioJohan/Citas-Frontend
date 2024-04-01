@@ -21,10 +21,11 @@ import { debounceTime, filter, map, Subject, takeUntil } from 'rxjs';
     animations   : fuseAnimations,
     // standalone   : true,
     // imports      : [NgIf, MatButtonModule, MatIconModule, FormsModule, MatAutocompleteModule, ReactiveFormsModule, MatOptionModule, NgFor, RouterLink, NgTemplateOutlet, MatFormFieldModule, MatInputModule, NgClass],
-    
+
 })
-export class SearchComponent implements OnChanges, OnInit, OnDestroy
-{
+export class SearchComponent implements OnChanges, OnInit, OnDestroy{
+
+
     @Input() appearance: 'basic' | 'bar' = 'basic';
     @Input() debounce: number = 300;
     @Input() minLength: number = 2;

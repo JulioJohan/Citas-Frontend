@@ -9,7 +9,7 @@ import { HistorialMedico } from 'app/models/HistorialMedico';
 // Libreria
 import * as pdfMake from 'pdfmake/build/pdfmake';
 import * as pdfFonts from 'pdfmake/build/vfs_fonts';
-import { saveAs } from 'file-saver';
+// import { saveAs } from 'file-saver';
 
 
 @Component({
@@ -38,12 +38,12 @@ export class HistorialMedicoComponent implements OnInit{
   public alert: { type: FuseAlertType; message: string } = {
     type   : 'success',
     message: '',
-  };  
+  };
 
   public alert2: { type: FuseAlertType; message: string } = {
     type   : 'success',
     message: '',
-  }; 
+  };
   ngOnInit(): void {
     this.obtenerPacientes();
     this.formularioBusqueda = this.formBuilder.group({
@@ -51,12 +51,12 @@ export class HistorialMedicoComponent implements OnInit{
     })
 
     this.seleccionPaciente();
-  }  
+  }
 
   private obtenerPacientes(){
     this.pacienteService.obtenerPacientes().subscribe((respuesta)=>{
      this.listaPacientes = respuesta.data;
-     console.log(this.listaPacientes)    
+     console.log(this.listaPacientes)
     })
   }
 
@@ -66,7 +66,7 @@ export class HistorialMedicoComponent implements OnInit{
       console.log(termino)
       return this.obtenerPacientes();
     }
-      return this.busquedaCurp(termino);   
+      return this.busquedaCurp(termino);
   }
 
   private busquedaCurp( busquedaPorCurp:string ){
@@ -87,7 +87,7 @@ export class HistorialMedicoComponent implements OnInit{
     })
   }
 
-  private errorRespuesta(error:string){   
+  private errorRespuesta(error:string){
     // Set the alert
     this.alert = {
         type   : 'error',
@@ -100,8 +100,8 @@ export class HistorialMedicoComponent implements OnInit{
     this.mostrarBoton = false;
 }
 
-private correctaRespuesta(error:string){   
-  
+private correctaRespuesta(error:string){
+
   // Set the alert
   this.alert2 = {
       type   : 'success',
@@ -140,7 +140,7 @@ private correctaRespuesta(error:string){
       text: `${informacion}`,
       style: 'text',
       margin: [0, 0, 0, 0],
-      fontSize:12 
+      fontSize:12
     }
     return estilo;
   }
@@ -158,26 +158,26 @@ private correctaRespuesta(error:string){
     this.historialMedico.forEach((historial)=>{
       const nombreMedico = {
         text:`Especialidad: ${historial.especialidad.name}`,
-        style: 'subtitles' 
+        style: 'subtitles'
       }
-      const pregunta1 = this.establecerTexto(historial.especialidad.question1);       
+      const pregunta1 = this.establecerTexto(historial.especialidad.question1);
 
       const respuesta1 = this.establecerTexto(historial.respuesta1);
-      const pregunta2 = this.establecerTexto(historial.especialidad.question2);      
-      const respuesta2 = this.establecerTexto(historial.respuesta1); 
-      const pregunta3 = this.establecerTexto(historial.especialidad.question3);       
+      const pregunta2 = this.establecerTexto(historial.especialidad.question2);
+      const respuesta2 = this.establecerTexto(historial.respuesta1);
+      const pregunta3 = this.establecerTexto(historial.especialidad.question3);
       const respuesta3 = this.establecerTexto(historial.respuesta1);
-      const pregunta4 = this.establecerTexto(historial.especialidad.question4);       
+      const pregunta4 = this.establecerTexto(historial.especialidad.question4);
       const respuesta4 = this.establecerTexto(historial.respuesta1);
-      const pregunta5 = this.establecerTexto(historial.especialidad.question5);   
-      const respuesta5 = this.establecerTexto(historial.respuesta1);    
+      const pregunta5 = this.establecerTexto(historial.especialidad.question5);
+      const respuesta5 = this.establecerTexto(historial.respuesta1);
 
       reseta.push(nombreMedico,pregunta1,respuesta1,pregunta2,respuesta2,pregunta3,respuesta3,pregunta4,respuesta4,pregunta5,respuesta5)
     });
-    this.definicionDocumento = {    
+    this.definicionDocumento = {
       content: [
         { text: 'Historial Médico', style: 'header' },
-        reseta        
+        reseta
       ],
       styles: {
         subtitles:{
@@ -198,13 +198,13 @@ private correctaRespuesta(error:string){
       }
     }
 
-    
+
     console.log(this.historialMedico)
     const pdfDocGenerator = pdfMake.createPdf(this.definicionDocumento);
     const nombreArchivo:string = `${this.historialMedico[0].paciente.curp}_Historial_Medico`;
     pdfDocGenerator.getBlob((blob: Blob) => {
-      saveAs(blob, `Historial:${nombreArchivo}.pdf`);
+    //   saveAs(blob, `Historial:${nombreArchivo}.pdf`);
     });
   }
-   
+
 }
