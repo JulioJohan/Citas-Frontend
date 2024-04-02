@@ -18,6 +18,7 @@ import { RegActMedicinaComponent } from './dashboards/reg-act-medicina/reg-act-m
 import { ListarMedicinasComponent } from './dashboards/listar-medicinas/listar-medicinas.component';
 import { PacienteDashboardComponent } from './dashboards/paciente-dashboard/paciente-dashboard.component';
 import { MapaSitioComponent } from '../home/mapa-sitio/mapa-sitio.component';
+import { AdministradorDashboardComponent } from './dashboards/administrador-dashboard/administrador-dashboard.component'
 
 const childRoutes:Routes = [
     {path: 'project', component:ProjectComponent},
@@ -30,8 +31,9 @@ const childRoutes:Routes = [
     {path: 'historial_medico', canActivate: [EnfermeraGuard], component:HistorialMedicoComponent,data:{titulo:'historial_medico'}},
     {path:'registro_medico',canActivate:[DoctorGuard] ,component:ResgistroMedicoComponent, data:{titulo:'registro_medico'}},
     {path:'cita_agendada',canActivate:[DoctorGuard],component:CitaAgendadaComponent, data:{titulo:'cita_agendada'}},
-    {path: 'paciente-dashboard', component:PacienteDashboardComponent, data:{titulo:'paciente-dashboard'} }, 
-    {path: 'mapa-sitio', component:MapaSitioComponent, data:{titulo:'mapa-sitio'}}
+    {path: 'paciente-dashboard', component:PacienteDashboardComponent, data:{titulo:'paciente-dashboard'} },
+    {path: 'mapa-sitio', component:MapaSitioComponent, data:{titulo:'mapa-sitio'}},
+    {path: 'admin-dashboard', component:AdministradorDashboardComponent}
 
 ]
 

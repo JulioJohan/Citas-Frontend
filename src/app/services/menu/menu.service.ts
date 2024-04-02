@@ -9,7 +9,7 @@ export class MenuService{
 
     constructor( private router:Router){}
 
-    public menu:any = []
+    public menu:any[] = [];
 
     cargarMenu(){
         this.menu = JSON.parse(localStorage.getItem('menu')!);
@@ -17,5 +17,6 @@ export class MenuService{
         if(this.menu.length === 0){
           this.router.navigateByUrl('/users/sign-in');
         }
+
     }
 }
