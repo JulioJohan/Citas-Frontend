@@ -1,5 +1,5 @@
 import { NgIf } from '@angular/common';
-import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewEncapsulation, AfterViewInit, ElementRef } from '@angular/core';
 import { FormGroup, FormsModule, NgForm, ReactiveFormsModule, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -13,16 +13,19 @@ import { FuseAlertComponent, FuseAlertType } from '@fuse/components/alert';
 import { AuthService } from 'app/core/auth/auth.service';
 import { Usuario } from 'app/models/Usuario';
 import { AutenticacionService } from 'app/services/autenticacion/autenticacion.service';
+import { UsuarioService } from '../../../services/usuario/usuario.service';
 
+declare const google:any;
 @Component({
     selector     : 'auth-sign-in',
     templateUrl  : './sign-in.component.html',
     encapsulation: ViewEncapsulation.None,
     animations   : fuseAnimations,
 })
-export class AuthSignInComponent implements OnInit
+export class AuthSignInComponent implements OnInit, AfterViewInit
 {
     @ViewChild('signInNgForm') signInNgForm: NgForm;
+    @ViewChild('googleBtn') googleBtn:ElementRef;
 
     alert: { type: FuseAlertType; message: string } = {
         type   : 'success',
@@ -108,8 +111,33 @@ export class AuthSignInComponent implements OnInit
         },
         (error:any) =>{
             this.errorRespuesta(error.error.msg)
-        })        
+        })
 
+    }
+
+    ngAfterViewInit(): void{
+        this.googleInit();
+    }
+
+    googleInit(){
+        console.log( {data: this} )
+        google.accounts.id.initialize({
+            client_id: "151080076906-g0toq2db3v9os3fa1rv7maa7209ivndg.apps.googleusercontent.com",
+            callback: ( response:any ) => this.handleCredentialResponse(response)
+          });
+          google.accounts.id.renderButton(
+            // document.getElementById("buttonDiv"),
+            this.googleBtn.nativeElement,
+            { theme: "outline", size: "large" }  // customization attributes
+          );
+    }
+
+    handleCredentialResponse( response:any ){
+        console.log("Encoded JWT ID token: " + response.credential);
+        this._autenticacionService.sesionGoogle( response.credential )
+            .subscribe( resp => {
+                console.log( {sesion:resp} )
+            })
     }
 
     // -----------------------------------------------------------------------------------------------------

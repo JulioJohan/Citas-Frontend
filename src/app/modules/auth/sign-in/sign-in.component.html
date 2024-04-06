@@ -87,18 +87,18 @@
 
                 <!-- Actions -->
                 <!-- TODO Quitando para olvidar password ya que aun no se implementara la funcionalidad -->
-                <!-- <div class="inline-flex items-center justify-between w-full mt-1.5">
-                    <mat-checkbox
+                <div class="inline-flex items-center justify-between w-full mt-1.5">
+                    <!-- <mat-checkbox
                         class="-ml-2"
                         [color]="'primary'"
                         [formControlName]="'rememberMe'">
                         Remember me
-                    </mat-checkbox>
+                    </mat-checkbox> -->
                     <a
-                        class="text-md font-medium text-primary-500 hover:underline"
-                        [routerLink]="['/users/forgot-password']">Forgot password?
+                        class="text-md font-medium text-primary-500 hover:underline no-underline"
+                        [routerLink]="['/users/forgot-password']">Has olvidado tu contraseña?
                     </a>
-                </div> -->
+                </div>
 
                 <!-- Submit button -->
                 <button
@@ -115,6 +115,10 @@
                         [diameter]="24"
                         [mode]="'indeterminate'"></mat-progress-spinner>
                 </button>
+
+            <!-- Boton de autenticacion con google  -->
+            <div #googleBtn id="buttonDiv"></div>
+
 
                 <!-- Separator -->
                 <!-- <div class="flex items-center mt-8">

@@ -33,7 +33,7 @@ const childRoutes:Routes = [
     {path:'cita_agendada',canActivate:[DoctorGuard],component:CitaAgendadaComponent, data:{titulo:'cita_agendada'}},
     {path: 'paciente-dashboard', component:PacienteDashboardComponent, data:{titulo:'paciente-dashboard'} },
     {path: 'mapa-sitio', component:MapaSitioComponent, data:{titulo:'mapa-sitio'}},
-    {path: 'admin-dashboard', component:AdministradorDashboardComponent}
+    {path: 'administrador-dashboard', component:AdministradorDashboardComponent},
 
 ]
 

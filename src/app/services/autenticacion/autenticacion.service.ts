@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, ReplaySubject, map, of } from 'rxjs';
+import { Observable, ReplaySubject, map, of, tap } from 'rxjs';
 import { environment } from 'environments/environment.prod';
 import { enviromentAuth } from 'environments/enviroment.auth';
 import {Respuesta} from '../../models/Respuesta';
 import { Usuario } from 'app/models/Usuario';
-import { tap } from 'lodash';
 
 import * as jwt_decode from 'jwt-decode';
 import { Router } from '@angular/router';
@@ -165,6 +164,17 @@ export class AutenticacionService {
   public iniciarSesion(usuario:Usuario):Observable<Respuesta>{
     return this.httpClient.post<Respuesta>(`${this.url}/`,usuario);
   }
+
+
+   public sesionGoogle( token: string ){
+    return this.httpClient.post(`${this.url}/google`, {token})
+        .pipe(
+            tap(  (resp:any) => {
+                console.log(resp)
+                localStorage.setItem('token', resp.token)
+            })
+        )
+   }
 
 
 
