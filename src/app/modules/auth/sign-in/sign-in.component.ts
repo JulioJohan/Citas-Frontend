@@ -133,10 +133,10 @@ export class AuthSignInComponent implements OnInit, AfterViewInit
     }
 
     handleCredentialResponse( response:any ){
-        console.log("Encoded JWT ID token: " + response.credential);
+        // console.log("Encoded JWT ID token: " + response.credential);
         this._autenticacionService.sesionGoogle( response.credential )
             .subscribe( resp => {
-                console.log( {sesion:resp} )
+                // console.log( {sesion:resp} )
             })
     }
 
