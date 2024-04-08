@@ -16,8 +16,12 @@ export class HomeComponent{
     currentRouteConoce = '/conoce-mas'
 
 
-	navbarOpen = false;
+	  navbarOpen = false;
     movile = window.innerWidth < 1024;
+    showScrollTopButton = false;
+
+
+
 
     toggleNavbar() {
         this.navbarOpen = !this.navbarOpen;
@@ -77,6 +81,31 @@ export class HomeComponent{
 			this.togglePaused();
 		}
 	}
+
+
+ 
+    @HostListener('window:scroll', [])
+    onWindowScroll() {
+    // Detectar si el usuario ha llegado al final de la página
+    const windowHeight = window.innerHeight;
+    const scrollY = window.scrollY || window.pageYOffset;
+    const documentHeight = document.body.clientHeight;
+    if (scrollY + windowHeight >= documentHeight) {
+     
+    }
+
+    // Mostrar u ocultar el botón de "volver arriba"
+    if (scrollY > 400) { // Cambia este valor según lo que consideres apropiado
+      this.showScrollTopButton = true;
+    } else {
+      this.showScrollTopButton = false;
+    }
+  }
+
+    scrollToTop() {
+      // Método para hacer scroll hacia arriba cuando el usuario hace clic en el botón
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
 
 
 

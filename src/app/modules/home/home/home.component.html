@@ -1,202 +1,206 @@
 <div class="">
-        <div class="bg-white border-gray-200 w-full shadow-lg fixed inset-x-0 top-0 z-50">
-              <nav class="flex items-center justify-between p-6 lg:px-8">
-                <a href="#" class="shrink-0">
-                  <img class="h-auto w-auto max-w-xs" style="max-height: 10vh;" src="assets/images/logo/LogoCitavita_horizon-.png" alt="Logo Citavita">
-                </a>
+  <div class="bg-white border-gray-200 w-full shadow-lg fixed inset-x-0 top-0 z-50">
+        <nav class="flex items-center justify-between p-6 lg:px-8">
+          <a href="#" class="shrink-0">
+            <img class="h-auto w-auto max-w-xs" style="max-height: 10vh;" src="assets/images/logo/LogoCitavita_horizon-.png" alt="Logo Citavita">
+          </a>
 
-                <button (click)="toggleNavbar()" class="lg:hidden absolute top-8 right-0 pr-10">
-                    <!-- Icono de hamburguesa -->
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-                    </svg>
-                </button>
+          <button (click)="toggleNavbar()" class="lg:hidden absolute top-8 right-0 pr-10 ">
+              <!-- Icono de hamburguesa -->
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+              </svg>
+          </button>
 
-                <div *ngIf="navbarOpen || !movile" class="lg:flex lg:items-center lg:w-auto w-full" id="menu">
-                <div class="flex flex-col lg:flex-row lg:ml-auto absolute lg:relative top-16 right-0 lg:top-0 lg:right-0">
-                  <a href="#" class="text-lg font-semibold hover:text-blue-600 text-gray-600 pr-5 no-underline" routerLink="/conoce-mas">Citavita conoce +</a>
-                  <a a href="#" class="text-lg font-semibold hover:text-blue-600 text-gray-600 pr-5 no-underline" routerLink="/users/sign-in">Paciente</a>
-                  <a class="text-lg font-semibold hover:text-blue-600 text-gray-600 pr-5 no-underline"
-                  routerLink="/users/sign-in"
-                  >Iniciar sesión</a>
-                  <a class="text-lg font-semibold hover:text-blue-600 text-gray-600 pr-20 no-underline"
-                  routerLink="/users/sign-up"
-                  >Registrarse</a>
-                </div>
-                </div>
-              </nav>
+          <div *ngIf="navbarOpen || !movile" class="lg:flex lg:items-center lg:w-auto w-full" id="menu">
+          <div class="flex flex-col lg:flex-row lg:ml-auto absolute lg:relative top-16 right-0 lg:top-0 lg:right-0">
+            <a href="#" class="text-lg font-semibold hover:text-blue-600 text-gray-600 pr-5 no-underline" routerLink="/conoce-mas">Citavita conoce +</a>
+            <a a href="#" class="text-lg font-semibold hover:text-blue-600 text-gray-600 pr-5 no-underline" routerLink="/users/sign-in">Paciente</a>
+            <a class="text-lg font-semibold hover:text-blue-600 text-gray-600 pr-5 no-underline"
+            routerLink="/users/sign-in"
+            >Iniciar sesión</a>
+            <a class="text-lg font-semibold hover:text-blue-600 text-gray-600 pr-20 no-underline"
+            routerLink="/users/sign-up"
+            >Registrarse</a>
+          </div>
+          </div>
+        </nav>
 
+  </div>
+
+  <!-- <div class="pt-28 bg-white shadow-lg">
+
+    <nav aria-label="Breadcrumb" class="shadow-lg x-4 py-2">
+      <ol class="flex space-x-2 md:space-x-4">
+        <li>
+          <a routerLink="/home-nuevo" class="flex items-center space-x-2 text-gray-800 hover:text-blue-600 no-underline" [ngClass]="{'text-blue-600 font-semibold': currentRouteHome === '/home-nuevo'}"> -->
+            <!-- Icono de casa para 'Home' -->
+            <!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5 md:w-6 md:h-6">
+              <path fill-rule="evenodd" d="M9.293 2.293a1 1 0 011.414 0l7 7A1 1 0 0117 11h-1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-3a1 1 0 00-1-1H9a1 1 0 00-1 1v3a1 1 0 01-1 1H5a1 1 0 01-1-1v-6H3a1 1 0 01-.707-1.707l7-7z" clip-rule="evenodd"></path>
+            </svg> -->
+            <!-- <span class="hidden sm:block">Home</span> -->
+          <!-- </a>
+        </li> -->
+
+        <!-- Flecha indicadora entre elementos -->
+        <!-- <li>
+          <svg class="flex-shrink-0 w-6 h-6 text-gray-800 " viewBox="0 0 20 20" fill="currentColor">
+            <path d="M7.293 14.707a1 1 0 001.414 0l5-5a1 1 0 000-1.414l-5-5a1 1 0 10-1.414 1.414L11.586 9l-4.293 4.293a1 1 0 000 1.414z"></path>
+          </svg>
+        </li>
+
+        <li>
+          <a routerLink="/conoce-mas" class="flex items-center space-x-2 text-gray-800 hover:text-blue-600 no-underline" [ngClass]="{'text-blue-600 font-semibold': currentRouteConoce === '/conoce-mas'}">
+            <span class="hidden sm:block">Citavita conoce +</span>
+          </a>
+        </li>
+
+      </ol>
+    </nav>
+
+
+  </div> -->
+
+
+  <div class="pt-28">
+  <ngb-carousel #carousel [interval]="2500" [pauseOnHover]="pauseOnHover" [pauseOnFocus]="pauseOnFocus" (slide)="onSlide($event)">
+      <ng-template ngbSlide *ngFor="let img of images; index as i">
+        <div class="picsum-img-wrapper">
+          <!-- <a href="https://www.google.fr/?q=Number+{{ i + 1 }}" target="_blank" rel="nofollow noopener noreferrer"> -->
+            <!-- Use Tailwind classes to set a specific height and width -->
+            <img [src]="img" alt="My image {{ i + 1 }} description" class="w-full h-92 object-cover"/>
+          <!-- </a> -->
         </div>
+      </ng-template>
+    </ngb-carousel>
 
-        <!-- <div class="pt-28 bg-white shadow-lg">
+          <!-- <div class="form-check">
+          <input type="checkbox" class="form-check-input" id="pauseOnHover" [(ngModel)]="pauseOnHover" />
+          <label class="form-check-label" for="pauseOnHover">Pause on hover</label>
+      </div>
 
-          <nav aria-label="Breadcrumb" class="shadow-lg x-4 py-2">
-            <ol class="flex space-x-2 md:space-x-4">
-              <li>
-                <a routerLink="/home-nuevo" class="flex items-center space-x-2 text-gray-800 hover:text-blue-600 no-underline" [ngClass]="{'text-blue-600 font-semibold': currentRouteHome === '/home-nuevo'}"> -->
-                  <!-- Icono de casa para 'Home' -->
-                  <!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5 md:w-6 md:h-6">
-                    <path fill-rule="evenodd" d="M9.293 2.293a1 1 0 011.414 0l7 7A1 1 0 0117 11h-1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-3a1 1 0 00-1-1H9a1 1 0 00-1 1v3a1 1 0 01-1 1H5a1 1 0 01-1-1v-6H3a1 1 0 01-.707-1.707l7-7z" clip-rule="evenodd"></path>
-                  </svg> -->
-                  <!-- <span class="hidden sm:block">Home</span> -->
-                <!-- </a>
-              </li> -->
+      <div class="form-check">
+          <input type="checkbox" class="form-check-input" id="pauseOnFocus" [(ngModel)]="pauseOnFocus" />
+          <label class="form-check-label" for="pauseOnFocus">Pause on focus</label>
+      </div>
 
-              <!-- Flecha indicadora entre elementos -->
-              <!-- <li>
-                <svg class="flex-shrink-0 w-6 h-6 text-gray-800 " viewBox="0 0 20 20" fill="currentColor">
-                  <path d="M7.293 14.707a1 1 0 001.414 0l5-5a1 1 0 000-1.414l-5-5a1 1 0 10-1.414 1.414L11.586 9l-4.293 4.293a1 1 0 000 1.414z"></path>
-                </svg>
-              </li>
+      <div class="form-check">
+          <input type="checkbox" class="form-check-input" id="unpauseOnArrow" [(ngModel)]="unpauseOnArrow" />
+          <label class="form-check-label" for="unpauseOnArrow">Unpause when clicking on arrows</label>
+      </div>
 
-              <li>
-                <a routerLink="/conoce-mas" class="flex items-center space-x-2 text-gray-800 hover:text-blue-600 no-underline" [ngClass]="{'text-blue-600 font-semibold': currentRouteConoce === '/conoce-mas'}">
-                  <span class="hidden sm:block">Citavita conoce +</span>
-                </a>
-              </li>
+      <div class="form-check">
+          <input type="checkbox" class="form-check-input" id="pauseOnIndicator" [(ngModel)]="pauseOnIndicator" />
+          <label class="form-check-label" for="pauseOnIndicator">Pause when clicking on navigation indicator</label>
+      </div> -->
 
-            </ol>
-          </nav>
-
-
-        </div> -->
-
-
-        <div class="pt-28">
-        <ngb-carousel #carousel [interval]="2500" [pauseOnHover]="pauseOnHover" [pauseOnFocus]="pauseOnFocus" (slide)="onSlide($event)">
-            <ng-template ngbSlide *ngFor="let img of images; index as i">
-              <div class="picsum-img-wrapper">
-                <!-- <a href="https://www.google.fr/?q=Number+{{ i + 1 }}" target="_blank" rel="nofollow noopener noreferrer"> -->
-                  <!-- Use Tailwind classes to set a specific height and width -->
-                  <img [src]="img" alt="My image {{ i + 1 }} description" class="w-full h-92 object-cover"/>
-                <!-- </a> -->
-              </div>
-            </ng-template>
-          </ngb-carousel>
-
-                <!-- <div class="form-check">
-                <input type="checkbox" class="form-check-input" id="pauseOnHover" [(ngModel)]="pauseOnHover" />
-                <label class="form-check-label" for="pauseOnHover">Pause on hover</label>
-            </div>
-
-            <div class="form-check">
-                <input type="checkbox" class="form-check-input" id="pauseOnFocus" [(ngModel)]="pauseOnFocus" />
-                <label class="form-check-label" for="pauseOnFocus">Pause on focus</label>
-            </div>
-
-            <div class="form-check">
-                <input type="checkbox" class="form-check-input" id="unpauseOnArrow" [(ngModel)]="unpauseOnArrow" />
-                <label class="form-check-label" for="unpauseOnArrow">Unpause when clicking on arrows</label>
-            </div>
-
-            <div class="form-check">
-                <input type="checkbox" class="form-check-input" id="pauseOnIndicator" [(ngModel)]="pauseOnIndicator" />
-                <label class="form-check-label" for="pauseOnIndicator">Pause when clicking on navigation indicator</label>
-            </div> -->
-
-            <!-- <button type="button" (click)="togglePaused()" class="btn btn-outline-dark btn-sm">
-                {{ paused ? 'Ciclo' : 'Pausar' }}
-                </button> -->
+      <!-- <button type="button" (click)="togglePaused()" class="btn btn-outline-dark btn-sm">
+          {{ paused ? 'Ciclo' : 'Pausar' }}
+          </button> -->
 
 
 
-            <div class="flex items-center bg-white xt-white p-20">
-                <div class="flex-1">
-                    <h1 class="text-blue-800 text-8xl mb-4 text-center">Citavita</h1>
-                      <p class="mb-6 text-black text-justify">No solo la mejor forma de administrar, sino que también eleva la calidad de la atención médica, transformando la forma en que la salud se entrega y se experimenta.</p>
-                    <button class="bg-blue-500 text-white font-semibold py-2 px-4 border border-blue-500 hover:bg-blue-500 hover:text-white rounded ml-50" routerLink="/users/sign-up">
-                        Empieza ahora
-                    </button>
-                </div>
-
-                <div class="flex-1 ms-30">
-                    <img src="assets/images/hospital/medico1.jpg" alt="Healthcare" class="w-full h-auto object-cover"/>
-                </div>
-            </div>
-
-            <div class="flex items-center bg-white xt-white p-20">
-              <div class="flex-1">
-                  <img src="assets/images/hospital/medico2.jpg" alt="Healthcare" class="w-full h-auto object-cover"/>
-              </div>
-
-              <div class="flex-1">
-                <h1 class="text-blue-800 text-8xl mb-4 text-center">Conoce más</h1>
-                    <p class="mb-6 text-black text-justify ml-6">Este sistema facilita todo el proceso relacionado con las citas médicas, desde la inscripción inicial del paciente hasta la atención por parte del médico.</p>
-              </div>
+      <div class="flex items-center bg-white xt-white p-20">
+          <div class="flex-1">
+              <h1 class="text-blue-800 text-8xl mb-4 text-center">Citavita</h1>
+                <p class="mb-6 text-black text-justify">No solo la mejor forma de administrar, sino que también eleva la calidad de la atención médica, transformando la forma en que la salud se entrega y se experimenta.</p>
+              <button class="bg-blue-500 text-white font-semibold py-2 px-4 border border-blue-500 hover:bg-blue-500 hover:text-white rounded ml-50" routerLink="/users/sign-up">
+                  Empieza ahora
+              </button>
           </div>
 
-              <div class="flex flex-col items-center pt-10">
-                <div class="text-center">
-                  <h2 class="text-8xl font-bold text-blue-800">Suscripciones</h2>
-                </div>
+          <div class="flex-1 ms-30">
+              <img src="assets/images/hospital/medico1.jpg" alt="Healthcare" class="w-full h-auto object-cover"/>
+          </div>
+      </div>
 
-                <div class="mt-10 grid gap-10 md:grid-cols-3 max-w-6xl w-full px-4 mb-30">
-                  <!-- Freelancer Plan -->
-                  <div class="border p-6 rounded-lg shadow-xl">
-                    <h2 class="text-4xl font-bold text-center text-blue-600" >Citavita PRO Básico</h2>
-                        <p class="mt-4 font-bold text-6xl text-blue-900 text-center">$750<span class="mt-4 font-bold text-2xl text-blue-900 text-center">MX</span></p>
-                    <button href="#" class="mt-6 inline-block bg-blue-500 text-white py-2 px-4 rounded ml-15" routerLink="/users/sign-up">Suscribirme ahora</button>
-                    <p class="mt-2 text-justify pt-5">Acceso ilimitado a todas las funciones de CITAVITA, con la capacidad de crear cinco perfiles para doctores y enferemeras programando hasta treinta citas diarias por cada perfil.</p>
-                  </div>
-                  <!-- Startup Plan -->
-                  <div class="border p-6 rounded-lg shadow-xl">
-                    <h2 class="text-4xl font-bold text-center text-blue-600">Citavita PRO Estándar</h2>
-                        <p class="mt-4 font-bold text-6xl text-blue-900 text-center">$2500<span class="mt-4 font-bold text-2xl text-blue-900 text-center">MX</span></p>
-                    <button href="#" class="mt-6 inline-block bg-blue-500 text-white py-2 px-4 rounded ml-15" routerLink="/users/sign-up">Suscribirme ahora</button>
-                    <p class="mt-2 text-justify pt-5">Acceso ilimitado a todas las funciones de CITAVITA, con la capacidad de crear veinte perfiles para doctores y enfermeras programando hasta sesenta citas diarias por cada perfil.</p>
-                  </div>
-                  <!-- Enterprise Plan -->
-                  <div class="border p-6 rounded-lg shadow-xl">
-                    <h3 class="text-4xl font-bold text-center text-blue-600">Citavita PRO Premium</h3>
-                        <p class="mt-4 font-bold text-6xl text-blue-900 text-center">$6000<span class="mt-4 font-bold text-2xl text-blue-900 text-center">MX</span></p>
-                    <button href="#" class="mt-6 inline-block bg-blue-500 text-white py-2 px-4 rounded ml-15" routerLink="/users/sign-up">Suscribirme ahora</button>
-                    <p class="mt-2 text-justify pt-5">Acceso ilimitado a todas las funciones de CITAVITA, con la capacidad de crear cincuenta perfiles para doctores y enfermeras programando hasta cien citas diarias por cada perfil.</p>
-                  </div>
-                </div>
-              </div>
-
-              <footer class="bg-white inset-x-0 bottom-0 pt-15 shadow-lg">
-                <div class="container mx-auto px-4 py-2">
-                  <div class="flex flex-wrap items-center justify-between">
-                    <!-- Logo y enlaces de navegación -->
-                    <div class="w-full md:w-auto flex justify-between md:justify-start items-center">
-                      <a  class="flex items-center" routerLink="/home-nuevo">
-                        <img src="assets/images/logo/Logo_solo_citavita.png" alt="Logo" class="mr-4 h-8 sm:h-10" >
-                      </a>
-                      <!-- <button class="flex items-center rounded border-2 border-blue-300 p-2 " routerLink="/mapa-sitio">
-                        Mapa del sitio
-                      </button> -->
-                      <nav class="flex flex-wrap md:ml-40  ">
-                        <a href="#" class="text-gray-600 hover:text-blue-500 mx-2.5 my-0.5 text-center no-underline">Términos y condiciones</a>
-                        <a href="#" class="text-gray-600 hover:text-blue-500 mx-2.5 my-0.5 text-center no-underline">Políticas de privacidad</a>
-                        <a href="#" class="text-gray-600 hover:text-blue-500 mx-2.5 my-0.5 text-center no-underline">Contáctanos</a>
-                      </nav>
-                    </div>
-                    <!-- Redes sociales -->
-                    <div class="flex space-x-4 mt-4 md:mt-0">
-                      <a href="https://www.facebook.com/profile.php?id=61556582261620&mibextid=ZbWKwL"  target="_blank" class="text-gray-800 hover:text-blue-700 text-3xl">
-                        <i class="fa-brands fa-facebook"></i>
-                      </a>
-                      <a href="https://www.instagram.com/citavita_salud?igsh=M2cyaGZhenE5ZWNv"  target="_blank" class="text-gray-800 hover:text-pink-500 text-3xl">
-                        <i class="fab fa-instagram"></i>
-                      </a>
-                      <!-- <a href="https://www.instagram.com/citavita_salud?igsh=M2cyaGZhenE5ZWNv" target="_blank" class="text-gray-800 hover:text-green-500 text-3xl">
-                        <i class="fab fa-whatsapp"></i>
-                      </a> -->
-                      <a href="https://twitter.com/citavita_salud" target="_blank" class="text-gray-800 hover:text-blue-500 text-3xl">
-                        <i class="fa-brands fa-x-twitter"></i>
-                      </a>
-                    </div>
-                  </div>
-                  <!-- Copyright -->
-                  <div class="text-center text-gray-500 text-sm mt-4 md:mt-2">
-                    ©2024 Citavita. Todos los derechos reservados.
-                  </div>
-                </div>
-              </footer>
-
-
+      <div class="flex items-center bg-white xt-white p-20">
+        <div class="flex-1">
+            <img src="assets/images/hospital/medico2.jpg" alt="Healthcare" class="w-full h-auto object-cover"/>
         </div>
+
+        <div class="flex-1">
+          <h1 class="text-blue-800 text-8xl mb-4 text-center">Conoce más</h1>
+              <p class="mb-6 text-black text-justify ml-6">Este sistema facilita todo el proceso relacionado con las citas médicas, desde la inscripción inicial del paciente hasta la atención por parte del médico.</p>
+        </div>
+    </div>
+
+        <div class="flex flex-col items-center pt-10">
+          <div class="text-center">
+            <h2 class="text-8xl font-bold text-blue-800">Suscripciones</h2>
+          </div>
+
+          <div class="mt-10 grid gap-10 md:grid-cols-3 max-w-6xl w-full px-4 mb-30">
+            <!-- Freelancer Plan -->
+            <div class="border p-6 rounded-lg shadow-xl">
+              <h2 class="text-4xl font-bold text-center text-blue-600" >Citavita PRO Básico</h2>
+                  <p class="mt-4 font-bold text-6xl text-blue-900 text-center">$750<span class="mt-4 font-bold text-2xl text-blue-900 text-center">MX</span></p>
+              <button href="#" class="mt-6 inline-block bg-blue-500 text-white py-2 px-4 rounded ml-15" routerLink="/users/sign-up">Suscribirme ahora</button>
+              <p class="mt-2 text-justify pt-5">Acceso ilimitado a todas las funciones de CITAVITA, con la capacidad de crear cinco perfiles para doctores y enferemeras programando hasta treinta citas diarias por cada perfil.</p>
+            </div>
+            <!-- Startup Plan -->
+            <div class="border p-6 rounded-lg shadow-xl">
+              <h2 class="text-4xl font-bold text-center text-blue-600">Citavita PRO Estándar</h2>
+                  <p class="mt-4 font-bold text-6xl text-blue-900 text-center">$2500<span class="mt-4 font-bold text-2xl text-blue-900 text-center">MX</span></p>
+              <button href="#" class="mt-6 inline-block bg-blue-500 text-white py-2 px-4 rounded ml-15" routerLink="/users/sign-up">Suscribirme ahora</button>
+              <p class="mt-2 text-justify pt-5">Acceso ilimitado a todas las funciones de CITAVITA, con la capacidad de crear veinte perfiles para doctores y enfermeras programando hasta sesenta citas diarias por cada perfil.</p>
+            </div>
+            <!-- Enterprise Plan -->
+            <div class="border p-6 rounded-lg shadow-xl">
+              <h3 class="text-4xl font-bold text-center text-blue-600">Citavita PRO Premium</h3>
+                  <p class="mt-4 font-bold text-6xl text-blue-900 text-center">$6000<span class="mt-4 font-bold text-2xl text-blue-900 text-center">MX</span></p>
+              <button href="#" class="mt-6 inline-block bg-blue-500 text-white py-2 px-4 rounded ml-15" routerLink="/users/sign-up">Suscribirme ahora</button>
+              <p class="mt-2 text-justify pt-5">Acceso ilimitado a todas las funciones de CITAVITA, con la capacidad de crear cincuenta perfiles para doctores y enfermeras programando hasta cien citas diarias por cada perfil.</p>
+            </div>
+
+            <button *ngIf="showScrollTopButton" (click)="scrollToTop()" class="fixed bottom-10 right-10 bg-blue-500 text-white px-4 py-2 rounded"><i class="fa-solid fa-arrow-up"></i></button>
+
+          </div>
+        </div>
+
+        <footer class="bg-white inset-x-0 bottom-0 pt-15 shadow-lg">
+          <div class="container mx-auto px-4 py-2">
+            <div class="flex flex-wrap items-center justify-between">
+              <!-- Logo y enlaces de navegación -->
+              <div class="w-full md:w-auto flex justify-between md:justify-start items-center">
+                <a  class="flex items-center" routerLink="/home-nuevo">
+                  <img src="assets/images/logo/Logo_solo_citavita.png" alt="Logo" class="mr-4 h-8 sm:h-10" >
+                </a>
+                <!-- <button class="flex items-center rounded border-2 border-blue-300 p-2 " routerLink="/mapa-sitio">
+                  Mapa del sitio
+                </button> -->
+                <nav class="flex flex-wrap md:ml-40  ">
+                  <a href="#" class="text-gray-600 hover:text-blue-500 mx-2.5 my-0.5 text-center no-underline">Términos y condiciones</a>
+                  <a href="#" class="text-gray-600 hover:text-blue-500 mx-2.5 my-0.5 text-center no-underline">Políticas de privacidad</a>
+                  <a href="#" class="text-gray-600 hover:text-blue-500 mx-2.5 my-0.5 text-center no-underline">Contáctanos</a>
+                </nav>
+              </div>
+              <!-- Redes sociales -->
+              <div class="flex space-x-4 mt-4 md:mt-0">
+                <a href="https://www.facebook.com/profile.php?id=61556582261620&mibextid=ZbWKwL"  target="_blank" class="text-gray-800 hover:text-blue-700 text-3xl">
+                  <i class="fa-brands fa-facebook"></i>
+                </a>
+                <a href="https://www.instagram.com/citavita_salud?igsh=M2cyaGZhenE5ZWNv"  target="_blank" class="text-gray-800 hover:text-pink-500 text-3xl">
+                  <i class="fab fa-instagram"></i>
+                </a>
+                <!-- <a href="https://www.instagram.com/citavita_salud?igsh=M2cyaGZhenE5ZWNv" target="_blank" class="text-gray-800 hover:text-green-500 text-3xl">
+                  <i class="fab fa-whatsapp"></i>
+                </a> -->
+                <a href="https://twitter.com/citavita_salud" target="_blank" class="text-gray-800 hover:text-blue-500 text-3xl">
+                  <i class="fa-brands fa-x-twitter"></i>
+                </a>
+              </div>
+            </div>
+            <!-- Copyright -->
+            <div class="text-center text-gray-500 text-sm mt-4 md:mt-2">
+              ©2024 Citavita. Todos los derechos reservados.
+            </div>
+          </div>
+        </footer>
+
+        
+
+  </div>
 
 </div>
 
