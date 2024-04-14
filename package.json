@@ -37,13 +37,9 @@
     "lodash-es": "4.17.21",
     "luxon": "3.3.0",
     "ng-apexcharts": "1.7.6",
-<<<<<<< HEAD
     "ng-recaptcha": "^13.2.1",
     "ngx-captcha": "^13.0.0",
-    "ngx-mat-timepicker": "^16.1.1",
-=======
     "ngx-mat-timepicker": "^17.1.0",
->>>>>>> d2cb437eaa1ad95815e42971cc4ce1f17b52ced3
     "ngx-quill": "22.0.0",
     "ngx-swiper-wrapper": "^10.0.0",
     "pdfmake": "^0.2.7",
