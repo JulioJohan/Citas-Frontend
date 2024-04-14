@@ -7,7 +7,7 @@ import { MapaSitioComponent } from '../mapa-sitio/mapa-sitio.component';
   selector: 'app-home',
   standalone: false,
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  styleUrls: ['home.component.css']
 })
 export class HomeComponent{
 
@@ -19,6 +19,7 @@ export class HomeComponent{
 	  navbarOpen = false;
     movile = window.innerWidth < 1024;
     showScrollTopButton = false;
+    isHighlighted = false;
 
 
 
@@ -83,7 +84,7 @@ export class HomeComponent{
 	}
 
 
- 
+
     @HostListener('window:scroll', [])
     onWindowScroll() {
     // Detectar si el usuario ha llegado al final de la página
@@ -91,7 +92,7 @@ export class HomeComponent{
     const scrollY = window.scrollY || window.pageYOffset;
     const documentHeight = document.body.clientHeight;
     if (scrollY + windowHeight >= documentHeight) {
-     
+
     }
 
     // Mostrar u ocultar el botón de "volver arriba"
@@ -107,6 +108,10 @@ export class HomeComponent{
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-
+    // Eventos de mouse para los titulos
+    highlight(shouldHighlight: boolean): void {
+        console.log("evento del mouse " + this.isHighlighted)
+        this.isHighlighted = shouldHighlight;
+      }
 
 }

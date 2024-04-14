@@ -16,7 +16,7 @@
           <div *ngIf="navbarOpen || !movile" class="lg:flex lg:items-center lg:w-auto w-full" id="menu">
           <div class="flex flex-col lg:flex-row lg:ml-auto absolute lg:relative top-16 right-0 lg:top-0 lg:right-0">
             <a href="#" class="text-lg font-semibold hover:text-blue-600 text-gray-600 pr-5 no-underline" routerLink="/conoce-mas">Citavita conoce +</a>
-            <a a href="#" class="text-lg font-semibold hover:text-blue-600 text-gray-600 pr-5 no-underline" routerLink="/users/sign-in">Paciente</a>
+            <!-- <a a href="#" class="text-lg font-semibold hover:text-blue-600 text-gray-600 pr-5 no-underline" routerLink="/users/sign-in">Paciente</a> -->
             <a class="text-lg font-semibold hover:text-blue-600 text-gray-600 pr-5 no-underline"
             routerLink="/users/sign-in"
             >Iniciar sesión</a>
@@ -67,7 +67,7 @@
       <div class="bg-blue-500 pt-30  mx-auto">
         <div class="flex flex-col md:flex-row items-center">
           <div class="flex-1 text-left p-5">
-            <h2 class="text-4xl font-bold text-white text-center">DESCUBRE MAYOR CONVENIENCIA Y EFICIENCIA</h2>
+            <h2 class="text-4xl font-bold text-white text-center" [class.highlighted]="isHighlighted" (mouseover)="highlight(true)" (mouseout)="highlight(false)">DESCUBRE MAYOR CONVENIENCIA Y EFICIENCIA</h2>
             <p class="mt-3 text-white text-center">
               Suscríbete a la plataforma de gestión de citas médicas para centros médicos.
               Podrás agendar citas para tus pacientes, revisar las citas agendadas por tus enfermeras y brindar
@@ -177,6 +177,9 @@
             </div>
           </div>
         </div>
+
+        <button *ngIf="showScrollTopButton" (click)="scrollToTop()" class="fixed bottom-10 right-10 bg-blue-500 text-white px-4 py-2 rounded"><i class="fa-solid fa-arrow-up"></i></button>
+
     </div>
 
 

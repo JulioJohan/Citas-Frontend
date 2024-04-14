@@ -1,11 +1,11 @@
-import { Injectable } from '@angular/core';
+import { Injectable, HostListener } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, ReplaySubject, map, of, tap } from 'rxjs';
+import { Observable, ReplaySubject, map, of, tap, Subscription, interval} from 'rxjs';
 import { environment } from 'environments/environment.prod';
 import { enviromentAuth } from 'environments/enviroment.auth';
 import {Respuesta} from '../../models/Respuesta';
 import { Usuario } from 'app/models/Usuario';
-
+import Swal from 'sweetalert2';
 import * as jwt_decode from 'jwt-decode';
 import { Router } from '@angular/router';
 import { FuseNavigationItem } from '@fuse/components/navigation';
@@ -15,7 +15,8 @@ import { FuseNavigationItem } from '@fuse/components/navigation';
 })
 export class AutenticacionService {
 
-  constructor(private httpClient:HttpClient,private _router:Router) { }
+  constructor(private httpClient:HttpClient,private _router:Router) {
+   }
 
   // Creando la varible url para hacer las peticiones al backend
   private url:string = `${enviromentAuth.urlAuth}/api/auth`;
@@ -25,6 +26,7 @@ export class AutenticacionService {
   private httpOptions ={
     headers: new HttpHeaders({'Content-Type':'application/json'})
   };
+
 
     // -----------------------------------------------------------------------------------------------------
     // @ Accessors
@@ -115,6 +117,7 @@ export class AutenticacionService {
       return decodedToken.uid;
   }
 
+
   public decodificarPorId(respuesta:Respuesta){
     this.accessToken = respuesta.data;
     this.menu = respuesta.menu;
@@ -135,6 +138,20 @@ export class AutenticacionService {
 
   })
   }
+
+
+//   esTokenValido():Observable<boolean>{
+//     const token = localStorage.getItem('token') || '';
+
+//     // Obtener los headers
+//     return this.http.get(`${this.url}/renew`,{
+//         headers:{
+//             'x-token': this.token
+//         }
+//     })
+//   }
+
+
 
   checharLocalStorage(){
     const usuario = localStorage.getItem('usuario');
@@ -176,7 +193,16 @@ export class AutenticacionService {
         )
    }
 
+    confirmarCuentaEmail(tokenDoble:string):Observable<any>{
+        return this.httpClient.get<any>(`${this.url}/confirmar/${tokenDoble}`);
+    }
 
+    olvidePssword(email:any):Observable<Respuesta>{
+        console.log(email);
+        return this.httpClient.post<Respuesta>(`${this.url}/olvide-password`,email);
+    }
+
+    
 
 
 }

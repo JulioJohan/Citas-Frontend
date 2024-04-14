@@ -19,6 +19,7 @@ import { ListarMedicinasComponent } from './dashboards/listar-medicinas/listar-m
 import { PacienteDashboardComponent } from './dashboards/paciente-dashboard/paciente-dashboard.component';
 import { MapaSitioComponent } from '../home/mapa-sitio/mapa-sitio.component';
 import { AdministradorDashboardComponent } from './dashboards/administrador-dashboard/administrador-dashboard.component'
+import { BusquedasComponent } from '../shared/busquedas/busquedas.component';
 
 const childRoutes:Routes = [
     {path: 'project', component:ProjectComponent},
@@ -34,6 +35,7 @@ const childRoutes:Routes = [
     {path: 'paciente-dashboard', component:PacienteDashboardComponent, data:{titulo:'paciente-dashboard'} },
     {path: 'mapa-sitio', component:MapaSitioComponent, data:{titulo:'mapa-sitio'}},
     {path: 'administrador-dashboard', component:AdministradorDashboardComponent},
+    {path: 'buscar/:termino', canActivate:[DoctorGuard, EnfermeraGuard] ,component:BusquedasComponent, data:{ titulo: 'Busquedas globales'}},
 
 ]
 

@@ -11,6 +11,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { RECAPTCHA_V3_SITE_KEY, RecaptchaV3Module } from 'ng-recaptcha';
+import { NgxCaptchaModule } from 'ngx-captcha';
 
 // Componentes
 import { AuthConfirmationRequiredComponent } from './confirmation-required/confirmation-required.component';
@@ -56,7 +58,15 @@ import { MatSelectModule } from '@angular/material/select';
         MatIconModule,
         MatSelectModule,
         MatProgressSpinnerModule,
+        RecaptchaV3Module,
+        NgxCaptchaModule,
 
     ],
+    providers: [
+    {
+        provide: RECAPTCHA_V3_SITE_KEY,
+        useValue: '../../../environments/environment.recaptcha.captchaId',
+    },
+    ]
 })
 export class AuthModule {}

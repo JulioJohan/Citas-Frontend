@@ -15,7 +15,7 @@
           <div *ngIf="navbarOpen || !movile" class="lg:flex lg:items-center lg:w-auto w-full" id="menu">
           <div class="flex flex-col lg:flex-row lg:ml-auto absolute lg:relative top-16 right-0 lg:top-0 lg:right-0">
             <a href="#" class="text-lg font-semibold hover:text-blue-600 text-gray-600 pr-5 no-underline" routerLink="/conoce-mas">Citavita conoce +</a>
-            <a a href="#" class="text-lg font-semibold hover:text-blue-600 text-gray-600 pr-5 no-underline" routerLink="/users/sign-in">Paciente</a>
+            <!-- <a a href="#" class="text-lg font-semibold hover:text-blue-600 text-gray-600 pr-5 no-underline" routerLink="/users/sign-in">Paciente</a> -->
             <a class="text-lg font-semibold hover:text-blue-600 text-gray-600 pr-5 no-underline"
             routerLink="/users/sign-in"
             >Iniciar sesión</a>
@@ -102,7 +102,7 @@
 
       <div class="flex items-center bg-white xt-white p-20">
           <div class="flex-1">
-              <h1 class="text-blue-800 text-8xl mb-4 text-center">Citavita</h1>
+              <h1 class="text-blue-800 text-8xl mb-4 text-center"  [class.highlighted]="isHighlighted" (mouseover)="highlight(true)" (mouseout)="highlight(false)">Citavita</h1>
                 <p class="mb-6 text-black text-justify">No solo la mejor forma de administrar, sino que también eleva la calidad de la atención médica, transformando la forma en que la salud se entrega y se experimenta.</p>
               <button class="bg-blue-500 text-white font-semibold py-2 px-4 border border-blue-500 hover:bg-blue-500 hover:text-white rounded ml-50" routerLink="/users/sign-up">
                   Empieza ahora
@@ -120,14 +120,14 @@
         </div>
 
         <div class="flex-1">
-          <h1 class="text-blue-800 text-8xl mb-4 text-center">Conoce más</h1>
+          <h1 class="text-blue-800 text-8xl mb-4 text-center" [class.highlighted]="isHighlighted" (mouseover)="highlight(true)" (mouseout)="highlight(false)">Conoce más</h1>
               <p class="mb-6 text-black text-justify ml-6">Este sistema facilita todo el proceso relacionado con las citas médicas, desde la inscripción inicial del paciente hasta la atención por parte del médico.</p>
         </div>
     </div>
 
         <div class="flex flex-col items-center pt-10">
           <div class="text-center">
-            <h2 class="text-8xl font-bold text-blue-800">Suscripciones</h2>
+            <h2 class="text-8xl font-bold text-blue-800" [class.highlighted]="isHighlighted" (mouseover)="highlight(true)" (mouseout)="highlight(false)">Suscripciones</h2>
           </div>
 
           <div class="mt-10 grid gap-10 md:grid-cols-3 max-w-6xl w-full px-4 mb-30">
@@ -198,7 +198,7 @@
           </div>
         </footer>
 
-        
+
 
   </div>
 

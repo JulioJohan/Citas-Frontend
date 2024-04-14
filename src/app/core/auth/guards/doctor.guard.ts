@@ -16,17 +16,17 @@ export const DoctorGuard: CanActivateFn = (route, state) => {
         .subscribe((usuario:Usuario)=>{
           usuarioChecar = usuario;
         })
-  
+
   if(Object.keys(usuarioChecar).length === 0){
     usuarioChecar = JSON.parse(localStorage.getItem('usuario'))
    }
-  if(usuarioChecar.role === 'DOCTOR'){    
+  if(usuarioChecar.role === 'DOCTOR'){
     return of(true);
   }else{
     console.log(autenticacionService.menu[0].link)
     router.navigateByUrl(autenticacionService.menu[0].link);
     return of(false);
   }
-  
-  
+
+
 };

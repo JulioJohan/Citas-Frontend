@@ -100,6 +100,17 @@
                     </a>
                 </div>
 
+                 <!-- reCaptcha -->
+
+                 <div class="form-group mt-4">
+                    <div class="col-xs-12 col-sm-12 col-md-12 m-t-10 text-center">
+                        <ngx-recaptcha2 #captchaElem siteKey="6LcGmr8kAAAAAHXgMigTHdTGGbmWR8F-KJok4OKV"
+                            (success)="verificarRecaptcha($event)"
+                            formControlName="recaptcha">
+                        </ngx-recaptcha2>
+                    </div>
+                </div>
+
                 <!-- Submit button -->
                 <button
                     class="fuse-mat-button-large w-full mt-6"
@@ -116,9 +127,13 @@
                         [mode]="'indeterminate'"></mat-progress-spinner>
                 </button>
 
+
+
+
+
             <!-- Boton de autenticacion con google  -->
                 <div #googleBtn id="buttonDiv" class="mt-4 w-full"></div>
-            
+
 
                 <!-- Separator -->
                 <!-- <div class="flex items-center mt-8">

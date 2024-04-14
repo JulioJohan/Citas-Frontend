@@ -22,6 +22,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { HomeModule } from './modules/home/home.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
+
 @NgModule({
     declarations: [
         AppComponent,
@@ -37,6 +38,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
         AppRoutingModule,
         AppRoutingModule,
         ReactiveFormsModule,
+
         HttpClientModule,
         FormsModule,
         NgbModule,
@@ -44,6 +46,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
     ],
     providers: [
+
+
         provideAnimations(),
         provideHttpClient(),
           // Material Date Adapter

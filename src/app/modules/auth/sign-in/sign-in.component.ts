@@ -14,6 +14,9 @@ import { AuthService } from 'app/core/auth/auth.service';
 import { Usuario } from 'app/models/Usuario';
 import { AutenticacionService } from 'app/services/autenticacion/autenticacion.service';
 import { UsuarioService } from '../../../services/usuario/usuario.service';
+import { ReCaptchaV3Service } from 'ng-recaptcha';
+import { environment } from '../../../../environments/environment';
+
 
 declare const google:any;
 @Component({
@@ -24,6 +27,10 @@ declare const google:any;
 })
 export class AuthSignInComponent implements OnInit, AfterViewInit
 {
+
+    public keyGoogle: string = environment.recaptcha.captchaId;
+    public lenguajeCaptcha = 'es';
+
     @ViewChild('signInNgForm') signInNgForm: NgForm;
     @ViewChild('googleBtn') googleBtn:ElementRef;
 
@@ -44,9 +51,13 @@ export class AuthSignInComponent implements OnInit, AfterViewInit
         private _autenticacionService:AutenticacionService,
         private _formBuilder: UntypedFormBuilder,
         private _router: Router,
+        private recaptchaV3Service: ReCaptchaV3Service
     )
     {
     }
+
+
+
 
     // -----------------------------------------------------------------------------------------------------
     // @ Lifecycle hooks
@@ -65,7 +76,8 @@ export class AuthSignInComponent implements OnInit, AfterViewInit
         // });
         this.inicioFormulario = this._formBuilder.group({
             email   :['',[Validators.required,Validators.email]],
-            password:['',[Validators.required]]
+            password:['',[Validators.required]],
+            recaptcha: ['', Validators.required]
         })
         console.log('AuthSignInComponent')
     }
@@ -115,6 +127,10 @@ export class AuthSignInComponent implements OnInit, AfterViewInit
 
     }
 
+    verificarRecaptcha(data: string) {
+        this.inicioFormulario.value.recaptcha = data;
+    }
+
     ngAfterViewInit(): void{
         this.googleInit();
     }
@@ -132,6 +148,7 @@ export class AuthSignInComponent implements OnInit, AfterViewInit
           );
     }
 
+
     handleCredentialResponse( response:any ){
         // console.log("Encoded JWT ID token: " + response.credential);
         this._autenticacionService.sesionGoogle( response.credential )
@@ -139,6 +156,7 @@ export class AuthSignInComponent implements OnInit, AfterViewInit
                 // console.log( {sesion:resp} )
             })
     }
+
 
     // -----------------------------------------------------------------------------------------------------
     // @ Public methods

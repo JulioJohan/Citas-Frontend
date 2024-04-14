@@ -1,5 +1,5 @@
 import { NgIf } from '@angular/common';
-import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewEncapsulation, ViewChild } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
@@ -21,6 +21,7 @@ import { UserComponent } from 'app/layout/common/user/user.component';
 import { Subject, takeUntil } from 'rxjs';
 import { AutenticacionService } from '../../../../services/autenticacion/autenticacion.service';
 import { Usuario } from 'app/models/Usuario';
+import { BusquedasComponent } from '../../../../modules/shared/busquedas/busquedas.component'
 
 @Component({
     selector     : 'classy-layout',
@@ -31,11 +32,20 @@ import { Usuario } from 'app/models/Usuario';
 })
 export class ClassyLayoutComponent implements OnInit, OnDestroy
 {
+
+    @ViewChild('searchComponent') searchComponent: SearchComponent;
+
+    toggleSearch(): void {
+        this.searchComponent.opened ? this.searchComponent.close() : this.searchComponent.open();
+    }
+
+
     isScreenSmall: boolean;
     navigation: Navigation;
     user: User;
     usuario:Usuario = new Usuario();
     private _unsubscribeAll: Subject<any> = new Subject<any>();
+
 
     /**
      * Constructor
@@ -50,7 +60,7 @@ export class ClassyLayoutComponent implements OnInit, OnDestroy
         private _fuseNavigationService: FuseNavigationService,
     )
     {
-        
+
     }
 
     // -----------------------------------------------------------------------------------------------------
@@ -75,7 +85,7 @@ export class ClassyLayoutComponent implements OnInit, OnDestroy
     ngOnInit(): void
     {
         this.cargarPaginas()
-        this.obtenerUsuario();                
+        this.obtenerUsuario();
         // Subscribe to media changes
         this._fuseMediaWatcherService.onMediaChange$
             .pipe(takeUntil(this._unsubscribeAll))
@@ -92,7 +102,7 @@ export class ClassyLayoutComponent implements OnInit, OnDestroy
         // .pipe((takeUntil(this._unsubscribeAll)))
         // .subscribe((usuario:Usuario)=>{
         //     this.usuario = usuario;
-        // });    
+        // });
     }
 
     cargarPaginas(){
@@ -136,4 +146,13 @@ export class ClassyLayoutComponent implements OnInit, OnDestroy
             navigation.toggle();
         }
     }
+
+    buscar( termino: string ){
+        console.log(termino);
+        if(termino.length == 0){
+            return;
+        }
+        this._router.navigateByUrl(`buscar${ termino }`);
+    }
+
 }
