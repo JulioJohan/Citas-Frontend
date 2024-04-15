@@ -20,6 +20,7 @@ import { PacienteDashboardComponent } from './dashboards/paciente-dashboard/paci
 import { MapaSitioComponent } from '../home/mapa-sitio/mapa-sitio.component';
 import { AdministradorDashboardComponent } from './dashboards/administrador-dashboard/administrador-dashboard.component'
 import { BusquedasComponent } from '../shared/busquedas/busquedas.component';
+import { AdminitradorUsuariosComponent } from './dashboards/adminitrador-usuarios/adminitrador-usuarios.component';
 
 const childRoutes:Routes = [
     {path: 'project', component:ProjectComponent},
@@ -33,6 +34,7 @@ const childRoutes:Routes = [
     {path:'registro_medico',canActivate:[DoctorGuard] ,component:ResgistroMedicoComponent, data:{titulo:'registro_medico'}},
     {path:'cita_agendada',canActivate:[DoctorGuard],component:CitaAgendadaComponent, data:{titulo:'cita_agendada'}},
     {path: 'paciente-dashboard', component:PacienteDashboardComponent, data:{titulo:'paciente-dashboard'} },
+    {path: 'administrador-usuarios',component:AdminitradorUsuariosComponent, data:{titulo: 'administrador-usuarios'}},
     {path: 'mapa-sitio', component:MapaSitioComponent, data:{titulo:'mapa-sitio'}},
     {path: 'administrador-dashboard', component:AdministradorDashboardComponent},
     {path: 'buscar/:termino', canActivate:[DoctorGuard, EnfermeraGuard] ,component:BusquedasComponent, data:{ titulo: 'Busquedas globales'}},
