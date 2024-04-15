@@ -12,7 +12,7 @@ import { HomeComponent } from '../home/home/home.component';
 import { MapaSitioComponent } from "../home/mapa-sitio/mapa-sitio.component";
 
 const childRoutes:Routes = [
-    {path: 'confirmation-required',component: AuthConfirmationRequiredComponent},
+    {path: 'confirmation-required/:tokenDoble',component: AuthConfirmationRequiredComponent},
     {path: 'forgot-password', component:AuthForgotPasswordComponent},
     {path: 'reset-password', component: AuthResetPasswordComponent},
     {path: 'sign-in', component:AuthSignInComponent },

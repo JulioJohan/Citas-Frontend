@@ -9,6 +9,7 @@ import Swal from 'sweetalert2';
 import * as jwt_decode from 'jwt-decode';
 import { Router } from '@angular/router';
 import { FuseNavigationItem } from '@fuse/components/navigation';
+import { AuthForgotPasswordComponent } from '../../../app/modules/auth/forgot-password/forgot-password.component';
 
 @Injectable({
   providedIn: 'root'
@@ -194,15 +195,17 @@ export class AutenticacionService {
    }
 
     confirmarCuentaEmail(tokenDoble:string):Observable<any>{
+        console.log(this.confirmarCuentaEmail)
         return this.httpClient.get<any>(`${this.url}/confirmar/${tokenDoble}`);
     }
 
-    olvidePssword(email:any):Observable<Respuesta>{
+    olvidePassword(email:any):Observable<Respuesta>{
         console.log(email);
+        
         return this.httpClient.post<Respuesta>(`${this.url}/olvide-password`,email);
     }
 
-    
+
 
 
 }
