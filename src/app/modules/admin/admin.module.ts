@@ -35,8 +35,11 @@ import { NumberDirective } from 'app/directives/number-only.directive';
 import { LetterDirective } from 'app/directives/letter.directive';
 import { DecimalDirective } from 'app/directives/decimal.directive';
 
+import { ActualizarUsuarioComponent } from './dashboards/adminitrador-usuarios/actualizar-usuario/actualizar-usuario.component';
+import { AdminitradorUsuariosComponent } from './dashboards/adminitrador-usuarios/adminitrador-usuarios.component';
 import { CitaComponent } from './dashboards/cita/cita.component';
 import { CitaAgendadaComponent } from './dashboards/cita-agendada/cita-agendada.component';
+import { CrearUsuarioComponent } from './dashboards/adminitrador-usuarios/crear-usuario/crear-usuario.component';
 import { CryptoComponent } from './dashboards/crypto/crypto.component';
 import { DevicesComponent } from './dashboards/devices/devices.component';
 import { FinanceComponent } from './dashboards/finance/finance.component';
@@ -48,13 +51,17 @@ import { RegActMedicinaComponent } from './dashboards/reg-act-medicina/reg-act-m
 import { RouterLink } from '@angular/router';
 import { AlmacenComponent } from './dashboards/almacen/almacen.component';
 import { SharedModule } from '../shared/shared.module';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 @NgModule({
   declarations: [
+    ActualizarUsuarioComponent,
+    AdminitradorUsuariosComponent,
     AnalyticsComponent,
     AlmacenComponent,
     CitaComponent,
     CitaAgendadaComponent,
+    CrearUsuarioComponent,
     CryptoComponent,
     DecimalDirective,
     DetalleCitaComponent,
@@ -95,6 +102,7 @@ import { SharedModule } from '../shared/shared.module';
     MatProgressBarModule,
     MatTabsModule,
     MatTableModule,
+    MatToolbarModule,
     MatSelectModule,
     MatStepperModule,
     MatButtonToggleModule,
