@@ -201,10 +201,18 @@ export class AutenticacionService {
 
     olvidePassword(email:any):Observable<Respuesta>{
         console.log(email);
-        
+
         return this.httpClient.post<Respuesta>(`${this.url}/olvide-password`,email);
     }
 
+    comprobarTokenPassword(token:any):Observable<Respuesta>{
+      return this.httpClient.get<Respuesta>(`${this.url}/nuevo-password/${token}`);
+    }
+
+    nuevoPassword(tokenDoble:any, password:any):Observable<Respuesta>{
+      return this.httpClient.post<Respuesta>(`${this.url}/nuevo-password/${tokenDoble}`,password);
+    }
+  
 
 
 

@@ -11,6 +11,9 @@ import { fuseAnimations } from '@fuse/animations';
 import { FuseAlertComponent, FuseAlertType } from '@fuse/components/alert';
 import { FuseValidators } from '@fuse/validators';
 import { AuthService } from 'app/core/auth/auth.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AutenticacionService } from 'app/services/autenticacion/autenticacion.service';
+import { NuevoPassword } from '../../../models/nuevo-Password';
 import { finalize } from 'rxjs';
 
 @Component({
@@ -30,12 +33,17 @@ export class AuthResetPasswordComponent implements OnInit
     resetPasswordForm: UntypedFormGroup;
     showAlert: boolean = false;
 
+    public tokenDoble:string = '';
+    public nuevoPassword:NuevoPassword = new NuevoPassword();
+
     /**
      * Constructor
      */
     constructor(
-        private _authService: AuthService,
+        private _authService: AutenticacionService,
         private _formBuilder: UntypedFormBuilder,
+        private router:Router,
+        private route: ActivatedRoute,
     )
     {
     }
@@ -58,11 +66,33 @@ export class AuthResetPasswordComponent implements OnInit
                 validators: FuseValidators.mustMatch('password', 'passwordConfirm'),
             },
         );
+
+        this.tokenDoble = this.route.snapshot.paramMap.get('tokenDoble')!;
+        this.validacionTokenPassword(this.tokenDoble)
     }
 
     // -----------------------------------------------------------------------------------------------------
     // @ Public methods
     // -----------------------------------------------------------------------------------------------------
+
+
+    // Validar token
+    validacionTokenPassword(token:string){
+        return this._authService.comprobarTokenPassword(token).subscribe(data=>{
+          console.log(data);
+          if(!data.ok){
+            this.alert = {
+                type: 'error',
+                message: 'Token no válido. Por favor, solicite un nuevo enlace.'
+            };
+            this.showAlert = true;
+      setTimeout(() => {
+        this.router.navigateByUrl('/users/sign-in');
+      }, 5000); // espera 5 segundos antes de redirigir
+        }
+      });
+
+    }
 
     /**
      * Reset password
@@ -82,7 +112,7 @@ export class AuthResetPasswordComponent implements OnInit
         this.showAlert = false;
 
         // Send the request to the server
-        this._authService.resetPassword(this.resetPasswordForm.get('password').value)
+        this._authService.nuevoPassword(this.tokenDoble, this.resetPasswordForm.value)
             .pipe(
                 finalize(() =>
                 {

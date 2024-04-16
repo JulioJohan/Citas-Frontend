@@ -36,7 +36,7 @@ export class AuthConfirmationRequiredComponent implements OnInit
           console.log(data)
           if(!data.ok){
 
-            this.router.navigateByUrl('/users/sign-in')
+            this.router.navigateByUrl(`/users/reset-password/${this.parametroTokenValidacion}`)
           }
           if(data.ok){
             this.router.navigateByUrl('/users/sign-in')

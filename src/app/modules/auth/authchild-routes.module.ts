@@ -14,7 +14,7 @@ import { MapaSitioComponent } from "../home/mapa-sitio/mapa-sitio.component";
 const childRoutes:Routes = [
     {path: 'confirmation-required/:tokenDoble',component: AuthConfirmationRequiredComponent},
     {path: 'forgot-password', component:AuthForgotPasswordComponent},
-    {path: 'reset-password', component: AuthResetPasswordComponent},
+    {path: 'reset-password/:tokenDoble', component: AuthResetPasswordComponent},
     {path: 'sign-in', component:AuthSignInComponent },
     {path: 'home-nuevo', component:HomeComponent},
     {path: 'mapa-sitio', component:MapaSitioComponent},
