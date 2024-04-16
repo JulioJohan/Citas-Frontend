@@ -132,16 +132,22 @@ export class AuthResetPasswordComponent implements OnInit
                     // Set the alert
                     this.alert = {
                         type   : 'success',
-                        message: 'Your password has been reset.',
+                        message: response.msg,
                     };
+                    setTimeout(() => {
+                        this.router.navigateByUrl('/users/sign-in');
+                      }, 3000); // espera 5 segundos antes de redirigir
                 },
                 (response) =>
                 {
                     // Set the alert
                     this.alert = {
                         type   : 'error',
-                        message: 'Something went wrong, please try again.',
+                        message: response.error.msg,
                     };
+                    setTimeout(() => {
+                        this.router.navigateByUrl('/users/sign-in');
+                      }, 3000); 
                 },
             );
     }
