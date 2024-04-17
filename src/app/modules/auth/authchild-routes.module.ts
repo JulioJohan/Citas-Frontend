@@ -10,10 +10,12 @@ import { AuthSignOutComponent } from "./sign-out/sign-out.component";
 import { AuthUnlockSessionComponent } from "./unlock-session/unlock-session.component";
 import { HomeComponent } from '../home/home/home.component';
 import { MapaSitioComponent } from "../home/mapa-sitio/mapa-sitio.component";
+import { TwoAuthenticationComponent } from "./two-authentication/two-authentication.component";
 
 const childRoutes:Routes = [
     {path: 'confirmation-required/:tokenDoble',component: AuthConfirmationRequiredComponent},
     {path: 'forgot-password', component:AuthForgotPasswordComponent},
+    {path: 'two-authentication',component:TwoAuthenticationComponent},
     {path: 'reset-password/:tokenDoble', component: AuthResetPasswordComponent},
     {path: 'sign-in', component:AuthSignInComponent },
     {path: 'home-nuevo', component:HomeComponent},

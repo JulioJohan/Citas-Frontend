@@ -1,9 +1,9 @@
 import { Injectable, HostListener } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, ReplaySubject, map, of, tap, Subscription, interval} from 'rxjs';
+import { Observable, ReplaySubject, map, of, tap, Subscription, interval } from 'rxjs';
 import { environment } from 'environments/environment.prod';
 import { enviromentAuth } from 'environments/enviroment.auth';
-import {Respuesta} from '../../models/Respuesta';
+import { Respuesta } from '../../models/Respuesta';
 import { Usuario } from 'app/models/Usuario';
 import Swal from 'sweetalert2';
 import * as jwt_decode from 'jwt-decode';
@@ -16,151 +16,148 @@ import { AuthForgotPasswordComponent } from '../../../app/modules/auth/forgot-pa
 })
 export class AutenticacionService {
 
-  constructor(private httpClient:HttpClient,private _router:Router) {
-   }
+  constructor(private httpClient: HttpClient, private _router: Router) {
+  }
 
   // Creando la varible url para hacer las peticiones al backend
-  private url:string = `${enviromentAuth.urlAuth}/api/auth`;
+  private url: string = `${enviromentAuth.urlAuth}/api/auth`;
   private _usuario: ReplaySubject<Usuario> = new ReplaySubject<Usuario>(1);
-  private _menuArreglo:FuseNavigationItem[] = [];
+  private _menuArreglo: FuseNavigationItem[] = [];
   public autenticado: boolean = false;
-  private httpOptions ={
-    headers: new HttpHeaders({'Content-Type':'application/json'})
+  private httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
 
 
-    // -----------------------------------------------------------------------------------------------------
-    // @ Accessors
-    // -----------------------------------------------------------------------------------------------------
+  // -----------------------------------------------------------------------------------------------------
+  // @ Accessors
+  // -----------------------------------------------------------------------------------------------------
 
-    /**
-     * Setter & getter for access token
-     */
-    set accessToken(token: string)
-    {
-        localStorage.setItem('accessToken', token);
-    }
+  /**
+   * Setter & getter for access token
+   */
+   set accessToken(token: string) {
+    localStorage.setItem('accessToken', token);
+  }
 
-    get accessToken(): string
-    {
-        return localStorage.getItem('accessToken') ?? '';
-    }
-
-
-    set menu(menu:any)
-    {
-      localStorage.setItem('menu',JSON.stringify(menu));
-    }
-
-    get menu()
-    {
-      this._menuArreglo =  JSON.parse(localStorage.getItem('menu'))
-      return this._menuArreglo;
-    }
-      /**
-     * Setter & getter for user
-     *
-     * @param value
-     */
-      set usuario(value: Usuario)
-      {
-          // Store the value
-          this._usuario.next(value);
-      }
-
-      get usuario$(): Observable<Usuario>
-      {
-          return this._usuario.asObservable();
-      }
-
-
-     /**
-     * Check the authentication status
-     */
-     checarAutenticacion(): Observable<boolean>
-     {
-         // Check if the user is logged in
-         if ( this.accessToken && this.menu  )
-         {
-             return of(true);
-         }
-
-         // Check the access token availability
-         if ( !this.accessToken )
-         {
-          console.log('no false 2')
-
-             return of(false);
-         }
-         console.log('false 2')
-
-         return of(false);
-
-     }
-    /**
-     * Sign out
-     */
-   public signOut(): Observable<any>
-    {
-        // Remove the access token from the local storage
-        localStorage.removeItem('accessToken');
-        localStorage.removeItem('usuario');
-        localStorage.removeItem('menu');        // Set the authenticated flag to false
-        this.autenticado = false;
-
-        // this._router.navigate(['users/sign-in']);
-        // Return the observable
-        return of(true);
-    }
-  public decodeToken():string{
-      const token = localStorage.getItem('accessToken');
-      const decodedToken: any = jwt_decode.default(token);
-      return decodedToken.uid;
+  get accessToken(): string {
+    return localStorage.getItem('accessToken') ?? '';
   }
 
 
-  public decodificarPorId(respuesta:Respuesta){
-    this.accessToken = respuesta.data;
+  set menu(menu: any) {
+    localStorage.setItem('menu', JSON.stringify(menu));
+  }
+
+  get menu() {
+    this._menuArreglo = JSON.parse(localStorage.getItem('menu'))
+    return this._menuArreglo;
+  }
+  /**
+ * Setter & getter for user
+ *
+ * @param value
+ */
+  set usuario(value: Usuario) {
+    // Store the value
+    this._usuario.next(value);
+  }
+
+  get usuario$(): Observable<Usuario> {
+    return this._usuario.asObservable();
+  }
+
+
+  /**
+  * Check the authentication status
+  */
+  checarAutenticacion(): Observable<boolean> {
+    // Check if the user is logged in
+    if (this.accessToken && this.menu) {
+      return of(true);
+    }
+
+    // Check the access token availability
+    if (!this.accessToken) {
+      console.log('no false 2')
+
+      return of(false);
+    }
+    console.log('false 2')
+
+    return of(false);
+
+  }
+  /**
+   * Sign out
+   */
+  public signOut(): Observable<any> {
+    // Remove the access token from the local storage
+    localStorage.removeItem('accessToken');
+    localStorage.removeItem('usuario');
+    localStorage.removeItem('menu');        // Set the authenticated flag to false
+    this.autenticado = false;
+
+    // this._router.navigate(['users/sign-in']);
+    // Return the observable
+    return of(true);
+  }
+  public decodeToken(): string {
+    const token = this.accessToken;
+    console.log(token)
+
+    const decodedToken: any = jwt_decode.default(token);
+    console.log(decodedToken)
+    return decodedToken.uid;
+  }
+
+
+  public decodificarPorId(respuesta: Respuesta) {
+    console.log(respuesta)
+    this.accessToken = respuesta.msg;
+    console.log(this.accessToken)
     this.menu = respuesta.menu;
     this.autenticado = true;
-    const numero:string = this.decodeToken();
-    this.buscarPorId(numero).subscribe(data=>{
+    const numero: string = this.decodeToken();
+    this.buscarPorId(numero).subscribe(data => {
       console.log(data)
       this.usuario = data.data;
-      setTimeout(()=>{
+      setTimeout(() => {
         localStorage.setItem('usuario', JSON.stringify(data.data))
         this._router.navigateByUrl(respuesta.menu[0].link);
 
-      },2000 )
+      }, 2000)
       console.log(localStorage.getItem('menu'))
 
 
       // location.reload();
 
-  })
+    })
   }
 
 
-//   esTokenValido():Observable<boolean>{
-//     const token = localStorage.getItem('token') || '';
+  //   esTokenValido():Observable<boolean>{
+  //     const token = localStorage.getItem('token') || '';
 
-//     // Obtener los headers
-//     return this.http.get(`${this.url}/renew`,{
-//         headers:{
-//             'x-token': this.token
-//         }
-//     })
-//   }
+  //     // Obtener los headers
+  //     return this.http.get(`${this.url}/renew`,{
+  //         headers:{
+  //             'x-token': this.token
+  //         }
+  //     })
+  //   }
 
 
 
-  checharLocalStorage(){
+  checharLocalStorage() {
+    console.log("checharLocalStorage")
     const usuario = localStorage.getItem('usuario');
     const menu = localStorage.getItem('menu');
-    if(usuario !== '' || usuario !== null){
+    if (usuario !== '' || usuario !== null || usuario !== undefined) {
       localStorage.removeItem('usuario');
     }
-    if(menu !== '' || menu !== null){
+    if (menu !== '' || menu !== null || usuario !== undefined) {
+
       localStorage.removeItem('menu');
     }
   }
@@ -171,49 +168,51 @@ export class AutenticacionService {
   // un arreglo especialidad
   // @return
   // publico porque quiero acceder a ello
-  public registrarUsuario(usuario:Usuario):Observable<Respuesta>{
-    return this.httpClient.post<Respuesta>(`${this.url}/new`,usuario,this.httpOptions)
+  public registrarUsuario(usuario: Usuario): Observable<Respuesta> {
+    return this.httpClient.post<Respuesta>(`${this.url}/new`, usuario, this.httpOptions)
   }
 
-  public buscarPorId(id:string):Observable<Respuesta>{
+  public buscarPorId(id: string): Observable<Respuesta> {
     return this.httpClient.get<Respuesta>(`${this.url}/buscar_id/${id}`);
   }
 
-  public iniciarSesion(usuario:Usuario):Observable<Respuesta>{
-    return this.httpClient.post<Respuesta>(`${this.url}/`,usuario);
+  public iniciarSesion(usuario: Usuario): Observable<Respuesta> {
+    return this.httpClient.post<Respuesta>(`${this.url}/`, usuario);
   }
 
 
-   public sesionGoogle( token: string ){
-    return this.httpClient.post(`${this.url}/google`, {token})
-        .pipe(
-            tap(  (resp:any) => {
-                console.log(resp)
-                localStorage.setItem('token', resp.token)
-            })
-        )
-   }
+  public sesionGoogle(token: string) {
+    return this.httpClient.post(`${this.url}/google`, { token })
+      .pipe(
+        tap((resp: any) => {
+          console.log(resp)
+          localStorage.setItem('token', resp.token)
+        })
+      )
+  }
 
-    confirmarCuentaEmail(tokenDoble:string):Observable<any>{
-        console.log(this.confirmarCuentaEmail)
-        return this.httpClient.get<any>(`${this.url}/confirmar/${tokenDoble}`);
-    }
+  confirmarCuentaEmail(tokenDoble: string): Observable<any> {
+    console.log(this.confirmarCuentaEmail)
+    return this.httpClient.get<any>(`${this.url}/confirmar/${tokenDoble}`);
+  }
 
-    olvidePassword(email:any):Observable<Respuesta>{
-        console.log(email);
+  olvidePassword(email: any): Observable<Respuesta> {
+    console.log(email);
 
-        return this.httpClient.post<Respuesta>(`${this.url}/olvide-password`,email);
-    }
+    return this.httpClient.post<Respuesta>(`${this.url}/olvide-password`, email);
+  }
 
-    comprobarTokenPassword(token:any):Observable<Respuesta>{
-      return this.httpClient.get<Respuesta>(`${this.url}/nuevo-password/${token}`);
-    }
+  comprobarTokenPassword(token: any): Observable<Respuesta> {
+    return this.httpClient.get<Respuesta>(`${this.url}/nuevo-password/${token}`);
+  }
 
-    nuevoPassword(tokenDoble:any, password:any):Observable<Respuesta>{
-      return this.httpClient.post<Respuesta>(`${this.url}/nuevo-password/${tokenDoble}`,password);
-    }
-  
+  nuevoPassword(tokenDoble: any, password: any): Observable<Respuesta> {
+    return this.httpClient.post<Respuesta>(`${this.url}/nuevo-password/${tokenDoble}`, password);
+  }
 
+  dobleAuthenticacion(usuario:any):Observable<Respuesta>{
+    return this.httpClient.post<Respuesta>(`${this.url}/doble-authenticacion/`,usuario);
+  }
 
 
 }
