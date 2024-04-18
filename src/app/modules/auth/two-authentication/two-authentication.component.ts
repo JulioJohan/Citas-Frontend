@@ -28,26 +28,26 @@ export class TwoAuthenticationComponent implements OnInit{
 
   async abrirDobleAuthenticacion() {
     const { value = '' } = await Swal.fire<string>({
-      title: 'Ingresar el codigo de doble authenticacion',
+      title: 'Ingresa el código',
       input: 'text',
       inputAttributes: {
         autocapitalize: 'off'
       },
-      footer: '<div class="swal-footer"><a href="#" class="btn btn-link">Regresar al login</a><button type="button" class="btn btn-secondary" id="resend">Enviar otro código</button></div>',
-      confirmButtonText: 'Iniciar sesion',
+      footer: '<div class="swal-footer"><a href="#" class="btn bg-gray-600 text-white sm:mb-2">Regresar a inicio de sesión</a><button type="button" class="btn bg-blue-800 text-white" id="resend">Enviar otro código</button></div>',
+      confirmButtonText: 'Iniciar sesión',
       showLoaderOnConfirm: true,
       allowOutsideClick: false,
-      
+
       didOpen:() => {
         document.querySelector('.swal-footer .btn-link')!.addEventListener('click', () => {
           // Lógica para redirigir a la página de login
-          this.router.navigateByUrl('/')
+          this.router.navigateByUrl('/users/sign-in')
         })
         document.querySelector('.swal-footer .btn-secondary')!.addEventListener('click', () => {
           console.log('Enviar otro código');
           this._autenticacionService.iniciarSesion(this.data).subscribe(data=>{
               Swal.fire({
-                title: 'El codigo de verificacion se envio a tu correo!',
+                title: 'El código de verificación se envio a tu correo!',
                 text: data.msg,
                 imageUrl: 'https://i.pinimg.com/564x/a1/e2/27/a1e22750dd39a0216a528c7cee960849.jpg',
                 imageWidth: 200,
@@ -62,7 +62,7 @@ export class TwoAuthenticationComponent implements OnInit{
           })
         });
       }
-    })  
+    })
 
     if (value.trim().length <= 0) {
       Swal.fire('Error', 'Ingresa un codigo valido', 'error');
@@ -73,7 +73,7 @@ export class TwoAuthenticationComponent implements OnInit{
     }
     this.data.authenticacionDoble = value;
 
-    return this._autenticacionService.dobleAuthenticacion(this.data).subscribe(data => {      
+    return this._autenticacionService.dobleAuthenticacion(this.data).subscribe(data => {
       console.log(data)
       this._autenticacionService.checharLocalStorage();
       this._autenticacionService.decodificarPorId(data);
