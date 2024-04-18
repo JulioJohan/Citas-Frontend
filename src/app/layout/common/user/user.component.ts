@@ -69,7 +69,7 @@ export class UserComponent implements OnInit, OnDestroy
     obtenerUsuario(){
 
         this.usuario = JSON.parse(localStorage.getItem('usuario'));
-
+        console.log("aaaa")
         // this._autenticacionService.usuario$
         // .pipe(takeUntil(this._unsubscribeAll))
         // .subscribe((usuario:Usuario)=>{

@@ -7,6 +7,7 @@ import { PaginaNoEncontradaComponent } from "./pagina-no-encontrada/pagina-no-en
 import { AdministradorDashboardComponent } from "../admin/dashboards/administrador-dashboard/administrador-dashboard.component";
 import { PacienteDashboardComponent } from "../admin/dashboards/paciente-dashboard/paciente-dashboard.component";
 import { MapaSitioComponent } from "./mapa-sitio/mapa-sitio.component";
+import { AuthGuard } from "app/core/auth/guards/auth.guard";
 
 
 const rutasHome =  [

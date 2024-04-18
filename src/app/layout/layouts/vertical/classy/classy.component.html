@@ -79,35 +79,8 @@
         </button>
         <!-- Components -->
         <div class="flex items-center pl-2 ml-auto space-x-0.5 sm:space-x-2">
-            <!-- <search [appearance]="'bar'" (search) ="buscar($event)" ></search> -->
-            <button mat-icon-button (click)="toggleSearch()">
-                <mat-icon [svgIcon]="'heroicons_outline:magnifying-glass'"></mat-icon>
-            </button>
-
-            <!-- <li class="nav-item hidden-xs-down search-box"> <a class="nav-link hidden-sm-down waves-effect waves-dark" href="javascript:void(0)"><i class="ti-search"></i></a>
-                <form class="app-search" (submit)="buscar(txtTermino.value)">
-                    <input type="text" class="form-control"
-                            placeholder="Buscar....."
-                            #txtTermino>
-                    <a class="srh-btn">
-                        <i class="ti-close"></i>
-                    </a>
-                </form>
-            </li> -->
-            <!-- <ul>
-                <li class="nav-item hidden md:block search-box">
-                    <a class="nav-link hidden sm:flex flex-wrap items-center">
-                        <form class="app-busquedas">
-                            <input type="text" class="form-input" placeholder="Buscar...">
-                            <button type="button" class="btn"><i class="ti-close"></i></button>
-                        </form>
-                    </a>
-                </li>
-
-                </ul> -->
             <fuse-fullscreen class="hidden md:block"></fuse-fullscreen>
-            <!-- <shortcuts></shortcuts> -->
-            <!-- <messages></messages> -->
+            <search [appearance]="'bar'"></search>        
         </div>
     </div>
 
@@ -119,9 +92,9 @@
     </div>
 
     <!-- Footer -->
-    <!--<div class="relative flex flex-0 items-center justify-start w-full h-14 px-4 md:px-6 z-49 border-t bg-card dark:bg-transparent print:hidden">
+    <div class="relative flex flex-0 items-center justify-start w-full h-14 px-4 md:px-6 z-49 border-t bg-card dark:bg-transparent print:hidden">
         <span class="font-medium text-secondary">Fuse &copy; {{currentYear}}</span>
-    </div>-->
+    </div>
 
 </div>
 

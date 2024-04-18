@@ -37,6 +37,9 @@ import { DenseLayoutComponent } from './layouts/vertical/dense/dense.component';
 import { FuturisticLayoutComponent } from './layouts/vertical/futuristic/futuristic.component';
 import { ThinLayoutComponent } from './layouts/vertical/thin/thin.component';
 import { MaterialLayoutComponent } from './layouts/horizontal/material/material.component';
+
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+
 // import { SettingsComponent } from './common/settings/settings.component';
 import { FuseDrawerComponent } from '@fuse/components/drawer';
 import { MAT_AUTOCOMPLETE_SCROLL_STRATEGY } from '@angular/material/autocomplete';
@@ -112,6 +115,7 @@ import { QuickChatComponent } from 'app/layout/common/quick-chat/quick-chat.comp
     MatButtonModule,
     MatDividerModule,
     MatMenuModule,
+    MatAutocompleteModule,
     MatIconModule,
     MatTooltipModule,
     MatProgressBarModule,

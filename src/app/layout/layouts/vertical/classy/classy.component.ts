@@ -1,5 +1,5 @@
 import { NgIf } from '@angular/common';
-import { Component, OnDestroy, OnInit, ViewEncapsulation, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewEncapsulation, ViewChild, AfterViewInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
@@ -30,12 +30,21 @@ import { BusquedasComponent } from '../../../../modules/shared/busquedas/busqued
     // standalone   : true,
     // imports      : [FuseLoadingBarComponent, FuseVerticalNavigationComponent, NotificationsComponent, UserComponent, NgIf, MatIconModule, MatButtonModule, LanguagesComponent, FuseFullscreenComponent, SearchComponent, ShortcutsComponent, MessagesComponent, RouterOutlet, QuickChatComponent],
 })
-export class ClassyLayoutComponent implements OnInit, OnDestroy
+export class ClassyLayoutComponent implements OnInit, OnDestroy,AfterViewInit
 {
 
-    @ViewChild('searchComponent') searchComponent: SearchComponent;
+    @ViewChild('searchComponent',{static:false}) searchComponent: SearchComponent;
 
+    @ViewChild(SearchComponent) child: SearchComponent;
+    ngAfterViewInit(){
+        console.log(this.child)
+        console.log("searchComponent")
+        console.log(this.searchComponent)
+    }
     toggleSearch(): void {
+        console.log("searchComponent")
+
+        console.log(this.searchComponent)
         this.searchComponent.opened ? this.searchComponent.close() : this.searchComponent.open();
     }
 
@@ -152,7 +161,7 @@ export class ClassyLayoutComponent implements OnInit, OnDestroy
         if(termino.length == 0){
             return;
         }
-        this._router.navigateByUrl(`buscar${ termino }`);
+        //this._router.navigateByUrl(`buscar${ termino }`);
     }
 
 }

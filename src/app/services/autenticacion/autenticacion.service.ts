@@ -74,6 +74,7 @@ export class AutenticacionService {
   checarAutenticacion(): Observable<boolean> {
     // Check if the user is logged in
     if (this.accessToken && this.menu) {
+      console.log("autenticado checarAutenticacion")
       return of(true);
     }
 
@@ -117,6 +118,7 @@ export class AutenticacionService {
     this.accessToken = respuesta.msg;
     console.log(this.accessToken)
     this.menu = respuesta.menu;
+    console.log(this.menu)
     this.autenticado = true;
     const numero: string = this.decodeToken();
     this.buscarPorId(numero).subscribe(data => {

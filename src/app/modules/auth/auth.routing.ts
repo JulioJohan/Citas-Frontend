@@ -15,8 +15,8 @@ const routes:Routes = [
 
     {
         path: 'users',
-            canActivate: [NoAuthGuard],
-            canActivateChild: [NoAuthGuard],
+            canActivate: [],
+            canActivateChild: [],
             component: LayoutComponent,
             data: {
                 layout: 'empty'
@@ -25,8 +25,8 @@ const routes:Routes = [
     },
     {
         path: '',
-        canActivate: [AuthGuard],
-        canActivateChild: [AuthGuard],
+        canActivate: [NoAuthGuard],
+        canActivateChild: [NoAuthGuard],
         component: LayoutComponent,
         data: {
             layout: 'empty'
