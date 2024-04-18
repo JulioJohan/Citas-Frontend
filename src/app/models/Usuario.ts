@@ -6,5 +6,5 @@ export class Usuario {
     role:string
     especialidad:string;
     tokenDoble:string;
-
+    authenticacionDoble:string;
 }

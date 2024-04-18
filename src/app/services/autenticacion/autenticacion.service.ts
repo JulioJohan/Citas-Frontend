@@ -211,6 +211,7 @@ export class AutenticacionService {
   }
 
   dobleAuthenticacion(usuario:any):Observable<Respuesta>{
+    console.log('Enviando solicitud con:', usuario);
     return this.httpClient.post<Respuesta>(`${this.url}/doble-authenticacion/`,usuario);
   }
 
