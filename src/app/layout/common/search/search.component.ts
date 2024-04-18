@@ -46,6 +46,7 @@ export class SearchComponent implements OnChanges, OnInit, OnDestroy{
         private _renderer2: Renderer2,
     )
     {
+        console.log("SearchComponent")
     }
 
     // -----------------------------------------------------------------------------------------------------
