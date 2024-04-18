@@ -1,5 +1,5 @@
 import { Routes, RouterModule } from '@angular/router';
-import { NgModule } from '@angular/core';
+import { NgModule, inject } from '@angular/core';
 import { AuthRoutingModule } from './modules/auth/auth.routing';
 import { ExampleComponent } from './modules/admin/example/example.component';
 import { AdminRoutingModule } from './modules/admin/admin.routes';
@@ -11,11 +11,14 @@ import { AlmacenComponent } from './modules/admin/dashboards/almacen/almacen.com
 import { RegActMedicinaComponent } from './modules/admin/dashboards/reg-act-medicina/reg-act-medicina.component';
 import { ListarMedicinasComponent } from './modules/admin/dashboards/listar-medicinas/listar-medicinas.component';
 import { HomeRoutingModule } from './modules/home/home.routing.module';
+import { AutenticacionService } from './services/autenticacion/autenticacion.service';
+import { NoAuthGuard } from './core/auth/guards/noAuth.guard';
+
 
 
 
 const routes: Routes = [
-    {path: '', pathMatch : 'full', redirectTo: 'home-nuevo'},
+    {path: '', pathMatch : 'full', redirectTo: 'users/home-nuevo',},
     {path: '**', pathMatch : 'full', redirectTo: 'pagina-no-encontrada'},
     // {path: 'signed-in-redirect', pathMatch : 'full', redirectTo: '/dashboards'},
 
@@ -33,7 +36,7 @@ const routes: Routes = [
     imports: [RouterModule.forRoot(routes),
         AuthRoutingModule,
         AdminRoutingModule,
-        HomeRoutingModule
+       // HomeRoutingModule
     ],
     exports: [RouterModule]
 })

@@ -137,7 +137,9 @@ export class AuthSignInComponent implements OnInit, AfterViewInit
                 dialogConfig.autoFocus = false
                 // this.informacionEnviada.emit(this.keyGoogle);
                 const matDialog = this._dialog.open(TwoAuthenticationComponent,dialogConfig)
+                matDialog.close();
                 matDialog.afterClosed().subscribe(resultado =>{
+                    console.log("entreeeee" + resultado)
                   if(resultado != undefined){
                     this._router.navigateByUrl('/')
                   }

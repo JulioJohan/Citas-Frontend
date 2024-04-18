@@ -25,11 +25,12 @@ export const AuthGuard: CanActivateFn | CanActivateChildFn = (route, state) =>
                 console.log(urlTree1)
                 return of(urlTree1);
             }
+            
+           return of(true);
 
-            // console.log(JSON.parse(localStorage.getItem('menu'))
 
+            // const urlAuthenticated = router.parseUrl(JSON.parse(localStorage.getItem('menu'))[0].link)
             // Allow the access
-            return of(true);
         }),
     );
 };
