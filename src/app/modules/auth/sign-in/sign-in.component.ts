@@ -16,6 +16,9 @@ import { AutenticacionService } from 'app/services/autenticacion/autenticacion.s
 import { UsuarioService } from '../../../services/usuario/usuario.service';
 import { ReCaptchaV3Service } from 'ng-recaptcha';
 import { environment } from '../../../../environments/environment';
+import Swal from 'sweetalert2';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { TwoAuthenticationComponent } from '../two-authentication/two-authentication.component';
 
 
 declare const google:any;
@@ -51,6 +54,7 @@ export class AuthSignInComponent implements OnInit, AfterViewInit
         private _autenticacionService:AutenticacionService,
         private _formBuilder: UntypedFormBuilder,
         private _router: Router,
+        private _dialog:MatDialog,
         private recaptchaV3Service: ReCaptchaV3Service
     )
     {
@@ -77,7 +81,7 @@ export class AuthSignInComponent implements OnInit, AfterViewInit
         this.inicioFormulario = this._formBuilder.group({
             email   :['',[Validators.required,Validators.email]],
             password:['',[Validators.required]],
-            recaptcha: ['', Validators.required]
+            //recaptcha: ['', Validators.required]
         })
         console.log('AuthSignInComponent')
     }
@@ -111,8 +115,7 @@ export class AuthSignInComponent implements OnInit, AfterViewInit
         usuario.password = this.inicioFormulario.get('password').value;
         this._autenticacionService.iniciarSesion(usuario).subscribe((respuesta)=>{
             console.log(respuesta)
-            this._autenticacionService.checharLocalStorage();
-            this._autenticacionService.decodificarPorId(respuesta);
+            //this._autenticacionService.decodificarPorId(respuesta);
             this.inicioFormulario.reset();
             this.showAlert = true;
             // Set the alert
@@ -120,6 +123,28 @@ export class AuthSignInComponent implements OnInit, AfterViewInit
                type   : 'success',
                message: respuesta.msg,
             };
+            Swal.fire({
+                title: 'El código de verificación se envio a tu correo!',
+                text: respuesta.msg,
+                imageUrl: 'https://i.pinimg.com/564x/a1/e2/27/a1e22750dd39a0216a528c7cee960849.jpg',
+                imageWidth: 200,
+                imageHeight: 200,
+                imageAlt: 'Custom image',
+              })
+              setTimeout(()=>{
+                const dialogConfig = new MatDialogConfig();
+                dialogConfig.data = usuario;
+                dialogConfig.autoFocus = false
+                // this.informacionEnviada.emit(this.keyGoogle);
+                const matDialog = this._dialog.open(TwoAuthenticationComponent,dialogConfig)
+                matDialog.afterClosed().subscribe(resultado =>{
+                  if(resultado != undefined){
+                    this._router.navigateByUrl('/')
+                  }
+                })
+                this._router.navigateByUrl('/users/two-authentication');
+        
+              },3000)
         },
         (error:any) =>{
             this.errorRespuesta(error.error.msg)

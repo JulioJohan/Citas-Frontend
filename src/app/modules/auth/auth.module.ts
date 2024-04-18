@@ -24,6 +24,7 @@ import { AuthSignUpComponent } from './sign-up/sign-up.component';
 import { AuthUnlockSessionComponent } from './unlock-session/unlock-session.component';
 import { LayoutModule } from 'app/layout/layout.module';
 import { MatSelectModule } from '@angular/material/select';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 
 @NgModule({
@@ -63,6 +64,8 @@ import { MatSelectModule } from '@angular/material/select';
 
     ],
     providers: [
+    { provide: MatDialogRef, useValue: {}},
+    { provide: MAT_DIALOG_DATA, useValue: {} },
     {
         provide: RECAPTCHA_V3_SITE_KEY,
         useValue: '../../../environments/environment.recaptcha.captchaId',
