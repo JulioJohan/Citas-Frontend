@@ -36,7 +36,7 @@ const routes: Routes = [
     imports: [RouterModule.forRoot(routes),
         AuthRoutingModule,
         AdminRoutingModule,
-       // HomeRoutingModule
+        HomeRoutingModule
     ],
     exports: [RouterModule]
 })
