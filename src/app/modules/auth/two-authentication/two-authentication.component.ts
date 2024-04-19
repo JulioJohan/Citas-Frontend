@@ -27,21 +27,28 @@ export class TwoAuthenticationComponent implements OnInit{
   }
 
   async abrirDobleAuthenticacion() {
+    console.log('Auth2Inicio' + this.abrirDobleAuthenticacion)
+
     const { value = '' } = await Swal.fire<string>({
       title: 'Ingresa el código',
       input: 'text',
       inputAttributes: {
         autocapitalize: 'off'
       },
-      footer: '<div class="swal-footer"><a href="#" class="btn bg-gray-600 text-white sm:mb-2">Regresar a inicio de sesión</a><button type="button" class="btn bg-blue-800 text-white" id="resend">Enviar otro código</button></div>',
+      footer: '<div class="swal-footer"><a href="#" class="btn bg-gray-600 text-white">Regresar a inicio de sesión</a><button type="button" class="btn bg-blue-800 text-white" id="resend">Enviar otro código</button></div>',
       confirmButtonText: 'Iniciar sesión',
       showLoaderOnConfirm: true,
       allowOutsideClick: false,
 
+
       didOpen:() => {
+
+        console.log('SweetAlert didOpen');
         document.querySelector('.swal-footer .btn-link')!.addEventListener('click', () => {
           // Lógica para redirigir a la página de login
           this.router.navigateByUrl('/users/sign-in')
+
+        //   console.log('Abrir swal ' + this.abrirDobleAuthenticacion.didOpen)
         })
         document.querySelector('.swal-footer .btn-secondary')!.addEventListener('click', () => {
           console.log('Enviar otro código');
@@ -74,7 +81,7 @@ export class TwoAuthenticationComponent implements OnInit{
     this.data.authenticacionDoble = value;
 
     return this._autenticacionService.dobleAuthenticacion(this.data).subscribe(data => {
-      console.log(data)
+       console.log('Respuesta dobleAuthenticacion:', data);
       this._autenticacionService.checharLocalStorage();
       this._autenticacionService.decodificarPorId(data);
 
@@ -85,20 +92,24 @@ export class TwoAuthenticationComponent implements OnInit{
   }
 
   erroresBackendLogin(error:any){
+    console.error('erroresBackendLogin:', error);
+
     if(!error.error.ok){
       Swal.fire('Error', "Vuelve intentar iniciar sesion", 'error');
       setTimeout(() => {
         this.abrirDobleAuthenticacion();
-      }, 2000);
+      }, 30000);
     }
   }
   verificacionError(error:any){
+console.error('verificacionError:', error);
+
     if (!error.error.ok) {
       console.log(error.ok)
       Swal.fire('Error', error.error.msg, 'error');
       setTimeout(() => {
         this.abrirDobleAuthenticacion();
-      }, 2000);
+      }, 30000);
     }
   }
 }
