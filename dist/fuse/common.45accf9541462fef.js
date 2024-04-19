@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkfuse=self.webpackChunkfuse||[]).push([[592],{9019:(n,e,s)=>{s.d(e,{N:()=>u});const u={production:!0,apiUrl:"https://aphospital.onrender.com"}}}]);
