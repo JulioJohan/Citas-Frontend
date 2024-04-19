@@ -39,7 +39,8 @@ export class UserComponent implements OnInit, OnDestroy
         private _changeDetectorRef: ChangeDetectorRef,
         private _router: Router,
         private _userService: UserService,
-        private _autenticacionService:AutenticacionService
+        private _autenticacionService:AutenticacionService,
+
     )
     {
     }
@@ -117,6 +118,7 @@ export class UserComponent implements OnInit, OnDestroy
      */
     signOut(): void
     {
+        this._autenticacionService.signOut();
         this._router.navigateByUrl('/sign-out');
         console.log('entre')
     }
