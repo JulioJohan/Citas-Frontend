@@ -46,7 +46,6 @@ export class SearchComponent implements OnChanges, OnInit, OnDestroy{
         private _renderer2: Renderer2,
     )
     {
-        console.log("SearchComponent")
     }
 
     // -----------------------------------------------------------------------------------------------------
@@ -77,9 +76,14 @@ export class SearchComponent implements OnChanges, OnInit, OnDestroy{
         // is now in the DOM, and we can focus on the input..
         if ( value )
         {
+            console.log("value")
+
+            console.log(value)
             // Give Angular time to complete the change detection cycle
             setTimeout(() =>
             {
+                console.log(value)
+
                 // Focus to the input element
                 value.nativeElement.focus();
             });
@@ -129,6 +133,7 @@ export class SearchComponent implements OnChanges, OnInit, OnDestroy{
                 takeUntil(this._unsubscribeAll),
                 map((value) =>
                 {
+                    console.log(value)
                     // Set the resultSets to null if there is no value or
                     // the length of the value is smaller than the minLength
                     // so the autocomplete panel can be closed
@@ -182,6 +187,7 @@ export class SearchComponent implements OnChanges, OnInit, OnDestroy{
         // Escape
         if ( event.code === 'Escape' )
         {
+            console.log(event)
             // If the appearance is 'bar' and the mat-autocomplete is not open, close the search
             if ( this.appearance === 'bar' && !this._matAutocomplete.isOpen )
             {
