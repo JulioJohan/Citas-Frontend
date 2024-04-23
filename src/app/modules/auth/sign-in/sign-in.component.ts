@@ -146,7 +146,7 @@ export class AuthSignInComponent implements OnInit, AfterViewInit
                 })
                 this._router.navigateByUrl('/users/two-authentication');
         
-              },6000)
+              },3000)
         },
         (error:any) =>{
             this.errorRespuesta(error.error.msg)
