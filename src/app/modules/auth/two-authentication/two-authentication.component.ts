@@ -20,6 +20,7 @@ export class TwoAuthenticationComponent implements OnInit{
     public dialogRef: MatDialogRef<AuthSignInComponent>,
     private router: Router
   ) {
+    console.log('TwoAuthenticationComponent')
     console.log(data)
   }
   ngOnInit(): void {
