@@ -76,7 +76,7 @@ export class TwoAuthenticationComponent implements OnInit{
       Swal.fire('Error', 'Ingresa un codigo valido', 'error');
       setTimeout(() => {
         this.abrirDobleAuthenticacion();
-      }, 2000);
+      }, 1000);
       return;
     }
     this.data.authenticacionDoble = value;
@@ -99,7 +99,7 @@ export class TwoAuthenticationComponent implements OnInit{
       Swal.fire('Error', "Vuelve intentar iniciar sesion", 'error');
       setTimeout(() => {
         this.abrirDobleAuthenticacion();
-      }, 30000);
+      }, 3000);
     }
   }
   verificacionError(error:any){
@@ -110,7 +110,7 @@ console.error('verificacionError:', error);
       Swal.fire('Error', error.error.msg, 'error');
       setTimeout(() => {
         this.abrirDobleAuthenticacion();
-      }, 30000);
+      }, 3000);
     }
   }
 }
