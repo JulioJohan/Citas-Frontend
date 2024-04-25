@@ -24,6 +24,7 @@ export class CrearUsuarioComponent implements OnInit {
   constructor(
     public dialogRef: MatDialogRef<CrearUsuarioComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Usuario,
+    public adminitradorService:AdminitradorService,
     private formBuilder: FormBuilder,
     private especialidadService:EspecialidadService,
     private autenticacionService:AutenticacionService,
@@ -83,10 +84,22 @@ export class CrearUsuarioComponent implements OnInit {
 
     this.administracionService.agregarNuevoUsuario(usuarioRegistro).subscribe((data)=>{
       alertaSimple(data.msg,'','success');
+      this.obtenerTodosLosUsuarios()
     },error=> alertaSimple(error.error.msg,'','error'));
    console.log(usuarioRegistro)
    this.cerrarModal();
 
+  }
+
+  public obtenerTodosLosUsuarios(){
+    const idUsuarioAdmin:string = this.autenticacionService.decodeToken();
+    this.adminitradorService.obtenerTodosLosUsuarios(idUsuarioAdmin).subscribe(data=>{
+      this.adminitradorService.usuarios.data = data.data.usuariosSuscripcion;
+      console.log(this.adminitradorService.usuarios.data)
+      if( this.adminitradorService.usuarios.data.length === 0){
+        alertaSimple('No existe ningun registro :(','agregra nuevos doctores y enfermeras','warning');
+      }
+    });
   }
 
   public consultarEspecialidades(){

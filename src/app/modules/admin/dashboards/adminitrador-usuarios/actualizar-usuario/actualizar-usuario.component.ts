@@ -63,6 +63,14 @@ export class ActualizarUsuarioComponent implements OnInit{
     });
   }
 
+  public obtenerTodosLosUsuarios(){
+    const idUsuarioAdmin:string = this.autenticacionService.decodeToken();
+    this.administracionService.obtenerTodosLosUsuarios(idUsuarioAdmin).subscribe(data=>{
+      this.administracionService.usuarios.data = data.data.usuariosSuscripcion;
+      console.log(this.administracionService.usuarios.data)
+    });
+  }
+
   public actualizarUsuario(){
     
     const usuarioActualizar = new UsuarioAdministrador();
@@ -72,7 +80,10 @@ export class ActualizarUsuarioComponent implements OnInit{
     usuarioActualizar.idEspecialidad = this.formulario.value.especialidad;
     usuarioActualizar.role = this.formulario.value.role;
     this.administracionService.actualizarUsuario(usuarioActualizar).subscribe({
-      next: resp => alertaSimple(resp.msg,'','success'),
+      next: resp => {
+        alertaSimple(resp.msg,'','success')
+        this.obtenerTodosLosUsuarios();
+      },
       error: error=> alertaSimple(error.error.msg,'','error')
     });
   }

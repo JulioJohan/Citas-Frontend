@@ -61,9 +61,6 @@ export class AdminitradorUsuariosComponent implements OnInit{
     this.adminitradorService.obtenerTodosLosUsuarios(idUsuarioAdmin).subscribe(data=>{
       this.adminitradorService.usuarios.data = data.data.usuariosSuscripcion;
       console.log(this.adminitradorService.usuarios.data)
-      if( this.adminitradorService.usuarios.data.length === 0){
-        alertaSimple('No existe ningun registro :(','agregra nuevos doctores y enfermeras','warning');
-      }
     });
   }
   
@@ -74,7 +71,10 @@ export class AdminitradorUsuariosComponent implements OnInit{
     usuarioAdministrador.idUsuario = usuario._id;
     console.log('eliminarUsuarioService')
     this.adminitradorService.eliminarUsuario(usuarioAdministrador).subscribe({
-      next:resp => alertaSimple(resp.msg,'','success'),
+      next:resp => {
+        this.obtenerTodosLosUsuarios();
+        alertaSimple(resp.msg,'','success')
+      },
       error:error=> alertaSimple(error.error.msg,'','error')
     });
   }
