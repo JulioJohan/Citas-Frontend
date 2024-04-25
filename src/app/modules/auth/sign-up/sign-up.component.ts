@@ -137,6 +137,7 @@ export class AuthSignUpComponent implements OnInit
             this.formularioRegistro.reset();
             this.showAlert = true;
              // Set the alert
+
              this.alert = {
                 type   : 'success',
                 message: respuesta.msg,
@@ -146,6 +147,7 @@ export class AuthSignUpComponent implements OnInit
 
         },
         error:(error)=>{
+            console.log(error)
             this.errorRespuesta(error.error.msg)
         }
         })
