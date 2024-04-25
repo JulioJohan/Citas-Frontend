@@ -17,7 +17,7 @@ import { Usuario } from 'app/models/Usuario';
 import { EspecialidadService } from 'app/services/especialidad/especialidad.service';
 import { Especialidad } from '../../../models/Especialidad';
 import { Rol } from 'app/enums/Rol';
-
+import { environment } from '../../../../environments/environment';
 
 @Component({
     selector     : 'auth-sign-up',
@@ -27,6 +27,8 @@ import { Rol } from 'app/enums/Rol';
 })
 export class AuthSignUpComponent implements OnInit
 {
+    public keyGoogle: string = environment.recaptcha.captchaId;
+    public lenguajeCaptcha = 'es';
 
     /**
      * Constructor
@@ -72,6 +74,10 @@ export class AuthSignUpComponent implements OnInit
 
         this.obtenerDispositivos();
         this.validarRolFormulario();
+    }
+
+    verificarRecaptcha(data: string) {
+        this.formularioRegistro.value.recaptcha = data;
     }
 
     private validarRolFormulario(){

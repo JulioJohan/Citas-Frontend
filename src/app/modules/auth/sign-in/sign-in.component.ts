@@ -31,8 +31,8 @@ declare const google:any;
 export class AuthSignInComponent implements OnInit, AfterViewInit
 {
 
-    public keyGoogle: string = environment.recaptcha.captchaId;
-    public lenguajeCaptcha = 'es';
+    // public keyGoogle: string = environment.recaptcha.captchaId;
+    // public lenguajeCaptcha = 'es';
 
     @ViewChild('signInNgForm') signInNgForm: NgForm;
     @ViewChild('googleBtn') googleBtn:ElementRef;
@@ -145,7 +145,7 @@ export class AuthSignInComponent implements OnInit, AfterViewInit
                   }
                 })
                 this._router.navigateByUrl('/users/two-authentication');
-        
+
               },3000)
         },
         (error:any) =>{
@@ -154,9 +154,9 @@ export class AuthSignInComponent implements OnInit, AfterViewInit
 
     }
 
-    verificarRecaptcha(data: string) {
-        this.inicioFormulario.value.recaptcha = data;
-    }
+    // verificarRecaptcha(data: string) {
+    //     this.inicioFormulario.value.recaptcha = data;
+    // }
 
     ngAfterViewInit(): void{
         this.googleInit();

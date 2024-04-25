@@ -133,6 +133,17 @@
                     </mat-checkbox>
                 </div> -->
 
+                <!-- reCaptcha -->
+
+                <div class="form-group mt-4">
+                    <div class="col-xs-12 col-sm-12 col-md-12 m-t-10 text-center">
+                        <ngx-recaptcha2 #captchaElem siteKey="6LcGmr8kAAAAAHXgMigTHdTGGbmWR8F-KJok4OKV"
+                            (success)="verificarRecaptcha($event)"
+                            formControlName="recaptcha">
+                        </ngx-recaptcha2>
+                    </div>
+                </div>
+
                 <!-- Submit button -->
                 <button
                     class="fuse-mat-button-large w-full mt-6"
@@ -152,6 +163,7 @@
             </form>
         </div>
     </div>
+
 
     <div class="relative hidden md:flex flex-auto items-center justify-center w-1/2 h-full p-16 lg:px-28 overflow-hidden bg-gray-800 dark:border-l">
 
