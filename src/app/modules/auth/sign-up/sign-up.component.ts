@@ -89,7 +89,7 @@ export class AuthSignUpComponent implements OnInit
                 this.formularioRegistro.get('especialidad').setValidators([Validators.required]);
             }
             if(role === Rol.PACIENTE){
-                this.formularioRegistro.get('especialida').clearValidators();
+                this.formularioRegistro.get('especialidad').clearValidators();
             }
             this.formularioRegistro.get('especialidad').updateValueAndValidity();
 
@@ -132,6 +132,7 @@ export class AuthSignUpComponent implements OnInit
         usuario.email = this.formularioRegistro.get('email').value;
         usuario.password = this.formularioRegistro.get('password').value;
         usuario.role = this.formularioRegistro.get('role').value;
+        console.log(usuario)
         this._autenticacionService.registrarUsuario(usuario).subscribe({
         next:(respuesta:Respuesta) =>{
             this.formularioRegistro.reset();

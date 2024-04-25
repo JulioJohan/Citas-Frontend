@@ -9,7 +9,7 @@ import { FuseVerticalNavigationAsideItemComponent } from '@fuse/components/navig
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatIconModule } from '@angular/material/icon';
 import { FuseVerticalNavigationBasicItemComponent } from '@fuse/components/navigation/vertical/components/basic/basic.component';
-import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { RouterLink, RouterLinkActive, RouterModule, RouterOutlet } from '@angular/router';
 import { FuseVerticalNavigationCollapsableItemComponent } from '@fuse/components/navigation/vertical/components/collapsable/collapsable.component';
 import { FuseVerticalNavigationDividerItemComponent } from '@fuse/components/navigation/vertical/components/divider/divider.component';
 import { FuseVerticalNavigationGroupItemComponent } from '@fuse/components/navigation/vertical/components/group/group.component';
@@ -120,6 +120,7 @@ import { QuickChatComponent } from 'app/layout/common/quick-chat/quick-chat.comp
     MatTooltipModule,
     MatProgressBarModule,
     RouterOutlet,
+    RouterModule,
     RouterLink,
     RouterLinkActive,
   ],

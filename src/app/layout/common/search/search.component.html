@@ -110,7 +110,7 @@
             class="truncate leading-normal"
             [innerHTML]="result.title"></div>
         <div class="truncate leading-normal text-sm text-secondary">
-            <a [routerLink]='result.link'>{{result.link}}</a>
+            <a (click)="redirectPage(result.link)">{{result.link}}</a>
         </div>
     </div>
 </ng-template>

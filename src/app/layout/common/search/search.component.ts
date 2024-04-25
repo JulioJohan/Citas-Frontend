@@ -9,7 +9,7 @@ import { MatOptionModule } from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { fuseAnimations } from '@fuse/animations/public-api';
 import { AutenticacionService } from 'app/services/autenticacion/autenticacion.service';
 import { BusquedasService } from 'app/services/busquedas/busquedas.service';
@@ -43,6 +43,7 @@ export class SearchComponent implements OnChanges, OnInit, OnDestroy {
      * Constructor
      */
     constructor(
+        private _router:Router,
         private _elementRef: ElementRef,
         private _httpClient: HttpClient,
         private _renderer2: Renderer2,
@@ -118,6 +119,10 @@ export class SearchComponent implements OnChanges, OnInit, OnDestroy {
         }
     }
 
+    public redirectPage(pathUrl:string){
+        this._router.navigateByUrl(pathUrl);
+
+    }
     /**
      * On init
      */

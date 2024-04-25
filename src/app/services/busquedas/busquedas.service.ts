@@ -28,7 +28,7 @@ export class BusquedasService{
       }
 
     public busquedaGlobal(termino:string):Observable<BusquedaTodos>{
-        const url =`${baseUrl}/todo/${termino}`;
+        const url =`${baseUrl}/api/todo/${termino}`;
         return this.http.get<BusquedaTodos>(url)
     }
 
@@ -48,7 +48,8 @@ export class BusquedasService{
 
     public buscar(tipo:'usuarios'|'pacientes'|'diagnosticos',
     termino:string){
-        const url =`${baseUrl}/todo/collecion/${tipo}/${termino}`;
+        const url =`${baseUrl}/api/todo/coleccion/${tipo}/${termino}`;
+        console.log(url)
         return this.http.get(url,this.headers)
         .pipe(map((resp:any)=> resp.resultados)).pipe(map((resp:any)=>{
           switch(tipo){
