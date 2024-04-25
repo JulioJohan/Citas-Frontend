@@ -7,6 +7,7 @@ import { PaginaNoEncontradaComponent } from "./pagina-no-encontrada/pagina-no-en
 import { AdministradorDashboardComponent } from "../admin/dashboards/administrador-dashboard/administrador-dashboard.component";
 import { PacienteDashboardComponent } from "../admin/dashboards/paciente-dashboard/paciente-dashboard.component";
 import { MapaSitioComponent } from "./mapa-sitio/mapa-sitio.component";
+import { MapaSitio2Component } from "./mapa-sitio2/mapa-sitio2.component";
 import { AuthGuard } from "app/core/auth/guards/auth.guard";
 
 
@@ -17,7 +18,8 @@ const rutasHome =  [
    {path: 'administrador-dashboard', component:AdministradorDashboardComponent},
    {path: 'paciente-dashboard', component:PacienteDashboardComponent},
    {path: 'pagina-no-encontrada', component:PaginaNoEncontradaComponent},
-   {path: 'mapa-sitio', component:MapaSitioComponent}
+   {path: 'mapa-sitio', component:MapaSitioComponent},
+   {path: 'mapa-sitio2', component:MapaSitio2Component}
 ]
 
 @NgModule({

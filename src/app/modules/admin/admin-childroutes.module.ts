@@ -18,6 +18,7 @@ import { RegActMedicinaComponent } from './dashboards/reg-act-medicina/reg-act-m
 import { ListarMedicinasComponent } from './dashboards/listar-medicinas/listar-medicinas.component';
 import { PacienteDashboardComponent } from './dashboards/paciente-dashboard/paciente-dashboard.component';
 import { MapaSitioComponent } from '../home/mapa-sitio/mapa-sitio.component';
+import { MapaSitio2Component } from "../home/mapa-sitio2/mapa-sitio2.component";
 import { AdministradorDashboardComponent } from './dashboards/administrador-dashboard/administrador-dashboard.component'
 import { BusquedasComponent } from '../shared/busquedas/busquedas.component';
 import { AdminitradorUsuariosComponent } from './dashboards/adminitrador-usuarios/adminitrador-usuarios.component';
@@ -36,6 +37,7 @@ const childRoutes:Routes = [
     {path: 'paciente-dashboard', component:PacienteDashboardComponent, data:{titulo:'paciente-dashboard'} },
     {path: 'administrador-usuarios',component:AdminitradorUsuariosComponent, data:{titulo: 'administrador-usuarios'}},
     {path: 'mapa-sitio', component:MapaSitioComponent, data:{titulo:'mapa-sitio'}},
+    {path: 'mapa-sitio2', component:MapaSitio2Component},
     {path: 'administrador-dashboard', component:AdministradorDashboardComponent},
     {path: 'buscar/:termino', canActivate:[DoctorGuard, EnfermeraGuard] ,component:BusquedasComponent, data:{ titulo: 'Busquedas globales'}},
 
