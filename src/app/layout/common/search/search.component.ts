@@ -11,6 +11,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { RouterLink } from '@angular/router';
 import { fuseAnimations } from '@fuse/animations/public-api';
+import { AutenticacionService } from 'app/services/autenticacion/autenticacion.service';
 import { BusquedasService } from 'app/services/busquedas/busquedas.service';
 import { debounceTime, filter, map, Subject, takeUntil } from 'rxjs';
 
@@ -45,7 +46,8 @@ export class SearchComponent implements OnChanges, OnInit, OnDestroy {
         private _elementRef: ElementRef,
         private _httpClient: HttpClient,
         private _renderer2: Renderer2,
-        private _busquedasService:BusquedasService
+        private _busquedasService:BusquedasService,
+        private _autenticacionService:AutenticacionService
     ) {
         
     }
@@ -179,10 +181,15 @@ export class SearchComponent implements OnChanges, OnInit, OnDestroy {
                 this.close();
             }
         } else {
-             this._busquedasService.buscar('usuarios',termino).subscribe(resp =>{
-                this.resultSets = resp;
+            this.resultSets = this._autenticacionService.menu.filter((data:any)=> data.title.toLowerCase().includes(termino.toLowerCase()))
+            
+
+            console.log(this.resultSets)
+            //  this._busquedasService.buscar('usuarios',termino).subscribe(resp =>{
+            //    console.log(resp)
+            //    this.resultSets = resp;
                 
-             })
+            // })
             //   this.usuarios = resp
         }
     }
