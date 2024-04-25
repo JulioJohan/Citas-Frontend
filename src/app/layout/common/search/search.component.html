@@ -40,7 +40,7 @@
                     [routerLink]="resultSet.link"
                     [value]="resultSet.title">
                     <ng-container >
-                        <ng-container *ngTemplateOutlet="pageResult; context: {$implicit: resultSet.title}"></ng-container>
+                        <ng-container *ngTemplateOutlet="pageResult; context: {$implicit: resultSet}"></ng-container>
                     </ng-container>
                 </mat-option>
                 </mat-optgroup>
@@ -51,7 +51,7 @@
                         [value]="resultSet.title">
 
                         <ng-container >
-                            <ng-container *ngTemplateOutlet="pageResult; context: {$implicit: resultSet.title}"></ng-container>
+                            <ng-container *ngTemplateOutlet="pageResult; context: {$implicit: result}"></ng-container>
                         </ng-container>
                         <!-- Contacts -->
                         <ng-container *ngIf="resultSet.id === 'contacts'">
