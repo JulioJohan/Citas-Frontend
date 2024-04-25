@@ -18,8 +18,8 @@
             class="w-full h-full px-16 sm:px-18"
             [formControl]="searchControl"
             [matAutocomplete]="matAutocomplete"
-            [placeholder]="'Search...'"
-            (keydown)="onKeydown($event)"
+            [placeholder]="'Buscar...'"
+            (keyup)="onKeydown(barSearchInput.value)"
             #barSearchInput>
         <mat-autocomplete
             class="max-h-128 sm:px-2 border-t rounded-b shadow-md"

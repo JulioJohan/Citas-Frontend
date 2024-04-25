@@ -115,7 +115,7 @@ export class AutenticacionService {
 
   public decodificarPorId(respuesta: Respuesta) {
     console.log(respuesta)
-    this.accessToken = respuesta.msg;
+    this.accessToken = respuesta.data;
     console.log(this.accessToken)
     this.menu = respuesta.menu;
     console.log(this.menu)

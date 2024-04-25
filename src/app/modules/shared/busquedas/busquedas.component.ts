@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { BusquedasService } from '../../../services/busqueda/busquedas.service';
 import { Paciente } from '../../../models/Paciente';
 import { AutenticacionService } from 'app/services/autenticacion/autenticacion.service';
+import { BusquedasService } from 'app/services/busquedas/busquedas.service';
 
 @Component({
   selector: 'app-busquedas',
