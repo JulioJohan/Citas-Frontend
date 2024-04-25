@@ -1,50 +1,27 @@
-<app-migajaspan class="flex justify-start "></app-migajaspan>
+<!-- <app-migajaspan class="flex justify-start "></app-migajaspan> -->
 
-<div class="flex flex-col w-3/4 m-8 items-center">
+<div class="w-full fixed inset-x-0 top-0 z-50 pt-10 px-10 bg-gray-300 h-screen">
 
-        <h1 class="text-center text-blue-800 pt-10">Mapa del sitio</h1>
-        <button class="bg-transparent text-blue-800 border-2 border-blue-500 rounded-md text-center my-4 p-4 w-1/4 " *ngFor="let rutas of menu" [routerLink]="rutas.link">
-            <!-- <img src="assets/images/hospital/iconos_Doc1.png" class="w-30 justify-self-center"> -->
-            {{rutas.title}}
-        </button>
+    <button class=" w-full rounded-lg border-4 border-blue-500 py-5 text-2xl font-extrabold " routerLink="/home-nuevo"> PÁGINA DE INICIO </button>
+
+
+      <div class="flex flex-wrap justify-center">
+        <div class="w-full sm:w-auto px-2 mb-4 sm:mb-0">
+          <button class="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+            Botón 1
+          </button>
+        </div>
+        <div class="w-full sm:w-auto px-2 mb-4 sm:mb-0">
+          <button class="w-full bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+            Botón 2
+          </button>
+        </div>
+        <div class="w-full sm:w-auto px-2">
+          <button class="w-full bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+            Botón 3
+          </button>
+        </div>
+      </div>
+
 </div>
 
-<!-- <div class="row justify-content-center align-items-center" >
-    <div class="col-xs-10 col-md-12"> -->
-        <!-- Card -->
-        <!-- <div class="card h-100" >
-            <img class="card-img-top img-responsive w50"  src="../assets/images/icon/principal.png" alt="Card image cap">
-            <div class="card-body">
-                <h4 class="card-title text-center">Mapa del sitio</h4> -->
-                <!-- <p class="card-text text-center">Rutas de practica con rxjs, como otras librerias</p> -->
-                <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
-                <!-- <div class="row justify-content-center " *ngFor="let citas of menu">
-                    <a  [routerLink]="citas.link" class="btn btn-info w-50 mb-4">{{citas.title}}</a>
-                </div>
-            </div>
-        </div> -->
-        <!-- Card -->
-    <!-- </div> -->
-    <!-- <div class="col-xs-10 col-md-12 mt-3" > -->
-        <!-- Card -->
-        <!-- <div class="card" >
-            <img class="card-img-top img-responsive w50" src="../assets/images/icon/mantenimiento.png" alt="Card image cap">
-            <div class="card-body">
-                <h4 class="card-title text-center">Cita Agendada</h4> -->
-                <!-- <p class="card-text text-center">Agregar, Editar, Eliminar Hospital o Medicos</p> -->
-                <!-- <div *ngFor="let citasAgendadas of citaAgendada"  class="row justify-content-center">
-                    <a  [routerLink]="citasAgendadas.link" class="btn btn-info mb-4 w-50">{{citasAgendadas.title}}</a>
-                </div>
-
-            </div>
-        </div> -->
-        <!-- Card -->
-    <!-- </div>
-</div>
-<div class="container" style="margin-bottom: 10px;">
-    <p>
-        <br>
-        <br>
-        <br>
-    </p>
-    </div> -->
