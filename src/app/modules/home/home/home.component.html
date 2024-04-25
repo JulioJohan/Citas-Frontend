@@ -12,18 +12,21 @@
               </svg>
           </button>
 
+
           <div *ngIf="navbarOpen || !movile" class="lg:flex lg:items-center lg:w-auto w-full" id="menu">
+
           <div class="flex flex-col lg:flex-row lg:ml-auto absolute lg:relative top-16 right-0 lg:top-0 lg:right-0">
-            <a href="#" class="text-lg font-semibold hover:text-blue-600 text-gray-600 pr-5 no-underline" routerLink="/conoce-mas">Citavita conoce +</a>
+            <a href="#" class="text-lg font-semibold hover:text-blue-600 text-gray-600 pr-5 no-underline bg-white sm:bg-white" routerLink="/conoce-mas">Citavita conoce +</a>
             <!-- <a a href="#" class="text-lg font-semibold hover:text-blue-600 text-gray-600 pr-5 no-underline" routerLink="/users/sign-in">Paciente</a> -->
-            <a class="text-lg font-semibold hover:text-blue-600 text-gray-600 pr-5 no-underline"
+            <a class="text-lg font-semibold hover:text-blue-600 text-gray-600 pr-5 no-underline  bg-white sm:bg-white"
             routerLink="/users/sign-in"
             >Iniciar sesión</a>
-            <a class="text-lg font-semibold hover:text-blue-600 text-gray-600 pr-20 no-underline"
+            <a class="text-lg font-semibold hover:text-blue-600 text-gray-600 pr-20 no-underline  bg-white sm:bg-white"
             routerLink="/users/sign-up"
             >Registrarse</a>
           </div>
           </div>
+
         </nav>
 
   </div>
@@ -62,7 +65,7 @@
   </div> -->
 
 
-  <div class="pt-28">
+  <div class="pt-28 ">
   <ngb-carousel #carousel [interval]="2500" [pauseOnHover]="pauseOnHover" [pauseOnFocus]="pauseOnFocus" (slide)="onSlide($event)">
       <ng-template ngbSlide *ngFor="let img of images; index as i">
         <div class="picsum-img-wrapper">
@@ -159,7 +162,7 @@
                   <p class="mt-4 font-bold text-6xl text-blue-900 text-center">$6000<span class="mt-4 font-bold text-2xl text-blue-900 text-center">MX</span></p>
                 <div class="flex justify-center">
                     <button href="#" class="mt-6 inline-block bg-blue-500 text-white py-2 px-4 rounded " routerLink="/users/sign-up">Suscribirme ahora</button>
-                </div>    
+                </div>
               <p class="mt-2 text-justify pt-5">Acceso ilimitado a todas las funciones de CITAVITA, con la capacidad de crear cincuenta perfiles para doctores y enfermeras programando hasta cien citas diarias por cada perfil.</p>
             </div>
 

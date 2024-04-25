@@ -16,7 +16,7 @@ export class HomeComponent{
     currentRouteConoce = '/conoce-mas'
 
 
-	  navbarOpen = false;
+	navbarOpen = false;
     movile = window.innerWidth < 1024;
     showScrollTopButton = false;
     isHighlighted = false;
@@ -34,6 +34,7 @@ export class HomeComponent{
         // Escuchar cambios de tamaño de pantalla para ajustar la visibilidad del navbar
         window.addEventListener('resize', () => {
           this.movile = window.innerWidth < 1024;
+          
           if (!this.movile) {
             this.navbarOpen = false;
           }
