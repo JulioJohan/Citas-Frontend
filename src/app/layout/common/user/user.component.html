@@ -12,11 +12,13 @@
             class="w-7 h-7 rounded-full"
             *ngIf="usuario.role === 'ENFERMERA'"
             src="assets/images/hospital/enfermera.jpg">    
-        <!-- <img
+        <mat-icon 
             class="w-7 h-7 rounded-full"
-            *ngIf="showAvatar && usuario.avatar"
-            [src]="usuario.avatar">     -->
-        <mat-icon
+
+            *ngIf="usuario.role === 'ADMIN'"
+            svgIcon="heroicons_outline:user-circle">
+            </mat-icon>
+            <mat-icon
             *ngIf="!usuario"
             [svgIcon]="'heroicons_outline:user-circle'"></mat-icon>
         <!-- <span
