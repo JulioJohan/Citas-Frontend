@@ -21,7 +21,6 @@ export class AutenticacionService {
 
   constructor(private httpClient: HttpClient, private _router: Router) {
 
-    this.tokenExpirado();
   }
 
   // Creando la varible url para hacer las peticiones al backend
@@ -119,7 +118,7 @@ export class AutenticacionService {
 
   validarToken(): Observable<boolean> {
     console.log("Validar Token");
-    const accessToken = localStorage.getItem('token') || '';
+    const accessToken = localStorage.getItem('accessToken') || '';
     // Obteniendo los headers correctamente
     return this.httpClient.get(`${this.url}/renew`, {
       headers: {
@@ -128,7 +127,7 @@ export class AutenticacionService {
     }).pipe(
       map((resp: any) => {
         console.log(resp);
-        const { email, nombre, role = '', uid } = resp.usuarioDB;
+        const { email, nombre, role , uid } = resp.usuarioDB;
         this.usuario = new Usuario(
           nombre, email, '', role, uid
         );
@@ -160,6 +159,10 @@ export class AutenticacionService {
     this.menu = respuesta.menu;
     console.log(this.menu)
     this.autenticado = true;
+    this.fechaExpiracion = jwt_decode.default(this.accessToken);
+    localStorage.setItem('fechaExpiracion',this.fechaExpiracion.exp)
+    console.log('fechaExpiracion')
+    console.log(this.fechaExpiracion)
     const numero: string = this.decodeToken();
     this.buscarPorId(numero).subscribe(data => {
       console.log(data)
@@ -292,7 +295,6 @@ export class AutenticacionService {
           Swal.close()
         },2000);
         localStorage.removeItem('token');
-        localStorage.removeItem('email');
         localStorage.removeItem('fechaExpiracion');
         this.ngOnDestroy();
         this._router.navigateByUrl('/users/sign-in');

@@ -69,6 +69,7 @@ export class ClassyLayoutComponent implements OnInit, OnDestroy,AfterViewInit
     {
         
         this.cargarPaginas()
+        this._autenticacionService.tokenExpirado()
 
     }
     
