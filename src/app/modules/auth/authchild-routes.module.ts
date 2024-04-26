@@ -20,6 +20,7 @@ const childRoutes:Routes = [
     {path: 'sign-in', component:AuthSignInComponent },
     {path: 'home-nuevo', component:HomeComponent},
     {path: 'mapa-sitio', component:MapaSitioComponent},
+    {path: 'unlock-session', component:AuthUnlockSessionComponent},
 
     {path: 'sign-up', component:AuthSignUpComponent},
     // Auth routes for authenticated users

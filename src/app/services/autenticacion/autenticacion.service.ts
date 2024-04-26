@@ -16,7 +16,12 @@ import { AuthForgotPasswordComponent } from '../../../app/modules/auth/forgot-pa
 })
 export class AutenticacionService {
 
+  public subscripcion = new Subscription;
+  public fechaExpiracion:any;
+
   constructor(private httpClient: HttpClient, private _router: Router) {
+
+    this.tokenExpirado();
   }
 
   // Creando la varible url para hacer las peticiones al backend
@@ -67,6 +72,13 @@ export class AutenticacionService {
     return this._usuario.asObservable();
   }
 
+  get headers(){
+    return {
+      headers:{
+        'x-token':this.accessToken
+      }
+    }
+  }
 
   /**
   * Check the authentication status
@@ -103,6 +115,33 @@ export class AutenticacionService {
     // Return the observable
     return of(true);
   }
+
+
+  validarToken(): Observable<boolean> {
+    console.log("Validar Token");
+    const accessToken = localStorage.getItem('token') || '';
+    // Obteniendo los headers correctamente
+    return this.httpClient.get(`${this.url}/renew`, {
+      headers: {
+        'x-token': this.accessToken
+      }
+    }).pipe(
+      map((resp: any) => {
+        console.log(resp);
+        const { email, nombre, role = '', uid } = resp.usuarioDB;
+        this.usuario = new Usuario(
+          nombre, email, '', role, uid
+        );
+        this.checharLocalStorage();
+        console.log("Renew" + resp.token);
+        this.fechaExpiracion = this.decodeToken();
+        localStorage.setItem('fechaExpiracion', this.fechaExpiracion.exp);
+        return true;
+      }),
+    //   catchError(error => of(false))
+    );
+  }
+
   public decodeToken(): string {
     const token = this.accessToken;
     console.log(token)
@@ -111,6 +150,7 @@ export class AutenticacionService {
     console.log(decodedToken)
     return decodedToken.uid;
   }
+
 
 
   public decodificarPorId(respuesta: Respuesta) {
@@ -216,6 +256,56 @@ export class AutenticacionService {
     console.log('Enviando solicitud con:', usuario);
     return this.httpClient.post<Respuesta>(`${this.url}/doble-authenticacion/`,usuario);
   }
+
+  tokenExpirado(){
+    console.log("verificando")
+    this.subscripcion = interval(40000).subscribe(data=>{
+      const fechaActual = new Date().getTime() / 1000;
+      console.log("Fecha "+ fechaActual)
+      const tiempoRestante = Number(localStorage.getItem('fechaExpiracion')) - fechaActual;
+      const tiempoRestanteMinutos = tiempoRestante / 60;
+      console.log(tiempoRestanteMinutos);
+      if(Math.round(tiempoRestanteMinutos) === 5){
+        Swal.fire({
+          title: 'Tu sesion esta por expirar',
+          text: "Deseas Renovarlo?",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Renovar'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            this.validarToken();
+            location.reload();
+          }
+          if(result.isDismissed){
+            this.tokenExpirado();
+          }
+        })
+      }
+
+      if(tiempoRestanteMinutos <= 0){
+        Swal.fire('Sesion','Token Expirado','error');
+        //saber el id de la alerta
+        setTimeout(()=>{
+          Swal.close()
+        },2000);
+        localStorage.removeItem('token');
+        localStorage.removeItem('email');
+        localStorage.removeItem('fechaExpiracion');
+        this.ngOnDestroy();
+        this._router.navigateByUrl('/users/sign-in');
+
+      }
+    })
+
+  }
+
+  ngOnDestroy():void{
+    this.subscripcion.unsubscribe();
+  }
+
 
 
 }
