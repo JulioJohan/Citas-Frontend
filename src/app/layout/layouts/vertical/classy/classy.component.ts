@@ -38,8 +38,6 @@ export class ClassyLayoutComponent implements OnInit, OnDestroy,AfterViewInit
     @ViewChild(SearchComponent) child: SearchComponent;
     ngAfterViewInit(){
         console.log(this.child)
-        console.log("searchComponent")
-        console.log(this.searchComponent)
     }
     toggleSearch(): void {
         console.log("searchComponent")
@@ -63,14 +61,17 @@ export class ClassyLayoutComponent implements OnInit, OnDestroy,AfterViewInit
         private _activatedRoute: ActivatedRoute,
         private _router: Router,
         private _autenticacionService:AutenticacionService,
-        private _navigationService: NavigationService,
+        public navigationService: NavigationService,
         private _userService: UserService,
         private _fuseMediaWatcherService: FuseMediaWatcherService,
         private _fuseNavigationService: FuseNavigationService,
     )
     {
+        
+        this.cargarPaginas()
 
     }
+    
 
     // -----------------------------------------------------------------------------------------------------
     // @ Accessors
@@ -93,7 +94,6 @@ export class ClassyLayoutComponent implements OnInit, OnDestroy,AfterViewInit
      */
     ngOnInit(): void
     {
-        this.cargarPaginas()
         this.obtenerUsuario();
         // Subscribe to media changes
         this._fuseMediaWatcherService.onMediaChange$
@@ -116,7 +116,7 @@ export class ClassyLayoutComponent implements OnInit, OnDestroy,AfterViewInit
 
     cargarPaginas(){
         // Subscribe to navigation data
-        this._navigationService.navigation$
+        this.navigationService.navigation$
         .pipe(takeUntil(this._unsubscribeAll))
         .subscribe((navigation: Navigation) =>
         {
