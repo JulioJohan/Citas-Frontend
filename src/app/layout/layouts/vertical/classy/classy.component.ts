@@ -37,7 +37,7 @@ export class ClassyLayoutComponent implements OnInit, OnDestroy,AfterViewInit
 
     @ViewChild(SearchComponent) child: SearchComponent;
     ngAfterViewInit(){
-        console.log(this.child)
+        this.cargarPaginas()
     }
     toggleSearch(): void {
         console.log("searchComponent")
