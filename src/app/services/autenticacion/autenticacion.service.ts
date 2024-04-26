@@ -294,7 +294,7 @@ export class AutenticacionService {
         setTimeout(()=>{
           Swal.close()
         },2000);
-        localStorage.removeItem('token');
+        localStorage.removeItem('accessToken');
         localStorage.removeItem('fechaExpiracion');
         this.ngOnDestroy();
         this._router.navigateByUrl('/users/sign-in');
