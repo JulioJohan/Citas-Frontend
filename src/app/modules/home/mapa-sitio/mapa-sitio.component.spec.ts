@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { MapaSitioComponent } from './mapa-sitio.component';
 
 describe('MapaSitioComponent', () => {
@@ -8,7 +8,8 @@ describe('MapaSitioComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [MapaSitioComponent]
+      declarations: [MapaSitioComponent],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA]
     });
     fixture = TestBed.createComponent(MapaSitioComponent);
     component = fixture.componentInstance;

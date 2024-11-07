@@ -21,6 +21,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { HomeModule } from './modules/home/home.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { SharedModule } from './modules/shared/shared.module';
 
 
 @NgModule({
@@ -38,7 +39,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
         AppRoutingModule,
         AppRoutingModule,
         ReactiveFormsModule,
-
+        SharedModule,
         HttpClientModule,
         FormsModule,
         NgbModule,

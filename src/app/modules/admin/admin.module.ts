@@ -5,7 +5,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import {MatCardModule} from '@angular/material/card';
 import {MatDatepickerModule} from '@angular/material/datepicker';
-
+import { RouterModule } from '@angular/router';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
@@ -13,7 +13,7 @@ import { NgApexchartsModule } from 'ng-apexcharts';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { TranslocoModule } from '@ngneat/transloco';
-import {NgxMatTimepickerModule} from 'ngx-mat-timepicker';  
+import {NgxMatTimepickerModule} from 'ngx-mat-timepicker';
 import { MatRippleModule } from '@angular/material/core';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
@@ -68,7 +68,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     HistorialMedicoComponent,
     DevicesComponent,
     FinanceComponent,
-    ProjectComponent,    
+    ProjectComponent,
     NuevoPacienteComponent,
     NumberDirective,
     LetterDirective,
@@ -78,23 +78,24 @@ import { MatToolbarModule } from '@angular/material/toolbar';
   ],
   imports: [
     AsyncPipe,
-    BrowserModule,    
+    ReactiveFormsModule,
+    BrowserModule,
     CommonModule,
     CurrencyPipe,
-    DecimalPipe,    
+    DecimalPipe,
     FormsModule,
     FuseAlertComponent,
-    NgFor,  
-    NgClass,  
+    NgFor,
+    NgClass,
     I18nPluralPipe,
-    RouterLink,    
+    RouterLink,
     NgApexchartsModule,
     NgxMatTimepickerModule,
     MatButtonModule,
     MatCardModule,
     MatDatepickerModule,
     MatDividerModule,
-    MatDialogModule,    
+    MatDialogModule,
     MatIconModule,
     MatMenuModule,
     MatSidenavModule,
@@ -107,14 +108,17 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     MatStepperModule,
     MatButtonToggleModule,
     MatTooltipModule,
-    MatProgressSpinnerModule, 
+    MatProgressSpinnerModule,
     ReactiveFormsModule,
     TranslocoModule,
     UpperCasePipe,
     MatFormFieldModule,
     MatInputModule,
     MatAutocompleteModule,
-    SharedModule
+    SharedModule,
+    CommonModule,
+    FormsModule,
+    RouterModule
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 

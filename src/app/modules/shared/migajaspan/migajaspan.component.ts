@@ -2,6 +2,7 @@ import { Component, OnDestroy , OnInit} from '@angular/core';
 import { ActivatedRoute, ActivationEnd, Router } from '@angular/router';
 import { Subscription, filter, map } from 'rxjs';
 
+
 @Component({
   selector: 'app-migajaspan',
   templateUrl: './migajaspan.component.html',
@@ -35,8 +36,8 @@ export class MigajaspanComponent implements OnDestroy {
       ngOnDestroy(): void {
         this.tituloSubs$.unsubscribe();
       }
-    
-      
+
+
     getArgumentosRuta(){
         return this.activatedRoute.data;
     }

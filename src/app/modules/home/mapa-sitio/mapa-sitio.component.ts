@@ -25,8 +25,13 @@ export class MapaSitioComponent implements OnInit {
     }
 
     ordenarMenuFormaDescendente(){
-        this.menuOrdenado = this.menu.sort((a:any,b:any) => b.title + a.title );
-        console.log(this.menuOrdenado)
+        // this.menuOrdenado = this.menu.sort((a:any,b:any) => b.title + a.title );
+        // console.log(this.menuOrdenado)
+        if (this.menuOrdenado && Array.isArray(this.menuOrdenado)) {
+            this.menuOrdenado.sort((a, b) => b.id - a.id); 
+          } else {
+            console.warn('miArray está vacío o no es un array');
+          }
     }
 
     // filtrarPorTituloMenu(){

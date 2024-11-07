@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { Component, OnInit, NgModule  } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormGroup, FormsModule, Validators, FormBuilder } from '@angular/forms';
 import { MedicinaService } from 'app/services/medicina.service';
 import { Medicina } from 'app/models/Medicina';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule  } from '@angular/router';
 import Swal from 'sweetalert2';
+
 
 import { GenerarCodigoBarrasDecorator } from 'app/models/GenerarCodigoBarrasDecorator';
 import { MedicinaComponent } from 'app/models/MedicinaComponent';
@@ -18,7 +20,7 @@ export class RegActMedicinaComponent implements OnInit {
   nuevasExistencias: number = 0;
   titulo = 'Registrar Medicina';
   id: string | null;
-  
+
   medicinaForm = this.fb.group({
     nombreMedicina: ['', Validators.required],
     categoria: ['Analgesicos', Validators.required],
@@ -31,7 +33,7 @@ export class RegActMedicinaComponent implements OnInit {
   get nombreMedicina() { return this.medicinaForm.get('nombreMedicina'); }
   get categoria() { return this.medicinaForm.get('categoria'); }
   get cantidad() { return this.medicinaForm.get('cantidad'); }
-  get viaAdministracion() { return this.medicinaForm.get('viaAdministracion'); }  
+  get viaAdministracion() { return this.medicinaForm.get('viaAdministracion'); }
 
   ngOnInit(): void {
     this.id = this.aRouter.snapshot.paramMap.get('id');
@@ -50,13 +52,13 @@ export class RegActMedicinaComponent implements OnInit {
   }
 
   limpiarFormulario(){
-    this.medicinaForm.reset(); 
+    this.medicinaForm.reset();
   }
 
   registrarMedicina() {
     if (this.medicinaForm.valid) {
       const cantidad = this.cantidad.value;
-  
+
       if (cantidad === 0) {
         Swal.fire({
           icon: 'error',
