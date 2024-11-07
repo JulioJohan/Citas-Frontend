@@ -39,7 +39,8 @@ export class UserComponent implements OnInit, OnDestroy
         private _changeDetectorRef: ChangeDetectorRef,
         private _router: Router,
         private _userService: UserService,
-        private _autenticacionService:AutenticacionService
+        private _autenticacionService:AutenticacionService,
+
     )
     {
     }
@@ -69,7 +70,7 @@ export class UserComponent implements OnInit, OnDestroy
     obtenerUsuario(){
 
         this.usuario = JSON.parse(localStorage.getItem('usuario'));
-
+        console.log("aaaa")
         // this._autenticacionService.usuario$
         // .pipe(takeUntil(this._unsubscribeAll))
         // .subscribe((usuario:Usuario)=>{
@@ -117,6 +118,7 @@ export class UserComponent implements OnInit, OnDestroy
      */
     signOut(): void
     {
+        this._autenticacionService.signOut();
         this._router.navigateByUrl('/sign-out');
         console.log('entre')
     }

@@ -5,7 +5,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import {MatCardModule} from '@angular/material/card';
 import {MatDatepickerModule} from '@angular/material/datepicker';
-
+import { RouterModule } from '@angular/router';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
@@ -13,7 +13,7 @@ import { NgApexchartsModule } from 'ng-apexcharts';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { TranslocoModule } from '@ngneat/transloco';
-import {NgxMatTimepickerModule} from 'ngx-mat-timepicker';  
+import {NgxMatTimepickerModule} from 'ngx-mat-timepicker';
 import { MatRippleModule } from '@angular/material/core';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
@@ -35,51 +35,67 @@ import { NumberDirective } from 'app/directives/number-only.directive';
 import { LetterDirective } from 'app/directives/letter.directive';
 import { DecimalDirective } from 'app/directives/decimal.directive';
 
+import { ActualizarUsuarioComponent } from './dashboards/adminitrador-usuarios/actualizar-usuario/actualizar-usuario.component';
+import { AdminitradorUsuariosComponent } from './dashboards/adminitrador-usuarios/adminitrador-usuarios.component';
 import { CitaComponent } from './dashboards/cita/cita.component';
 import { CitaAgendadaComponent } from './dashboards/cita-agendada/cita-agendada.component';
+import { CrearUsuarioComponent } from './dashboards/adminitrador-usuarios/crear-usuario/crear-usuario.component';
 import { CryptoComponent } from './dashboards/crypto/crypto.component';
 import { DevicesComponent } from './dashboards/devices/devices.component';
 import { FinanceComponent } from './dashboards/finance/finance.component';
 import { ProjectComponent } from './dashboards/project/project.component';
 import { DetalleCitaComponent } from './dashboards/cita-agendada/detalle-cita/detalle-cita.component';
 import { HistorialMedicoComponent } from './dashboards/cita/historial-medico/historial-medico.component';
+import { ListarMedicinasComponent } from './dashboards/listar-medicinas/listar-medicinas.component';
+import { RegActMedicinaComponent } from './dashboards/reg-act-medicina/reg-act-medicina.component';
+import { RouterLink } from '@angular/router';
+import { AlmacenComponent } from './dashboards/almacen/almacen.component';
+import { SharedModule } from '../shared/shared.module';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 @NgModule({
   declarations: [
-    
+    ActualizarUsuarioComponent,
+    AdminitradorUsuariosComponent,
     AnalyticsComponent,
+    AlmacenComponent,
     CitaComponent,
     CitaAgendadaComponent,
+    CrearUsuarioComponent,
     CryptoComponent,
     DecimalDirective,
     DetalleCitaComponent,
     HistorialMedicoComponent,
     DevicesComponent,
     FinanceComponent,
-    ProjectComponent,    
+    ProjectComponent,
     NuevoPacienteComponent,
     NumberDirective,
-    LetterDirective
+    LetterDirective,
+    ListarMedicinasComponent,
+    RegActMedicinaComponent
 
   ],
   imports: [
     AsyncPipe,
-    BrowserModule,    
+    ReactiveFormsModule,
+    BrowserModule,
     CommonModule,
     CurrencyPipe,
-    DecimalPipe,    
+    DecimalPipe,
     FormsModule,
     FuseAlertComponent,
-    NgFor,  
-    NgClass,  
+    NgFor,
+    NgClass,
     I18nPluralPipe,
+    RouterLink,
     NgApexchartsModule,
     NgxMatTimepickerModule,
     MatButtonModule,
     MatCardModule,
     MatDatepickerModule,
     MatDividerModule,
-    MatDialogModule,    
+    MatDialogModule,
     MatIconModule,
     MatMenuModule,
     MatSidenavModule,
@@ -87,18 +103,22 @@ import { HistorialMedicoComponent } from './dashboards/cita/historial-medico/his
     MatProgressBarModule,
     MatTabsModule,
     MatTableModule,
+    MatToolbarModule,
     MatSelectModule,
     MatStepperModule,
     MatButtonToggleModule,
     MatTooltipModule,
-    MatProgressSpinnerModule, 
+    MatProgressSpinnerModule,
     ReactiveFormsModule,
     TranslocoModule,
     UpperCasePipe,
     MatFormFieldModule,
     MatInputModule,
     MatAutocompleteModule,
-    
+    SharedModule,
+    CommonModule,
+    FormsModule,
+    RouterModule
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 

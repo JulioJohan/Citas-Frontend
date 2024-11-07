@@ -20,6 +20,7 @@ export class UsuarioService {
         console.log(this.url)
         return this.httpClient.get<Respuesta>(`${this.url}/busqueda_doctor/${busquedaPorDoctor}`)
     }
-    
+
+
 
 }

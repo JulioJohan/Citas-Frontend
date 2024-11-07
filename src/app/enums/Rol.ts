@@ -1,4 +1,5 @@
 export enum Rol {
     DOCTOR = 'DOCTOR',
-    ENFERMERA = 'ENFERMERA' 
+    ENFERMERA = 'ENFERMERA',
+    PACIENTE = 'PACIENTE'
 }

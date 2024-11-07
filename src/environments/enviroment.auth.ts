@@ -1,4 +1,11 @@
 export const enviromentAuth = {
     production: true,
-    urlAuth: 'http://localhost:4001'
+
+    urlAuth: 'https://aphospital.onrender.com',
+
+    //urlAuth: 'http://localhost:4000',
+
+    recaptcha: {
+        captchaId: '6LcFTLgpAAAAAGGhhk_uVEA7HZItG37YWkHPRe4y',
+    }
 }

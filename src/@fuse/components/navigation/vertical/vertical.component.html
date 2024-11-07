@@ -36,7 +36,7 @@
 
                 <!-- Basic -->
                 <ng-container *ngIf="item.type === 'basic'">
-                    <fuse-vertical-navigation-basic-item
+                    <fuse-vertical-navigation-basic-item class="text-blue-800"
                         [item]="item"
                         [name]="name"></fuse-vertical-navigation-basic-item>
                 </ng-container>
@@ -58,7 +58,7 @@
 
                 <!-- Group -->
                 <ng-container *ngIf="item.type === 'group'">
-                    <fuse-vertical-navigation-group-item
+                    <fuse-vertical-navigation-group-item class="text-blue-800"
                         [item]="item"
                         [name]="name"
                         [autoCollapse]="autoCollapse"></fuse-vertical-navigation-group-item>

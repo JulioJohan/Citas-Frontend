@@ -1,0 +1,120 @@
+<mat-dialog-content>
+<div class="flex flex-col flex-auto ">
+    <div class="md:p-4">
+      <div class="w-full">
+        <form
+        class="mt-8"
+        [formGroup]="formularioRegistro"
+        #signUpNgForm="ngForm">
+        <h2>Crear Nuevo usuario en CITAVITA</h2>
+        <!-- Name field -->
+        <mat-form-field class="w-full">
+            <mat-label>Nombre Completo</mat-label>
+            <input
+                lettersOnly
+                maxlength="50"
+                id="name"
+                matInput
+                [formControlName]="'name'">
+            <mat-error *ngIf="formularioRegistro.get('name').hasError('required')">
+               El nombre completo es requerido
+            </mat-error>
+            <mat-error *ngIf="formularioRegistro.get('name').hasError('minlength')">
+                El nombre completo debe ser valido
+             </mat-error>
+        </mat-form-field>
+
+        <!-- FatherLastname field -->
+        <mat-form-field class="w-full">
+            <mat-label>Correo electronico</mat-label>
+            <input
+                maxlength="50"
+                id="email"
+                matInput
+                [formControlName]="'email'">
+            <mat-error *ngIf="formularioRegistro.get('email').hasError('required')">
+                El correo electronico es requerido 
+            </mat-error>       
+            <mat-error *ngIf="formularioRegistro.get('email').hasError('minlength')">
+                El correo electronico no es valido 
+            </mat-error>           
+        </mat-form-field>
+
+        <mat-form-field class="w-full">
+            <mat-label>Contraseña</mat-label>
+            <input
+                maxlength="50"
+                id="password"
+                matInput
+                [formControlName]="'password'">
+            <mat-error *ngIf="formularioRegistro.get('password').hasError('required')">
+                La Contraseña es requerido 
+            </mat-error>    
+            <mat-error *ngIf="formularioRegistro.get('password').hasError('minlength')">
+                La Contraseña no es requerida 
+            </mat-error>          
+        </mat-form-field>           
+
+        <mat-form-field class="w-full">
+            <mat-label>Rol</mat-label>
+            <mat-select [formControlName]="'role'" >
+
+                <mat-option *ngFor="let rol of tiposUsuario" [value] = "rol">
+                    {{rol}}
+                  </mat-option>
+                </mat-select>
+            <mat-error *ngIf="formularioRegistro.get('role').hasError('required')">
+                El rol es requerido
+            </mat-error>             
+        </mat-form-field>
+
+        <mat-form-field class="w-full" *ngIf="formularioRegistro.get('role').value === 'DOCTOR'">
+            <mat-label>Especialidad</mat-label>
+            <mat-select [formControlName]="'especialidad'">
+                <mat-option *ngFor="let especialidad of especialidades" [value]="especialidad._id">
+                    {{especialidad.name}}
+                  </mat-option>
+                </mat-select>
+            <mat-error *ngIf="formularioRegistro.get('especialidad').hasError('required')">
+                La especialidad es requerido
+            </mat-error>             
+        </mat-form-field>
+            
+        <!-- Submit button -->
+        <button
+            class="fuse-mat-button-large w-full mt-6"
+            mat-flat-button
+            [color]="'primary'"
+            [disabled]="formularioRegistro.invalid"
+            (click)="guardarUsuario()">
+            <span >
+                Crear Cuenta
+            </span>
+            <mat-progress-spinner
+                *ngIf="formularioRegistro.disabled"
+                [diameter]="24"
+                [mode]="'indeterminate'"></mat-progress-spinner>
+        </button>
+
+
+        <button
+            class="fuse-mat-button-large w-full mt-6 bg-red-600"
+            mat-flat-button            
+            (click)="cerrarModal()"
+            >
+            <span class="text-white">
+                Cerrar
+            </span>
+            <mat-progress-spinner
+                *ngIf="formularioRegistro.disabled"
+                [diameter]="24"
+                [mode]="'indeterminate'"></mat-progress-spinner>
+        </button>
+
+    </form>
+    </div>
+    </div>
+</div>
+</mat-dialog-content>
+
+

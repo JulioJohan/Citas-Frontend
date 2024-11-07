@@ -1,5 +1,5 @@
 import { NgIf } from '@angular/common';
-import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewEncapsulation, AfterViewInit, ElementRef } from '@angular/core';
 import { FormGroup, FormsModule, NgForm, ReactiveFormsModule, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -13,16 +13,29 @@ import { FuseAlertComponent, FuseAlertType } from '@fuse/components/alert';
 import { AuthService } from 'app/core/auth/auth.service';
 import { Usuario } from 'app/models/Usuario';
 import { AutenticacionService } from 'app/services/autenticacion/autenticacion.service';
+import { UsuarioService } from '../../../services/usuario/usuario.service';
+import { ReCaptchaV3Service } from 'ng-recaptcha';
+import { environment } from '../../../../environments/environment';
+import Swal from 'sweetalert2';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { TwoAuthenticationComponent } from '../two-authentication/two-authentication.component';
 
+
+declare const google:any;
 @Component({
     selector     : 'auth-sign-in',
     templateUrl  : './sign-in.component.html',
     encapsulation: ViewEncapsulation.None,
     animations   : fuseAnimations,
 })
-export class AuthSignInComponent implements OnInit
+export class AuthSignInComponent implements OnInit, AfterViewInit
 {
+
+    // public keyGoogle: string = environment.recaptcha.captchaId;
+    // public lenguajeCaptcha = 'es';
+
     @ViewChild('signInNgForm') signInNgForm: NgForm;
+    @ViewChild('googleBtn') googleBtn:ElementRef;
 
     alert: { type: FuseAlertType; message: string } = {
         type   : 'success',
@@ -41,9 +54,14 @@ export class AuthSignInComponent implements OnInit
         private _autenticacionService:AutenticacionService,
         private _formBuilder: UntypedFormBuilder,
         private _router: Router,
+        private _dialog:MatDialog,
+        private recaptchaV3Service: ReCaptchaV3Service
     )
     {
     }
+
+
+
 
     // -----------------------------------------------------------------------------------------------------
     // @ Lifecycle hooks
@@ -62,9 +80,13 @@ export class AuthSignInComponent implements OnInit
         // });
         this.inicioFormulario = this._formBuilder.group({
             email   :['',[Validators.required,Validators.email]],
-            password:['',[Validators.required]]
+            password:['',[Validators.required]],
+            //recaptcha: ['', Validators.required]
         })
-
+        console.log('AuthSignInComponent')
+    }
+    public almacen(){
+        this._router.navigateByUrl('/almacen')
     }
 
     private errorRespuesta(error:string){
@@ -93,8 +115,7 @@ export class AuthSignInComponent implements OnInit
         usuario.password = this.inicioFormulario.get('password').value;
         this._autenticacionService.iniciarSesion(usuario).subscribe((respuesta)=>{
             console.log(respuesta)
-            this._autenticacionService.checharLocalStorage();
-            this._autenticacionService.decodificarPorId(respuesta);
+            //this._autenticacionService.decodificarPorId(respuesta);
             this.inicioFormulario.reset();
             this.showAlert = true;
             // Set the alert
@@ -102,12 +123,67 @@ export class AuthSignInComponent implements OnInit
                type   : 'success',
                message: respuesta.msg,
             };
+            Swal.fire({
+                title: 'El código de verificación se envio a tu correo!',
+                text: respuesta.msg,
+                imageUrl: 'https://i.pinimg.com/564x/a1/e2/27/a1e22750dd39a0216a528c7cee960849.jpg',
+                imageWidth: 200,
+                imageHeight: 200,
+                imageAlt: 'Custom image',
+              })
+              setTimeout(()=>{
+                const dialogConfig = new MatDialogConfig();
+                dialogConfig.data = usuario;
+                dialogConfig.autoFocus = false
+                // this.informacionEnviada.emit(this.keyGoogle);
+                const matDialog = this._dialog.open(TwoAuthenticationComponent,dialogConfig)
+                matDialog.close();
+                matDialog.afterClosed().subscribe(resultado =>{
+                    console.log("entreeeee" + resultado)
+                  if(resultado != undefined){
+                    this._router.navigateByUrl('/')
+                  }
+                })
+                this._router.navigateByUrl('/users/two-authentication');
+
+              },3000)
         },
         (error:any) =>{
             this.errorRespuesta(error.error.msg)
-        })        
+        })
 
     }
+
+    // verificarRecaptcha(data: string) {
+    //     this.inicioFormulario.value.recaptcha = data;
+    // }
+
+    ngAfterViewInit(): void{
+        this.googleInit();
+    }
+
+    googleInit(){
+        console.log( {data: this} )
+        google.accounts.id.initialize({
+            client_id: "151080076906-g0toq2db3v9os3fa1rv7maa7209ivndg.apps.googleusercontent.com",
+            callback: ( response:any ) => this.handleCredentialResponse(response)
+          });
+          google.accounts.id.renderButton(
+            // document.getElementById("buttonDiv"),
+            this.googleBtn.nativeElement,
+            { theme: "outline", size: "large" }  // customization attributes
+          );
+    }
+
+
+    handleCredentialResponse( response:any ){
+        // console.log("Encoded JWT ID token: " + response.credential);
+        this._autenticacionService.sesionGoogle( response.credential )
+            .subscribe( resp => {
+                // console.log( {sesion:resp} )
+            })
+    }
+
 
     // -----------------------------------------------------------------------------------------------------
     // @ Public methods
