@@ -2,7 +2,7 @@
   "name": "CITAVITA",
   "short_name": "CITAVITA",
   "theme_color": "#5180ff",
-  "background_color": "#000101",
+  "background_color": "#FFFFFF",
   "display": "standalone",
   "scope": "./",
   "start_url": "./",
