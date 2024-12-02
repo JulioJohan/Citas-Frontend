@@ -8,7 +8,6 @@ import { BusquedasComponent } from './busquedas/busquedas.component';
   exports:[MigajaspanComponent] ,
   imports: [
     CommonModule,
-    SharedModule
   ]
 })
 export class SharedModule { }

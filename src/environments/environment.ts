@@ -3,12 +3,12 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-    production: false,
+    production: true,
 
-    apiUrl: 'https://aphospital.onrender.com',
+    //apiUrl: 'https://aphospital.onrender.com',
     // servLogin: "https://18.220.73.90/backendlogin/api"
 
-    // apiUrl: 'http://localhost:4000',
+    apiUrl: 'http://localhost:4000',
 
     recaptcha: {
         captchaId: '6LcGmr8kAAAAAHXgMigTHdTGGbmWR8F-KJok4OKV',

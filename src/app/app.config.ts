@@ -17,7 +17,6 @@ export const appConfig: ApplicationConfig = {
         provideAnimations(),
         provideHttpClient(),
         provideRouter(appRoutes,
-            
             withPreloading(PreloadAllModules),
             withInMemoryScrolling({scrollPositionRestoration: 'enabled'}),
         ),

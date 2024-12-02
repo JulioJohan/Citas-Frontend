@@ -113,6 +113,7 @@ export class AuthSignInComponent implements OnInit, AfterViewInit
         const usuario = new Usuario();
         usuario.email = this.inicioFormulario.get('email').value;
         usuario.password = this.inicioFormulario.get('password').value;
+        console.log('inicioSesion')
         this._autenticacionService.iniciarSesion(usuario).subscribe((respuesta)=>{
             console.log(respuesta)
             //this._autenticacionService.decodificarPorId(respuesta);

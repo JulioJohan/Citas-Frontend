@@ -11,10 +11,10 @@ import {environment} from './environments/environment';
 
 
 
-// bootstrapApplication(AppComponent, appConfig)
+//bootstrapApplication(AppComponent, appConfig)
 //     .catch(err => console.error(err));
  if (environment.production) {
      enableProdMode();
-  }
+}
 platformBrowserDynamic().bootstrapModule(AppModule)
   .catch(err => console.error(err));

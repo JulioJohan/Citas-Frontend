@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, isDevMode } from '@angular/core';
 import { CommonModule, NgTemplateOutlet } from '@angular/common';
 import { PreloadAllModules, RouterModule, withInMemoryScrolling, withPreloading } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
@@ -22,6 +22,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { HomeModule } from './modules/home/home.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SharedModule } from './modules/shared/shared.module';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from 'environments/environment.prod';
 
 
 @NgModule({
@@ -37,12 +39,18 @@ import { SharedModule } from './modules/shared/shared.module';
         AuthModule,
         LayoutModule,
         AppRoutingModule,
-        AppRoutingModule,
         ReactiveFormsModule,
         SharedModule,
         HttpClientModule,
         FormsModule,
         NgbModule,
+        ServiceWorkerModule.register('ngsw-worker.js', {
+          //enabled: !isDevMode(),
+          enabled: environment.production,
+          // Register the ServiceWorker as soon as the application is stable
+          // or after 30 seconds (whichever comes first).
+          registrationStrategy: 'registerWhenStable:30000'
+        }),
 
 
     ],
