@@ -5,6 +5,7 @@ import { AuthSignInComponent } from '../sign-in/sign-in.component';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { UsuarioService } from 'app/services/usuario/usuario.service';
+import { TokenService } from 'app/services/token/token.service';
 
 @Component({
   selector: 'app-two-authentication',
@@ -15,7 +16,7 @@ import { UsuarioService } from 'app/services/usuario/usuario.service';
 })
 export class TwoAuthenticationComponent implements OnInit{
 
-  constructor(private _autenticacionService: AutenticacionService,
+  constructor(private _autenticacionService: AutenticacionService,private _tokenService:TokenService,
     @Inject(MAT_DIALOG_DATA) public data: any,
     public dialogRef: MatDialogRef<AuthSignInComponent>,
     private router: Router
@@ -49,11 +50,16 @@ export class TwoAuthenticationComponent implements OnInit{
         }
         this.data.authenticacionDoble = value;
 
-        return this._autenticacionService.dobleAuthenticacion(this.data).subscribe(data => {
-          console.log('Respuesta dobleAuthenticacion:', data);
+        this._autenticacionService.dobleAuthenticacion(this.data).subscribe(data => {
+        console.log('Respuesta dobleAuthenticacion:', data);
          this._autenticacionService.checharLocalStorage();
          this._autenticacionService.decodificarPorId(data);
-   
+         const token = localStorage.getItem('tokenNotificacion');
+         const tokenJson = JSON.parse(token);
+         console.log('token',token)
+         console.log('tokenJson',tokenJson)
+         const dataMsg = this._tokenService.sendPush(token);
+         console.log(dataMsg)
        },error=>{
          this.verificacionError(error)
        })
