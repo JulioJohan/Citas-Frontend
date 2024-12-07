@@ -13,6 +13,15 @@ import { CitaAgendadaComponent } from './dashboards/cita-agendada/cita-agendada.
 import { DoctorGuard } from 'app/core/auth/guards/doctor.guard';
 import { EnfermeraGuard } from 'app/core/auth/guards/enfermera.guard';
 import { HistorialMedicoComponent } from './dashboards/cita/historial-medico/historial-medico.component';
+import { AlmacenComponent } from './dashboards/almacen/almacen.component';
+import { RegActMedicinaComponent } from './dashboards/reg-act-medicina/reg-act-medicina.component';
+import { ListarMedicinasComponent } from './dashboards/listar-medicinas/listar-medicinas.component';
+import { PacienteDashboardComponent } from './dashboards/paciente-dashboard/paciente-dashboard.component';
+import { MapaSitioComponent } from '../home/mapa-sitio/mapa-sitio.component';
+import { MapaSitio2Component } from "../home/mapa-sitio2/mapa-sitio2.component";
+import { AdministradorDashboardComponent } from './dashboards/administrador-dashboard/administrador-dashboard.component'
+import { BusquedasComponent } from '../shared/busquedas/busquedas.component';
+import { AdminitradorUsuariosComponent } from './dashboards/adminitrador-usuarios/adminitrador-usuarios.component';
 
 const childRoutes:Routes = [
     {path: 'project', component:ProjectComponent},
@@ -21,10 +30,17 @@ const childRoutes:Routes = [
     {path: 'crypto', component:CryptoComponent},
     {path:'example',component: ExampleComponent},
     {path: 'devices', component:DevicesComponent},
-    {path: 'cita', canActivate: [EnfermeraGuard], component:CitaComponent},    
-    {path: 'historial_medico', canActivate: [EnfermeraGuard], component:HistorialMedicoComponent},    
-    {path:'registro_medico',canActivate:[DoctorGuard] ,component:ResgistroMedicoComponent},
-    {path:'cita_agendada',canActivate:[DoctorGuard],component:CitaAgendadaComponent}
+    {path: 'cita', canActivate: [EnfermeraGuard], component:CitaComponent, data:{titulo:'cita'}},
+    {path: 'historial_medico', canActivate: [EnfermeraGuard], component:HistorialMedicoComponent,data:{titulo:'historial_medico'}},
+    {path:'registro_medico',canActivate:[DoctorGuard] ,component:ResgistroMedicoComponent, data:{titulo:'registro_medico'}},
+    {path:'cita_agendada',canActivate:[DoctorGuard],component:CitaAgendadaComponent, data:{titulo:'cita_agendada'}},
+    {path: 'paciente-dashboard', component:PacienteDashboardComponent, data:{titulo:'paciente-dashboard'} },
+    {path: 'administrador-usuarios',component:AdminitradorUsuariosComponent, data:{titulo: 'administrador-usuarios'}},
+    {path: 'mapa-sitio', component:MapaSitioComponent, data:{titulo:'mapa-sitio'}},
+    {path: 'mapa-sitio2', component:MapaSitio2Component},
+    {path: 'administrador-dashboard', component:AdministradorDashboardComponent},
+    {path: 'buscar/:termino', canActivate:[DoctorGuard, EnfermeraGuard] ,component:BusquedasComponent, data:{ titulo: 'Busquedas globales'}},
+
 ]
 
 @NgModule({

@@ -11,6 +11,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { RECAPTCHA_V3_SITE_KEY, RecaptchaV3Module } from 'ng-recaptcha';
+import { NgxCaptchaModule } from 'ngx-captcha';
 
 // Componentes
 import { AuthConfirmationRequiredComponent } from './confirmation-required/confirmation-required.component';
@@ -22,10 +24,11 @@ import { AuthSignUpComponent } from './sign-up/sign-up.component';
 import { AuthUnlockSessionComponent } from './unlock-session/unlock-session.component';
 import { LayoutModule } from 'app/layout/layout.module';
 import { MatSelectModule } from '@angular/material/select';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 
 @NgModule({
-    declarations: [ 
+    declarations: [
         // Todo: Componentes
         AuthConfirmationRequiredComponent,
         AuthForgotPasswordComponent,
@@ -33,10 +36,10 @@ import { MatSelectModule } from '@angular/material/select';
         AuthSignInComponent,
         AuthSignOutComponent,
         AuthSignUpComponent,
-        AuthUnlockSessionComponent,        
+        AuthUnlockSessionComponent,
 
      ],
-    imports: [ 
+    imports: [
         BrowserModule,
         CommonModule,
         // LayoutModule,
@@ -44,19 +47,29 @@ import { MatSelectModule } from '@angular/material/select';
         FormsModule,
         FuseAlertComponent,
         RouterLink,
-        RouterModule,        
+        RouterModule,
         ReactiveFormsModule,
         HttpClientModule,
         I18nPluralPipe,
-        NgIf,    
-        MatButtonModule,     
+        NgIf,
+        MatButtonModule,
         MatCheckboxModule,
-        MatFormFieldModule, 
-        MatInputModule, 
+        MatFormFieldModule,
+        MatInputModule,
         MatIconModule,
         MatSelectModule,
-        MatProgressSpinnerModule, 
-        
+        MatProgressSpinnerModule,
+        RecaptchaV3Module,
+        NgxCaptchaModule,
+
     ],
+    providers: [
+    { provide: MatDialogRef, useValue: {}},
+    { provide: MAT_DIALOG_DATA, useValue: {} },
+    {
+        provide: RECAPTCHA_V3_SITE_KEY,
+        useValue: '../../../environments/environment.recaptcha.captchaId',
+    },
+    ]
 })
 export class AuthModule {}

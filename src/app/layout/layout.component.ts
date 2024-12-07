@@ -20,7 +20,7 @@ import { FuturisticLayoutComponent } from './layouts/vertical/futuristic/futuris
 import { ThinLayoutComponent } from './layouts/vertical/thin/thin.component';
 
 @Component({
-    selector     : 'layout',
+    selector     : 'layout',  
     templateUrl  : './layout.component.html',
     styleUrls    : ['./layout.component.scss'],
     encapsulation: ViewEncapsulation.None,

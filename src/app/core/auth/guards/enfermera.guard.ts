@@ -18,8 +18,8 @@ export const EnfermeraGuard: CanActivateFn = (route, state) => {
         })
   console.log(usuarioChecar)      
     
-  if(Object.keys(usuarioChecar).length === 0){
-   usuarioChecar = JSON.parse(localStorage.getItem('usuario'))
+  if(usuarioChecar._id === undefined || usuarioChecar.email === undefined){
+    usuarioChecar = JSON.parse(localStorage.getItem('usuario'))
   }
   console.log('entre')
   if(usuarioChecar.role === 'ENFERMERA'){    

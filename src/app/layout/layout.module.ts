@@ -9,7 +9,7 @@ import { FuseVerticalNavigationAsideItemComponent } from '@fuse/components/navig
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatIconModule } from '@angular/material/icon';
 import { FuseVerticalNavigationBasicItemComponent } from '@fuse/components/navigation/vertical/components/basic/basic.component';
-import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { RouterLink, RouterLinkActive, RouterModule, RouterOutlet } from '@angular/router';
 import { FuseVerticalNavigationCollapsableItemComponent } from '@fuse/components/navigation/vertical/components/collapsable/collapsable.component';
 import { FuseVerticalNavigationDividerItemComponent } from '@fuse/components/navigation/vertical/components/divider/divider.component';
 import { FuseVerticalNavigationGroupItemComponent } from '@fuse/components/navigation/vertical/components/group/group.component';
@@ -37,6 +37,9 @@ import { DenseLayoutComponent } from './layouts/vertical/dense/dense.component';
 import { FuturisticLayoutComponent } from './layouts/vertical/futuristic/futuristic.component';
 import { ThinLayoutComponent } from './layouts/vertical/thin/thin.component';
 import { MaterialLayoutComponent } from './layouts/horizontal/material/material.component';
+
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+
 // import { SettingsComponent } from './common/settings/settings.component';
 import { FuseDrawerComponent } from '@fuse/components/drawer';
 import { MAT_AUTOCOMPLETE_SCROLL_STRATEGY } from '@angular/material/autocomplete';
@@ -112,10 +115,12 @@ import { QuickChatComponent } from 'app/layout/common/quick-chat/quick-chat.comp
     MatButtonModule,
     MatDividerModule,
     MatMenuModule,
+    MatAutocompleteModule,
     MatIconModule,
     MatTooltipModule,
     MatProgressBarModule,
     RouterOutlet,
+    RouterModule,
     RouterLink,
     RouterLinkActive,
   ],

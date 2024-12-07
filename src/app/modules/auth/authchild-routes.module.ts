@@ -8,16 +8,23 @@ import { AuthSignUpComponent } from './sign-up/sign-up.component';
 import { AuthGuard } from "app/core/auth/guards/auth.guard";
 import { AuthSignOutComponent } from "./sign-out/sign-out.component";
 import { AuthUnlockSessionComponent } from "./unlock-session/unlock-session.component";
+import { HomeComponent } from '../home/home/home.component';
+import { MapaSitioComponent } from "../home/mapa-sitio/mapa-sitio.component";
+import { TwoAuthenticationComponent } from "./two-authentication/two-authentication.component";
 
 const childRoutes:Routes = [
-    {path: 'confirmation-required',component: AuthConfirmationRequiredComponent},
+    {path: 'confirmation-required/:tokenDoble',component: AuthConfirmationRequiredComponent},
     {path: 'forgot-password', component:AuthForgotPasswordComponent},
-    {path: 'reset-password', component: AuthResetPasswordComponent},
+    {path: 'two-authentication',component:TwoAuthenticationComponent},
+    {path: 'reset-password/:tokenDoble', component: AuthResetPasswordComponent},
     {path: 'sign-in', component:AuthSignInComponent },
+    {path: 'home-nuevo', component:HomeComponent},
+    {path: 'mapa-sitio', component:MapaSitioComponent},
+    {path: 'unlock-session', component:AuthUnlockSessionComponent},
 
     {path: 'sign-up', component:AuthSignUpComponent},
-    // Auth routes for authenticated users   
-    
+    // Auth routes for authenticated users
+
 ]
 
 

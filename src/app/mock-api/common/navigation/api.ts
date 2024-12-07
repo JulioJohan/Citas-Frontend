@@ -40,8 +40,11 @@ export class NavigationMockApi
                 // Fill compact navigation children using the default navigation
                 this._compactNavigation.forEach((compactNavItem) =>
                 {
+                    
                     this._defaultNavigation.forEach((defaultNavItem) =>
                     {
+                        compactNavItem.children = cloneDeep(defaultNavItem.children);
+
                         if ( defaultNavItem.id === compactNavItem.id )
                         {
                             compactNavItem.children = cloneDeep(defaultNavItem.children);
@@ -54,6 +57,8 @@ export class NavigationMockApi
                 {
                     this._defaultNavigation.forEach((defaultNavItem) =>
                     {
+                        futuristicNavItem.children = cloneDeep(defaultNavItem.children);
+
                         if ( defaultNavItem.id === futuristicNavItem.id )
                         {
                             futuristicNavItem.children = cloneDeep(defaultNavItem.children);
@@ -66,6 +71,8 @@ export class NavigationMockApi
                 {
                     this._defaultNavigation.forEach((defaultNavItem) =>
                     {
+                        horizontalNavItem.children = cloneDeep(defaultNavItem.children);
+
                         if ( defaultNavItem.id === horizontalNavItem.id )
                         {
                             horizontalNavItem.children = cloneDeep(defaultNavItem.children);

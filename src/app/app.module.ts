@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, isDevMode } from '@angular/core';
 import { CommonModule, NgTemplateOutlet } from '@angular/common';
 import { PreloadAllModules, RouterModule, withInMemoryScrolling, withPreloading } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
@@ -16,6 +16,15 @@ import { mockApiServices } from './mock-api';
 import { DateAdapter, MAT_DATE_FORMATS } from '@angular/material/core';
 import { LuxonDateAdapter } from '@angular/material-luxon-adapter';
 import { LayoutModule } from './layout/layout.module';
+import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { HomeModule } from './modules/home/home.module';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { SharedModule } from './modules/shared/shared.module';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from 'environments/environment.prod';
+
 
 @NgModule({
     declarations: [
@@ -26,11 +35,28 @@ import { LayoutModule } from './layout/layout.module';
         RouterModule,
         BrowserModule,
         AdminModule,
+        HomeModule,
         AuthModule,
         LayoutModule,
         AppRoutingModule,
+        ReactiveFormsModule,
+        SharedModule,
+        HttpClientModule,
+        FormsModule,
+        NgbModule,
+        ServiceWorkerModule.register('ngsw-worker.js', {
+          //enabled: !isDevMode(),
+          enabled: environment.production,
+          // Register the ServiceWorker as soon as the application is stable
+          // or after 30 seconds (whichever comes first).
+          registrationStrategy: 'registerWhenStable:30000'
+        }),
+
+
     ],
     providers: [
+
+
         provideAnimations(),
         provideHttpClient(),
           // Material Date Adapter
@@ -55,7 +81,7 @@ import { LayoutModule } from './layout/layout.module';
         // Transloco Config
         provideTransloco(),
 
-       
+
         // Fuse
         provideAuth(),
         provideIcons(),
