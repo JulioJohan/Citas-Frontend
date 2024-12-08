@@ -16,6 +16,9 @@ import { mockApiServices } from './mock-api';
 import { DateAdapter, MAT_DATE_FORMATS } from '@angular/material/core';
 import { LuxonDateAdapter } from '@angular/material-luxon-adapter';
 import { LayoutModule } from './layout/layout.module';
+import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
     declarations: [
@@ -29,6 +32,10 @@ import { LayoutModule } from './layout/layout.module';
         AuthModule,
         LayoutModule,
         AppRoutingModule,
+        AppRoutingModule,
+        ReactiveFormsModule,
+        HttpClientModule,
+        FormsModule
     ],
     providers: [
         provideAnimations(),

@@ -66,6 +66,9 @@ export class AuthSignInComponent implements OnInit
         })
 
     }
+    public almacen(){
+        this._router.navigateByUrl('/almacen')
+    }
 
     private errorRespuesta(error:string){
         // Re-enable the form

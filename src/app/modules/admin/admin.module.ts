@@ -43,11 +43,15 @@ import { FinanceComponent } from './dashboards/finance/finance.component';
 import { ProjectComponent } from './dashboards/project/project.component';
 import { DetalleCitaComponent } from './dashboards/cita-agendada/detalle-cita/detalle-cita.component';
 import { HistorialMedicoComponent } from './dashboards/cita/historial-medico/historial-medico.component';
+import { ListarMedicinasComponent } from './dashboards/listar-medicinas/listar-medicinas.component';
+import { RegActMedicinaComponent } from './dashboards/reg-act-medicina/reg-act-medicina.component';
+import { RouterLink } from '@angular/router';
+import { AlmacenComponent } from './dashboards/almacen/almacen.component';
 
 @NgModule({
   declarations: [
-    
     AnalyticsComponent,
+    AlmacenComponent,
     CitaComponent,
     CitaAgendadaComponent,
     CryptoComponent,
@@ -59,7 +63,9 @@ import { HistorialMedicoComponent } from './dashboards/cita/historial-medico/his
     ProjectComponent,    
     NuevoPacienteComponent,
     NumberDirective,
-    LetterDirective
+    LetterDirective,
+    ListarMedicinasComponent,
+    RegActMedicinaComponent
 
   ],
   imports: [
@@ -73,6 +79,7 @@ import { HistorialMedicoComponent } from './dashboards/cita/historial-medico/his
     NgFor,  
     NgClass,  
     I18nPluralPipe,
+    RouterLink,    
     NgApexchartsModule,
     NgxMatTimepickerModule,
     MatButtonModule,

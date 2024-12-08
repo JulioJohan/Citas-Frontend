@@ -13,6 +13,9 @@ import { CitaAgendadaComponent } from './dashboards/cita-agendada/cita-agendada.
 import { DoctorGuard } from 'app/core/auth/guards/doctor.guard';
 import { EnfermeraGuard } from 'app/core/auth/guards/enfermera.guard';
 import { HistorialMedicoComponent } from './dashboards/cita/historial-medico/historial-medico.component';
+import { AlmacenComponent } from './dashboards/almacen/almacen.component';
+import { RegActMedicinaComponent } from './dashboards/reg-act-medicina/reg-act-medicina.component';
+import { ListarMedicinasComponent } from './dashboards/listar-medicinas/listar-medicinas.component';
 
 const childRoutes:Routes = [
     {path: 'project', component:ProjectComponent},
@@ -24,7 +27,7 @@ const childRoutes:Routes = [
     {path: 'cita', canActivate: [EnfermeraGuard], component:CitaComponent},    
     {path: 'historial_medico', canActivate: [EnfermeraGuard], component:HistorialMedicoComponent},    
     {path:'registro_medico',canActivate:[DoctorGuard] ,component:ResgistroMedicoComponent},
-    {path:'cita_agendada',canActivate:[DoctorGuard],component:CitaAgendadaComponent}
+    {path:'cita_agendada',canActivate:[DoctorGuard],component:CitaAgendadaComponent},   
 ]
 
 @NgModule({

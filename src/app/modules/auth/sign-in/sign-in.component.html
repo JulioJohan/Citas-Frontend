@@ -10,11 +10,11 @@
             <div class="mt-8 text-4xl font-extrabold tracking-tight leading-tight">Inicio de Sesión</div>
             <div class="flex items-baseline mt-0.5 font-medium">
                 <div>No tienes una cuenta?</div>
-                <a
-                    class="ml-1 text-primary-500 hover:underline"
-                    [routerLink]="['/users/sign-up']">Registrar
-                </a>
+                <a class="ml-1 text-primary-500 hover:underline" [routerLink]="['/users/sign-up']">Registrar</a>
             </div>
+                <br>
+                <div>Eres del Almacen?</div>
+                <a class="ml-1 text-primary-500 hover:underline" [routerLink]="['/almacen']">Entrar</a>
 
             <!-- Alert -->
             <!-- <fuse-alert
@@ -154,6 +154,7 @@
             </form>
         </div>
     </div>
+
     <div class="relative hidden md:flex flex-auto items-center justify-center w-1/2 h-full p-16 lg:px-28 overflow-hidden bg-gray-800 dark:border-l">
         <!-- Background - @formatter:off -->
         <!-- Rings -->
